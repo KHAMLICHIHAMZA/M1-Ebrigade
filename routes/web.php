@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +18,24 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Auth::routes();
+Route::get('/Rapport', function () {
+    return view('RedactionRapport');
+});
 
-Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
 Route::resource('/users','UserController');
 Route::resource('/interventions','InterventionController');
 
 
+//URL /home fait appel a la methode Index du controller HomeController
+Route::get('/home', 'HomeController@index')->name('home');
+//URL /AllIntervention fait appel a la methode listeIntervention du controller InterventionController
+Route::get('/AllIntervention', 'InterventionController@listeAllInterventions')->name('listeAllInterventions');
+
+Route::get('/php', function () {
+    return view('php.page');
+});
+Route::get('/AjoutIntervention', function () {
+    return view('AddIntervention');
+});
+Route::post('/AjoutIntervention', 'HomeController@index')->name('home');
