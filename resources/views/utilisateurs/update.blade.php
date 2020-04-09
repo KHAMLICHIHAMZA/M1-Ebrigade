@@ -16,12 +16,10 @@
 
 
 
-      <form action=" {{ route('users.updat') }} " method="POST">
-
-
+      <form action=" {{ route('users.update',['user' => $user[0]->P_ID]) }} " method="POST">
 
       @csrf
-
+        @method('PUT')
         <div class="row">
 
         <div class="col-sm-12">

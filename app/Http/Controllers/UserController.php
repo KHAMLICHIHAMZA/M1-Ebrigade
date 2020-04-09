@@ -18,17 +18,14 @@ class UserController extends Controller
     public function index()
     {
         //comment inetragir avec BD Ebrigade
-        $pompiers=DB::connection('mysql2')->table('pompier')->get();
-
-
+        //$pompiers=DB::connection('mysql2')->table('pompier')->get();
         $data=Http::get('http://localhost:8002/Users');
-
         $resp=json_decode($data);
-
 
             return view('utilisateurs.liste',[
             'users' => $resp,
-            'pompiers'=>$pompiers
+            
+            //'pompiers'=>$pompiers
 
 
         ]);
@@ -99,7 +96,22 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
 
-/*
+        //$pompiers=DB::connection('mysql2')->table('pompier')->get();
+        $stmt=DB::connection('mysql2')->table('pompier')->where('P_ID',$id)->update([
+            'P_NOM'=> $request->input('P_NOM'),
+            'P_PRENOM'=> $request->input('P_PRENOM'),
+            'P_SEXE'=> $request->input('P_SEXE_'),
+            'P_GRADE'=> $request->input('P_GRADE'),
+            'P_PROFESSION'=> $request->input('P_PROFESSION'),
+            'P_STATUT'=> $request->input('P_STATUT_'),
+            'P_EMAIL'=> $request->input('P_EMAIL')
+            
+        ]);
+      
+        return redirect()->route('users.index');
+
+                /*
+
         try{
 
         $data=Http::get('http://localhost:8002/Users/FindByID/'.$id);
