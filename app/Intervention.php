@@ -94,7 +94,7 @@ class Intervention extends Model
             'Date_Heure_Fin'=>$Date_Heure_Fin,
             'Responsable_idResponsable'=>$LastLine->idEngins]
         );
-        
+
         //Fermeture et initialisation du curseur
         //$stmt->closeCursor();
         $stmt=null;
@@ -107,7 +107,7 @@ class Intervention extends Model
             'Intervention_Numero_Intervention' => $LastLine1->Numero_Intervention,
             'Engins_idEngins'=>$LastLine->idEngins]
         );
-        
+
         //Fermeture et initialisation du curseur
         $stmt1=null;
         //Fermeture et initialisation du curseur

@@ -36,7 +36,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center custom-margin">
             <div class="col-sm-6 col-md-4">
-               
+
 
 
                 @yield('content');

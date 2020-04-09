@@ -13,8 +13,11 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bbootstrap 4 -->
-
-  <link rel="stylesheet" href="  {{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}
+  <link rel="stylesheet" href="{{ asset('plugins/fullcalendar/main.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/fullcalendar-daygrid/main.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/fullcalendar-timegrid/main.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/fullcalendar-bootstrap/main.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}
 ">
   <!-- iCheck -->
 
@@ -30,8 +33,9 @@
 ">
   <!-- overlayScrollbars -->
 
-  <link rel="stylesheet" href="  {{ asset('dist/css/adminlte.min.css') }}
-">
+  <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}
+  ">
+
   <!-- Daterange picker -->
 
   <link rel="stylesheet" href="  {{ asset('plugins/daterangepicker/daterangepicker.css') }}
@@ -40,7 +44,19 @@
   <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.css') }}
 ">
   <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <!-- DataTables -->
+
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.csss') }}">
+
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 
@@ -56,12 +72,12 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Home</a>
       </li>
-     
+
     </ul>
 
 
 
-    
+
     <!-- SEARCH FORM -->
     <form class="form-inline ml-3">
       <div class="input-group input-group-sm">
@@ -76,37 +92,52 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-    <li class="nav-item d-none d-sm-inline-block">
-        <a href="#"  class="nav-link"><i
-            class="fas fa-door-open"></i></a></a>
-            
-            <script>
-function myFunction2() {
-  var txt;
-  if (confirm("vous étes sure de vous deconecter !")) {
-    
 
-  } else {
-    window.location.href;
-  }
-  document.getElementById("demo").innerHTML = txt;
-}
-</script>
+
+  <!-- Authentication Links -->
+  @guest
+  <li class="nav-item">
+      <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+  </li>
+  @if (Route::has('register'))
+      <li class="nav-item">
+          <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
       </li>
+  @endif
+@else
+  <li class="nav-item dropdown">
+      <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+          {{ Auth::user()->name }} <span class="caret"></span>
+      </a>
 
-      
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{ route('logout') }}"
+             onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">
+              {{ __('Logout') }}
+          </a>
+
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+          </form>
+      </div>
+  </li>
+@endguest
+
+
+
+
 
       <li class="nav-item d-none d-sm-inline-block">
-      <!--       <a href="index.php?c=userscontroller&m=getAllUsers" class="nav-link"><i
--->
-        <a href="#" class="nav-link"><i
+
+        <a href="http://localhost:8001/users" class="nav-link"><i
             class="far fa-user"></i></a></a>
-            
+
       </li>
 
-     
 
-   
+
+
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -216,7 +247,7 @@ function myFunction2() {
 
 
           <li class="nav-item">
-                <a href=""  class="nav-link">
+                <a href="http://localhost:8001/parametres"  class="nav-link">
                     <i class="nav-icon fas fa-calendar"></i>
                     <p>
                     paramètres                     </p>
@@ -259,7 +290,7 @@ function myFunction2() {
           <div class="card">
             <div class="card-body">
               <div class="d-flex flex-row justify-content-end">
-              
+
 @yield('content');
               </div>
             </div>
@@ -267,12 +298,12 @@ function myFunction2() {
         </div>
       </div>
     </div>
-  </div> 
+  </div>
 
 
  <footer class="main-footer">
     <strong>2020 <a href="">Gestion d'intervention</a></strong>
-    
+
     <div class="float-right d-none d-sm-inline-block">
       <b>M1 MIAGE UHA</b>
     </div>
@@ -284,7 +315,10 @@ function myFunction2() {
 
 
 
-<script src="/js/app.js"></script>
+
+
+<script src="{{ asset('/js/app.js') }}
+"></script>
 <!-- jQuery -->
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}
 "></script>
@@ -336,7 +370,10 @@ function myFunction2() {
 
 <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}
 "></script>
-<!-- AdminLTE App -->
+<!-- ce que jai ajouter -->
+
+
+<!-- ce que jai ajouter -->
 
 
 <script src="{{ asset('dist/js/pages/dashboard.js') }}
@@ -345,8 +382,21 @@ function myFunction2() {
 
 <script src="{{ asset('dist/js/demo.js') }}
 "></script>
+<!-- ce que jai ajouter -->
+<script src="{{ asset('plugins/fullcalendar/main.min.js') }}"></script>
 
 
+<script src="{{ asset('plugins/fullcalendar-daygrid/main.min.js') }}"></script>
+<script src="{{ asset('plugins/fullcalendar-timegrid/main.min.js') }}"></script>
+<script src="{{ asset('plugins/fullcalendar-interaction/main.min.js') }}"></script>
+<script src="{{ asset('plugins/fullcalendar-bootstrap/main.min.js') }}"></script>
 
+<!-- ce que jai ajouter -->
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>
+@yield('scripto');
