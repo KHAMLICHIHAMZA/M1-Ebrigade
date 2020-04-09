@@ -39,3 +39,12 @@ Route::get('/AjoutIntervention', function () {
     return view('AddIntervention');
 });
 Route::post('/AjoutIntervention', 'HomeController@index')->name('home');
+
+Route::put('users/updat', 'UserController@updat')->name('users.updat');
+
+Route::get('/parametres', function () {
+    return view('parametres.parametres');
+});
+
+Route::get('user/{us}', 'UserController@delete')->name('user.delete');
+

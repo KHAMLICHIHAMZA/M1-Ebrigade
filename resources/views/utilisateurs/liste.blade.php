@@ -2,7 +2,7 @@
 
 @section('content')
 
-              
+
 
 
 <table class="table table-hover">
@@ -31,38 +31,40 @@
                         <td scope="col">{{$user->P_PROFESSION }}</td>
                         <td scope="col">{{$user->P_STATUT }}</td>
 
-
                         <td  class="d-flex flex-row" >
-                          
-                        <form  class="mr-1" method="post" action="">
-                          <input type="hidden" name="P_ID" value="<?php
-                        //   echo $user['P_ID'];?>">
-                        <button class="btn btn-sm btn-info "><i class="fa fa-eye" ></i></button>
-                          
+
+                        <form  class="mr-1" method="" action="{{ route('users.edit',['user' => $user->P_ID]) }}">
+                        <button class="btn btn-sm btn-warning"><i class="fa fa-edit" ></i></button>
+                      </form>
+
+
+
+                      <form  class="mr-1" method="" action="{{ route('user.delete',['us' => $user->P_ID]) }}">
+
+                        <button name class="btn btn-sm btn-danger"><i class="fa fa-trash" ></i></button>
+
+                        <input type="hidden" name="" value="">
+
                      </form>
-                        <form  class="mr-1" method="post" action="">
-                          <input type="hidden" name="P_ID" value="<?php
-                         //  echo $user['P_ID'];?>">
-                           <button class="btn btn-sm btn-warning"><i class="fa fa-edit" ></i></button>
-                        </form>
-                        <form  class="mr-1" method="post" action="delete">
-                        
-                           <button name class="btn btn-sm btn-danger"><i class="fa fa-trash" ></i></button>
 
-                           <input type="hidden" name="P_ID" value="<?php
-                         //  echo $user['P_ID'];?>
-                           ">
 
-                        </form>
-                        
-            
-       
+                        <form  class="mr-1" method="" action="{{ route('users.show',['user' => $user->P_ID]) }}">
+                          <input type="hidden" name="P_ID" value="">
+                          <a >
+                           <button class="btn btn-sm btn-info"><i class="fa fa-eye" ></i></button>
+                          </a>
+                      </form>
+
+
+
+
+
                         </td>
-                        
+
                     </tr>
                     @endforeach
 
-    
+
                   </tbody>
                   <!--jusque la qui doit changer-->
                 </table>
