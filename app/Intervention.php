@@ -27,7 +27,7 @@ class Intervention extends Model
         $stmt=DB::table('responsables')->insert(['Nom' => $Resp]);
         //Fermeture et initialisation du curseur
         $stmt->closeCursor();
-        $stmt=null;      
+        $stmt=null;
     }
 
     //Insertion des informations de l'engin utiliser lors de l'intervention dans BDD
@@ -48,9 +48,9 @@ class Intervention extends Model
     //Sauvegarde de l'intervention
     static public function AddIntervention($Commune,$Adresse,$Type_interv,$Date_Heure_Debut,$Date_Heure_Fin,$Important,$Opm){
         //$LastLine=DB::connect()->prepare('SELECT idEngins from engins order by idEngins DESC LIMIT 1');
-        //Recuperer la dernier ligne de la table engins sauvegarder dans la BDD 
+        //Recuperer la dernier ligne de la table engins sauvegarder dans la BDD
         $LastLine=DB::table('engins')->select('idEngins')->order_by('idEngins', 'desc')->first();
-        
+
         //$stmt=DB::connect()->prepare('INSERT INTO intervention (Commune, Adresse, Type_interv, Opm, Important, Date_Heure_Debut, Date_Heure_Fin, Responsable_idResponsable) VALUES ("'.$Commune.'","'.$Adresse.'","'.$Type_interv.'","'.$Opm.'","'.$Important.'","'.$Date_Heure_Debut.'","'.$Date_Heure_Fin.'","'.$data['idEngins'].'")');
         //Insertion des information de la table intervention dans la BDD
         $stmt=DB::table('intervention')->insert([
@@ -63,22 +63,22 @@ class Intervention extends Model
             'Date_Heure_Fin'=>$Date_Heure_Fin,
             'Responsable_idResponsable'=>$LastLine['idEngins']]
         );
-        
+
         //Fermeture et initialisation du curseur
         $stmt->closeCursor();
         $stmt=null;
-        
+
         //$LastLine1=DB::connect()->prepare('SELECT Numero_Intervention from intervention order by Numero_Intervention DESC LIMIT 1');;
-        //Recuperation de la dernier ligne sauvegarder de la table interventions 
+        //Recuperation de la dernier ligne sauvegarder de la table interventions
         $LastLine1=DB::table('interventions')->select('Numero_Intervention')->order_by('Numero_Intervention', 'desc')->first();
-        
+
         //$stmt1=DB::connect()->prepare('INSERT INTO intervention_engins (Intervention_Numero_Intervention, Engins_idEngins) VALUES ("'.$data1['Numero_Intervention'].'","'.$data2['idEngins'].'")');
         //Insertion des informations concernant les cles primaire des tables engins et intervention pour faire la liaison.
         $stmt1=DB::table('interventions_engins')->insert([
             'Intervention_Numero_Intervention' => $LastLine1['Numero_Intervention'],
             'Engins_idEngins'=>$LastLine['idEngins']]
         );
-        
+
         //Fermeture et initialisation du curseur
         $stmt1->closeCursor();
         $stmt1=null;
@@ -88,6 +88,6 @@ class Intervention extends Model
         //Fermeture et initialisation du curseur
         $LastLine1->closeCursor();
         $LastLine1=null;
-        
+
     }
 }

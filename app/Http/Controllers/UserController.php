@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -16,6 +17,8 @@ class UserController extends Controller
      */
     public function index()
     {
+        //comment inetragir avec BD Ebrigade
+        $pompiers=DB::connection('mysql2')->table('pompier')->get();
 
 
         $data=Http::get('http://localhost:8002/Users');
@@ -24,7 +27,8 @@ class UserController extends Controller
 
 
             return view('utilisateurs.liste',[
-            'users' => $resp
+            'users' => $resp,
+            'pompiers'=>$pompiers
 
 
         ]);
