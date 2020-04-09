@@ -14,7 +14,7 @@ class CreateInterventionsTable extends Migration
     public function up()
     {
         Schema::create('interventions', function (Blueprint $table) {
-            $table->integer('Numero_Intervention');
+            $table->increments('Numero_Intervention');
             $table->string('Commune')->nullable();
             $table->string('Adresse')->nullable();
             $table->string('Type_interv')->nullable();
@@ -22,10 +22,10 @@ class CreateInterventionsTable extends Migration
             $table->string('Important')->nullable();
             $table->datetime('Date_Heure_Debut')->nullable();
             $table->date('Date_Heure_Fin')->nullable();
-            $table->integer('Geographique_idGeographique');
+            $table->integer('Geographique_idGeographique')->nullable();
             $table->integer('Responsable_idResponsable')->nullable();
 
-            $table->primary(['Numero_Intervention', 'Geographique_idGeographique'],'my_pkss');
+            //$table->primary(['Numero_Intervention', 'Geographique_idGeographique'],'my_pkss');
 
 
             $table->foreign('Geographique_idGeographique')->references('idGeographique')->on('geographiques')->onDelete('cascade');

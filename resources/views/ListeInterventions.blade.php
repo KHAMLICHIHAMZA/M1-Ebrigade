@@ -30,7 +30,7 @@
                             <td  class="d-flex flex-row" align="center">
                                 <a href=""><button class="btn btn-sm btn-warning"><i class="fa fa-eye" ></i></button></a>
                                 <a><button class="btn btn-sm btn-primary"><i class="fa fa-edit" ></i></button></a>
-                                <a><button class="btn btn-sm btn-danger"><i class="fa fa-remove-format" ></i></button></a>
+                                <a href="http://127.0.0.1:8000/SupprimerIntervention/<?php echo $Intervention->Numero_Intervention ?>"<button class="btn btn-sm btn-danger"><i class="fa fa-remove-format" ></i></button></a>
                             </td>                  
                         </tr>
                     @endforeach

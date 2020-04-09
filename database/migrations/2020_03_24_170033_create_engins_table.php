@@ -14,7 +14,7 @@ class CreateEnginsTable extends Migration
     public function up()
     {
         Schema::create('engins', function (Blueprint $table) {
-            $table->integer('idEngins')->primary();
+            $table->increments('idEngins');
             $table->string('Nom_Engin',45)->nullable();
             $table->date('Date_Heur_Depart')->nullable();
             $table->date('Date_Heure_Arriver')->nullable();

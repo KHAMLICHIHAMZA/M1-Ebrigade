@@ -15,14 +15,14 @@ class CreatePersonnelsTable extends Migration
     {
         Schema::create('personnels', function (Blueprint $table) {
             $table->engine = 'MyISAM';
-            $table->integer('idPersonnel');
+            $table->increments('idPersonnel');
 
             $table->string('Nom',45)->nullable();
             $table->string('Role',45)->nullable();
-            $table->integer('Responsable_idResponsable');
-            $table->integer('Parametre_idParametre');
+            $table->integer('Responsable_idResponsable')->nullable();
+            $table->integer('Parametre_idParametre')->nullable();
 
-            $table->primary(['idPersonnel','Responsable_idResponsable', 'Parametre_idParametre'],'my_pks');
+            //$table->primary(['idPersonnel','Responsable_idResponsable', 'Parametre_idParametre'],'my_pks');
 
             $table->string('P_CODE',20)->nullable();
             $table->foreign('Responsable_idResponsable','fk_resopns')->references('idResponsable')->on('responsables')->onDelete('cascade');

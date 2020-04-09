@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Intervention;
+use Facade\FlareClient\View;
 use resources\listeInterventions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -50,48 +51,63 @@ class InterventionController extends Controller
     }
 
     //Ajout d'une intervention et la sauvegarder sur la BDD
-    public static function addInterventionEngins(){
+    public static function addInterventionEngins(Request $request){
+        //dd($request->all());
         $i=1;
         global $TableIntervention;
         global $TableEngin;
         global $Pompier;
         //die(var_dump($_POST));
         if(isset($_POST['submit'])){
-            if(is_null($_POST['Important'])){
-                $_POST['Important']="off";
-            }
-            if(!isset($_POST['Opm'])){
-                $_POST['Opm']="off";
-            }
             //if(empty($TableIntervention)){
                 $TableIntervention = array(
-                    'Commune' => $_POST['Commune'],
-                    'Adresse' => $_POST['Adresse'],
-                    'Type_interv' => $_POST['Type_interv'],
-                    'Date_Heure_Debut' => $_POST['Date_Heure_Debut'],
-                    'Date_Heure_Fin' => $_POST['Date_Heure_Fin'],
-                    'Important' => $_POST['Important'],
-                    'Opm' => $_POST['Opm'],
-                );             
+                    'Commune' => $request->input('Commune'),
+                    'Adresse' => $request->input('Adresse'),
+                    'Type_interv' => $request->input('Type_interv'),
+                    'Date_Heure_Debut' => $request->input('Date_Heure_Debut'),
+                    'Date_Heure_Fin' => $request->input('Date_Heure_Fin'),
+                    'Important' => $request->input('Important'),
+                    'Opm' => $request->input('Opm'),
+                );   
+                if(is_null($TableIntervention['Important'])){
+                    $TableIntervention['Important']="off";
+                }
+                if(!isset($TableIntervention['Opm'])){
+                    $TableIntervention['Opm']="off";
+                }
+                //dd($TableIntervention);          
             //}else{
                 $TableEngin = array(
-                    'Nom_Engin' => $_POST['Nom_Engin'],
-                    'Date_Heur_Depart' => $_POST['Date_Heur_Depart'],
-                    'Date_Heure_Arriver' => $_POST['Date_Heure_Arriver'],
-                    'Date_Heure_Retour' => $_POST['Date_Heure_Retour'],
+                    'Nom_Engin' => $request->input('Nom_Engin'),
+                    'Date_Heur_Depart' => $request->input('Date_Heur_Depart'),
+                    'Date_Heure_Arriver' => $request->input('Date_Heure_Arriver'),
+                    'Date_Heure_Retour' => $request->input('Date_Heure_Retour'),
                 );
+                //dd($TableEngin);          
                 //Sauvegarde d'un responsable dans la BDD
-                $InserResp = Intervention::AddResponsable($_POST['Nom']);
+                $InserResp = Intervention::AddResponsable($request->input('Nom'));
                 //Sauvegarde des informations de l'engin utiliser lors de l'intervention
                 $InserEngins = Intervention::AddEnginIntervention($TableEngin['Nom_Engin'],$TableEngin['Date_Heur_Depart'],$TableEngin['Date_Heure_Arriver'],$TableEngin['Date_Heure_Retour']);
                 $InserInterv = Intervention::AddIntervention($TableIntervention['Commune'],$TableIntervention['Adresse'],$TableIntervention['Type_interv'],$TableIntervention['Date_Heure_Debut'],$TableIntervention['Date_Heure_Fin'],$TableIntervention['Important'],$TableIntervention['Opm']);
                 
-
-                while (isset($_POST['Role'.$i])){
-                    //die(var_dump($_POST['Role'.$i]));
-                    $InserPersonnel = Intervention::AddPersonnel($_POST['Role'.$i]);
-                    $i++; 
+                $test=true;
+                while ($test){
+                    $tmp=$request->input('Role'.$i);
+                    //dd($tmp);
+                    if(isset($tmp)){
+                        $InserPersonnel = Intervention::AddPersonnel($request->input('Role'.$i));   
+                        $i++;
+                    }else{
+                        $test=false;
+                    }
                 }
         }
+        return InterventionController::listeAllInterventions();
     }
+
+    //suppression d'une intervention 
+    public static function deleteInterventionEngins($request){
+        Intervention::DeleteIntervention($request);
+        return InterventionController::listeAllInterventions();
+    } 
 }

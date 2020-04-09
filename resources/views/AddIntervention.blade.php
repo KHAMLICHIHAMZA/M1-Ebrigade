@@ -15,7 +15,8 @@ $Type_Inters = InterventionController::getAllType();
 </br>
 <div class="container container-fluid" style="width:1000px; float:left; margin-left:10px;">
   <!-- general form elements disabled -->
-  <form action="" id="idform" method="post">
+  <form action="{{ route('AddIntervention') }}" id="idform" method="POST">
+  @csrf
     <div class="card card-primary">
       <div class="card-header">
         <h3 class="card-title"><strong>Intervention :</strong></h3>
@@ -28,8 +29,8 @@ $Type_Inters = InterventionController::getAllType();
             <!-- text input -->
             <div class="form-group">
 
-              <label>Commune d'intervention </label>
-              <input type="text" class="form-control" name="Commune" placeholder="Commune ...">
+              <label id="Commune">Commune d'intervention </label>
+              <input type="text" class="form-control" name="Commune" id="Commune" placeholder="Commune ...">
 
             </div>
           </div>

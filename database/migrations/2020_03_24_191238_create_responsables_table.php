@@ -16,7 +16,7 @@ class CreateResponsablesTable extends Migration
         Schema::create('responsables', function (Blueprint $table) {
             $table->increments('idResponsable');
             $table->string('Nom')->nullable();
-            $table->string('P_CODE');
+            $table->string('P_CODE')->nullable();
         });
     }
 
