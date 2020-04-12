@@ -110,4 +110,15 @@ class InterventionController extends Controller
         Intervention::DeleteIntervention($request);
         return InterventionController::listeAllInterventions();
     } 
+
+    //Modification des information d'une intervention
+    static public function ShowDataIntervention($id){
+        
+        return view('UpdateIntervention');
+    }
+
+    //Modification des information d'une intervention
+    static public function UpdateInterventionEngins(Request $request){
+    
+    }
 }

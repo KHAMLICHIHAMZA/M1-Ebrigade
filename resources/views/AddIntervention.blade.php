@@ -3,19 +3,14 @@
 @section('content')
 <?php
 use App\Http\Controllers\InterventionController;
+use GuzzleHttp\Psr7\Request;
 
-$Pompier = array();
-if (isset($_POST['submit'])) {
-  //$Intervention->addInterventionEngins();
-  //echo '<script language="JavaScript" type="text/javascript">window.location.replace("http://localhost/Interventions-Management/EnginsAdd");</script>';
-  //var_dump($_POST);
-}
 $Type_Inters = InterventionController::getAllType();
 ?>
 </br>
 <div class="container container-fluid" style="width:1000px; float:left; margin-left:10px;">
   <!-- general form elements disabled -->
-  <form action="{{ route('AddIntervention') }}" id="idform" method="POST">
+  <form action="{{ route('AddInfoIntervention') }}" id="idform" method="post" >
   @csrf
     <div class="card card-primary">
       <div class="card-header">
@@ -222,13 +217,7 @@ $Type_Inters = InterventionController::getAllType();
         </div>
       </div>
   </form>
-  <?php
-    if (isset($_POST['submit'])) {
-      die(var_dump($_POST));
-      $Send = new InterventionController();
-      $Send->addInterventionEngins();
-    }
-  ?>
+
   <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
   <script>
     function test() {

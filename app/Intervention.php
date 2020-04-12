@@ -9,7 +9,6 @@ use PDOException;
 
 class Intervention extends Model
 {
-    //protected $table ='interventions';
     //Recuperation de la Liste des Interventions Enregistrer.
     public static function getAllIntervention(){
         try {
@@ -133,7 +132,7 @@ class Intervention extends Model
         DB::table('engins')->where('idEngins',$id)->delete();
     }
 
-    //supprimer un les liaison entre engin et intervention de la BDD
+    //supprimer les liaison entre des engins utiliser lors de l'intervention de la BDD
     static public function DeleteEnginsInterventions($idIntervention,$idEngin){
         DB::table('interventions_engins')->where(['Intervention_Numero_Intervention' => $idIntervention,
                                                   'Engins_idEngins'=> $idEngin])->delete();
@@ -149,12 +148,12 @@ class Intervention extends Model
         DB::table('responsables')->where('idResponsable' , $idRespensable)->delete();
     }    
     
-    //supprimer du Responsable de l'intervention de la BDD
+    //supprimer des informations de l'intervention de la BDD
     static public function DeleteInterventionTable($id){
         DB::table('interventions')->where('Numero_Intervention' , $id)->delete();
     }
 
-    //supprimer du Responsable de l'intervention de la BDD
+    //supprimer les liaison entre les engins et les personnels qui ont participer a l'intervention de la BDD
     static public function DeleteEnginsPersonnels($idIntervention){
         DB::table('engins_personnels')->where('Intervention_Numero_intervention' , $idIntervention)->delete();
     }
@@ -173,5 +172,5 @@ class Intervention extends Model
         $Responsable=Intervention::DeleteInterventionResponsable($Intervention[0]->Responsable_idResponsable);
         $InterTable=Intervention::DeleteInterventionTable($Intervention[0]->Numero_Intervention);
     }
-
+    
 }

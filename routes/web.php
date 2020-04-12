@@ -31,14 +31,18 @@ Route::resource('/users','UserController');
 Route::get('/home', 'HomeController@index')->name('home');
 //URL /AllIntervention fait appel a la methode listeIntervention du controller InterventionController
 Route::get('/AllIntervention', 'InterventionController@listeAllInterventions')->name('listeAllInterventions');
-//
-Route::post('/AjoutIntervention', 'InterventionController@addInterventionEngins')->name('AddIntervention');
-//
-Route::get('/SupprimerIntervention/{id}', 'InterventionController@deleteInterventionEngins')->name('deleteInterventionEngins');
-//
+//Redirection vers la page d'ajout intervention
 Route::get('/AjoutIntervention', function () {
     return view('AddIntervention');
 });
+//Redirection vers le controlleur qui traitera les infos saisie
+Route::name('AddInfoIntervention')->post('/AjoutIntervention/{request?}','InterventionController@addInterventionEngins');
+//Redirection vers la page de modification 
+Route::get('/ModifierIntervention/{id}','InterventionController@ShowDataIntervention');
+//Traitement de la modification des champs saisie
+Route::name('UpdateIntervention')->post('/ModifierIntervention/{request?}','InterventionController@UpdateInterventionEngins');
+//Redirection de la demande de suppression d'une intervention 
+Route::get('/SupprimerIntervention/{id}', 'InterventionController@deleteInterventionEngins')->name('deleteInterventionEngins');
 //URL /php permet l'usage et le fonctionnement du code ajax qui se trouve dans la View AddIntervention
 Route::get('/php', function () {
     return view('php.page');
