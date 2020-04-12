@@ -24,7 +24,8 @@ Route::get('/Rapport', function () {
 
 Auth::routes();
 Route::resource('/users','UserController');
-//Route::resource('/interventions','InterventionController');
+
+Route::resource('/rapport','RapportController');
 
 
 //URL /home fait appel a la methode Index du controller HomeController

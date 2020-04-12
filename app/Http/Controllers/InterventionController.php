@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 use App\Intervention;
 use Facade\FlareClient\View;
@@ -19,7 +20,8 @@ class InterventionController extends Controller
     }
 
     //Recuperation des Roles associers a un engin "l'usage de l'API"
-    public static function getRolebyEngins($TV){
+    public static function getRolebyEngins($TV)
+    {
         
         //die($TV."test0");
         $Role=Http::get('http://localhost:8002/NamesRolesEngin/'.$TV);
@@ -110,4 +112,48 @@ class InterventionController extends Controller
         Intervention::DeleteIntervention($request);
         return InterventionController::listeAllInterventions();
     } 
+
+    public static function getbyinterventionid($id)
+    {
+        $interventions=DB::table('interventions')->where('Numero_Intervention',$id)->get();
+        return  $interventions;
+    }
+
+    public static function getinterventionrapport($id){
+
+        $interventions=DB::table('rapports')->where('Numero_intervention',$id)->get();
+        return $interventions;
+    }
+
+    public  function getenginbyinterventionID($id)
+    
+    {
+   
+    $engins = DB::table('interventions')
+    ->join('interventions_engins', 'interventions.Numero_Intervention', '=', 'interventions_engins.Intervention_Numero_Intervention')
+    ->join('engins', 'engins.idEngins', '=', 'interventions_engins.Engins_idEngins')
+    ->where('interventions.Numero_Intervention',$id)
+    ->select('engins.*')
+    ->get();
+
+    return $engins;
+
+    }
+
+
+    public  function getpersonnelbyenginID($id,$interventionid)
+    {
+
+$personnels = DB::table('engins_personnels')
+->join('engins', 'engins.idEngins', '=', 'engins_personnels.Engins_idEngins')
+->join('personnels', 'engins_personnels.Personnel_idPersonnel', '=', 'personnels.idPersonnel')
+->where('engins.idEngins',$id)
+->where('engins_personnels.Intervention_Numero_intervention',$interventionid)
+->select('personnels.*')
+->get();
+
+return $personnels;
+         
+        }
+
 }

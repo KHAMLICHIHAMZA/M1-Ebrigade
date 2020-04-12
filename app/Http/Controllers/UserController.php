@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -95,6 +100,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+ dd($request->session()->all()) ;
 
         //$pompiers=DB::connection('mysql2')->table('pompier')->get();
         $stmt=DB::connection('mysql2')->table('pompier')->where('P_ID',$id)->update([
