@@ -23,6 +23,73 @@ class Intervention extends Model
         }
     }
 
+    //Modification du champs Nom du responsable dans la BDD
+    static public function UpdateResponsable($idResp,$NomResp){
+        $stm=DB::table('responsables')->where('idResponsable', $idResp)->update(['Nom' => $NomResp]);
+        $stm=null;         
+    } 
+
+    //Modification des informations de l'engin utiliser lors de l'intervention dans BDD
+    static public function UpdateEnginIntervention($idIntervention,$Nom_Engin,$Date_Heur_Depart,$Date_Heure_Arriver,$Date_Heure_Retour){
+        $Engin = Intervention::FindInterventionEgins($idIntervention);
+        //dd($Engin);
+        $stmt=DB::table('engins')->where('idEngins', $Engin[0]->Engins_idEngins)
+        ->update(['Nom_Engin' => $Nom_Engin,
+                  'Date_Heur_Depart'=>$Date_Heur_Depart,
+                  'Date_Heure_Arriver'=>$Date_Heure_Arriver,
+                  'Date_Heure_Retour'=>$Date_Heure_Retour]
+        );
+        //$stmt=DB::connect()->prepare('INSERT INTO engins(Nom_Engin, Date_Heur_Depart, Date_Heure_Arriver, Date_Heure_Retour) VALUES ("'.$Nom_Engin.'","'.$Date_Heur_Depart.'","'.$Date_Heure_Arriver.'","'.$Date_Heure_Retour.'")');
+        //$stmt->execute();
+        //Fermeture et initialisation du curseur
+        //$stmt->closeCursor();
+        $stmt=null;
+    }
+
+    //Insertion des informations de l'intervention dans la BDD
+    static public function UpdateIntervention($idResponsable,$Commune,$Adresse,$Type_interv,$Date_Heure_Debut,$Date_Heure_Fin,$Important,$Opm){
+        $stmt=DB::table('interventions')->where('Numero_Intervention', $idResponsable)
+        ->update([
+            'Commune' => $Commune,
+            'Adresse'=>$Adresse,
+            'Type_interv'=>$Type_interv,
+            'Opm'=>$Opm,
+            'Important'=>$Important,
+            'Date_Heure_Debut'=>$Date_Heure_Debut,
+            'Date_Heure_Fin'=>$Date_Heure_Fin,]
+        );
+        //Fermeture et initialisation du curseur
+        $stmt=null;        
+    }
+    //Update des personnels qui ont participer lors d'une intervention
+    static public function UpdatePersonel($idInte,$nom){
+        $Responsable=DB::table('interventions')->select('Responsable_idResponsable')->where('Numero_Intervention',$idInte)->get();
+        //Insertion d'un nouveau responsable
+        $stmt=DB::table('personnels')->insert([
+            'Nom' => $nom,
+            'Responsable_idResponsable'=>$Responsable[0]->Responsable_idResponsable]
+        );
+
+        //Recuperation de l'ID  de l'engins qui a participer a l'intervention
+        $LastLine2=DB::table('interventions_engins')->select('Engins_idEngins')->where('Intervention_Numero_Intervention',$idInte)->get();
+        //Recuperation du dernier personnels creer
+        $LastLine3=DB::table('personnels')->latest('idPersonnel')->first();
+
+        //Insertion de la liaison entre les table Engins, Interventions et Personnels
+        $Final=DB::table('engins_personnels')->insert([
+            'Engins_idEngins' => $LastLine2[0]->Engins_idEngins,
+            'Personnel_idPersonnel'=>$LastLine3->idPersonnel,
+            'Intervention_Numero_intervention'=>$idInte]
+        );
+
+        //Initialisation des curseur
+        $Responsable=null;
+        $stmt=null;
+        $LastLine2=null;
+        $LastLine3=null;
+
+    }
+
     //Insertion du responsable dans la BDD
     static public function AddResponsable($Resp){
         $stm=DB::table('responsables')->insert(['Nom' => $Resp]);
@@ -123,8 +190,24 @@ class Intervention extends Model
     
     //Rechercher l'engin utiliser lors d'une intervention
     static public function FindInterventionEgins($id){
-        $stmt=DB::table('interventions_engins')->select('Engins_idEngins')->where('Intervention_Numero_Intervention',$id)->get();
+        $stmt=DB::table('interventions_engins')->select()->where('Intervention_Numero_Intervention',$id)->get();
         return $stmt;
+    }
+
+    //Rechercher les infos de l'engin utiliser lors d'une intervention
+    static public function FindEginsUsed($id){
+        $stmt=Intervention::FindInterventionEgins($id);
+        foreach($stmt as $stm){
+            $stmt1=DB::table('engins')->select()->where('idEngins',$stm->Engins_idEngins)->get();
+        }
+        //dd($stmt1);
+        return $stmt1;
+    }    
+    
+    //Rechercher les infos de l'engin utiliser lors d'une intervention
+    static public function FindResponsableIntervention($idResponsable){
+        $stmt1=DB::table('responsables')->select()->where('idResponsable',$idResponsable)->get();
+        return $stmt1;
     }
 
     //supprimer un engin de la BDD
@@ -156,6 +239,12 @@ class Intervention extends Model
     //supprimer les liaison entre les engins et les personnels qui ont participer a l'intervention de la BDD
     static public function DeleteEnginsPersonnels($idIntervention){
         DB::table('engins_personnels')->where('Intervention_Numero_intervention' , $idIntervention)->delete();
+    }
+
+    //Suppression des personnels
+    static public function DeletePersonnels($idInte){
+        $Responsable=DB::table('interventions')->select('Responsable_idResponsable')->where('Numero_Intervention',$idInte)->get();
+        DB::table('personnels')->where('Responsable_idResponsable' , $Responsable[0]->Responsable_idResponsable)->delete();
     }
 
     //Suppression de l'intervention de la BDD

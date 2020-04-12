@@ -113,12 +113,74 @@ class InterventionController extends Controller
 
     //Modification des information d'une intervention
     static public function ShowDataIntervention($id){
-        
-        return view('UpdateIntervention');
+        $tableauxData=array();
+        $Intervention= Intervention::FindIntervention($id);
+        $Responsable = Intervention::FindResponsableIntervention($Intervention[0]->Responsable_idResponsable);
+        $Engins = Intervention::FindEginsUsed($id);
+        array_push($tableauxData,$Intervention,$Responsable,$Engins);
+        //dd($tableauxData);
+        return view('UpdateIntervention',['Interventions' => $tableauxData]);
     }
 
     //Modification des information d'une intervention
     static public function UpdateInterventionEngins(Request $request){
-    
+        //dd($request);
+        $i=1;
+        global $TableIntervention;
+        global $TableEngin;
+        global $Pompier;
+        //die(var_dump($_POST));
+        if(isset($request->submit)){
+            //if(empty($TableIntervention)){
+                if(isset($request->Important)){
+                    $Important="on";
+                }else{$Important="off";}
+                if(isset($request->Opm)){
+                    $Opm="on";
+                }else{ $Opm="off"; }
+
+                $TableIntervention = array(
+                    'Numero_Intervention' => $request->input('Numero_Intervention'),
+                    'Commune' => $request->input('Commune'),
+                    'Adresse' => $request->input('Adresse'),
+                    'Type_interv' => $request->input('Type_interv'),
+                    'Date_Heure_Debut' => $request->input('Date_Heure_Debut'),
+                    'Date_Heure_Fin' => $request->input('Date_Heure_Fin'),
+                    'Important' => $Important,
+                    'Opm' => $Opm,
+                );   
+
+                //dd($TableIntervention);          
+            //}else{
+                $TableEngin = array(
+                    'Nom_Engin' => $request->input('Nom_Engin'),
+                    'Date_Heur_Depart' => $request->input('Date_Heur_Depart'),
+                    'Date_Heure_Arriver' => $request->input('Date_Heure_Arriver'),
+                    'Date_Heure_Retour' => $request->input('Date_Heure_Retour'),
+                );
+                //dd($TableEngin);          
+                //Modification d'un responsable dans la BDD
+                $UpdateResp = Intervention::UpdateResponsable($TableIntervention['Numero_Intervention'],$request->input('Nom'));
+                //Modification des informations de l'engin utiliser lors de l'intervention
+                $UpdateEngins = Intervention::UpdateEnginIntervention($TableIntervention['Numero_Intervention'],$TableEngin['Nom_Engin'],$TableEngin['Date_Heur_Depart'],$TableEngin['Date_Heure_Arriver'],$TableEngin['Date_Heure_Retour']);
+                //Modification des information de l'intervention
+                $UpdateInterv = Intervention::UpdateIntervention($TableIntervention['Numero_Intervention'],$TableIntervention['Commune'],$TableIntervention['Adresse'],$TableIntervention['Type_interv'],$TableIntervention['Date_Heure_Debut'],$TableIntervention['Date_Heure_Fin'],$TableIntervention['Important'],$TableIntervention['Opm']);
+                //Mise a zero des personnels qui ont participer a l'intervention
+                $MiseAJourPers = Intervention::DeletePersonnels($TableIntervention['Numero_Intervention']);
+                //Mise a zero de la table qui contient la liaison entre les engins et les personnels
+                $MiseAJourEngiPers = Intervention::DeleteEnginsPersonnels($TableIntervention['Numero_Intervention']);
+                $test=true;
+                while ($test){
+                    $tmp=$request->input('Role'.$i);
+                    //dd($tmp);
+                    if(isset($tmp)){
+                        $InserPersonnel = Intervention::UpdatePersonel($TableIntervention['Numero_Intervention'],$request->input('Role'.$i));   
+                        $i++;
+                    }else{
+                        $test=false;
+                    }
+                }
+        }
+        return InterventionController::listeAllInterventions();   
     }
 }

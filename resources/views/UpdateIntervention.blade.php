@@ -11,7 +11,7 @@ $Type_Inters = InterventionController::getAllType();
 </br>
 <div class="container container-fluid" style="width:1000px; float:left; margin-left:10px;">
     <!-- general form elements disabled -->
-    <form action="{{ route('') }}" id="idform" method="post">
+    <form action="{{ route('UpdateIntervention') }}" id="idform" method="post">
         @csrf
         <div class="card card-primary">
             <div class="card-header">
@@ -25,15 +25,15 @@ $Type_Inters = InterventionController::getAllType();
                         <!-- text input -->
                         <div class="form-group">
 
-                            <label id="Commune">Numero d'intervention </label>
-                            <input type="text" class="form-control" name="Commune" id="Commune" value="" placeholder="Commune ...">
+                            <label id="Numero_Intervention">Numero d'intervention </label>
+                            <input type="text" class="form-control" name="Numero_Intervention" id="Numero_Intervention" value="{{$Interventions[0][0]->Numero_Intervention}}" readonly>
 
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Commune d'intervention</label>
-                            <input type="text" class="form-control" name="Adresse" placeholder="Lieu d'intervention">
+                            <input type="text" class="form-control" name="Commune" value="{{$Interventions[0][0]->Commune}}" placeholder="Lieu d'intervention">
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@ $Type_Inters = InterventionController::getAllType();
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Adresse d'intervention</label>
-                            <input type="text" class="form-control" name="Adresse" placeholder="Lieu d'intervention">
+                            <input type="text" class="form-control" name="Adresse" value="{{$Interventions[0][0]->Adresse}}" placeholder="Lieu d'intervention">
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -50,9 +50,10 @@ $Type_Inters = InterventionController::getAllType();
                             <label>Type d'intervention</label>
                             <select class="form-control" name="Type_interv">
                                 <?php
+                                $Type = $Interventions[0][0]->Type_interv;
                                 foreach ($Type_Inters as $Type_Inter) :
                                 ?>
-                                    <option value="<?php echo $Type_Inter['TI_CODE']; ?>"> <?php echo $Type_Inter['TI_CODE']; ?> </option>
+                                    <option value="<?php echo $Type_Inter['TI_CODE']; ?>" <?php if ($Type == $Type_Inter['TI_CODE']) { ?> selected<?php } ?>> <?php echo $Type_Inter['TI_CODE']; ?> </option>
                                 <?php
                                 endforeach;
                                 ?>
@@ -72,7 +73,7 @@ $Type_Inters = InterventionController::getAllType();
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
                                 </div>
-                                <input type="datetime-local" class="form-control float-right" name="Date_Heure_Debut" id="reservation">
+                                <input type="datetime" class="form-control float-right" name="Date_Heure_Debut" value="{{$Interventions[0][0]->Date_Heure_Debut}}" id="reservation">
                             </div>
                             <!-- /.input group -->
                         </div>
@@ -86,7 +87,7 @@ $Type_Inters = InterventionController::getAllType();
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
                                 </div>
-                                <input type="datetime-local" class="form-control float-right" name="Date_Heure_Fin" id="reservation">
+                                <input type="datetime" class="form-control float-right" name="Date_Heure_Fin" value="{{$Interventions[0][0]->Date_Heure_Fin}}" id="reservation">
                             </div>
                             <!-- /.input group -->
                         </div>
@@ -96,9 +97,9 @@ $Type_Inters = InterventionController::getAllType();
                     <div class="col-sm-6">
                         <!-- checkbox -->
                         <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" name="Important" type="checkbox" checked>
-                                <label class="form-check-label">Important</label>
+                            <div class="form-check" id="Important">
+                                <input class="form-check-input" name="Important" type="checkbox" id="Important" <?php if($Interventions[0][0]->Important =='on'): ?> checked <?php endif ?>>
+                                <label class="form-check-label" id="Important">Important</label>
                             </div>
                         </div>
                     </div>
@@ -106,7 +107,7 @@ $Type_Inters = InterventionController::getAllType();
                         <!-- checkbox -->
                         <div class="form-group">
                             <div class="form-check">
-                                <input class="form-check-input" name="Opm" type="checkbox" checked>
+                                <input class="form-check-input" name="Opm" type="checkbox" <?php if($Interventions[0][0]->Opm =='on'): ?> checked <?php endif ?>>
                                 <label class="form-check-label"> OPM </label>
                             </div>
                         </div>
@@ -130,9 +131,10 @@ $Type_Inters = InterventionController::getAllType();
                                 <select class="form-control" name="Nom_Engin" id="Nom_Engin">
                                     <?php
                                     $Engins = InterventionController::getAllEngins();
+                                    $Eng = $Interventions[2][0]->Nom_Engin;
                                     foreach ($Engins as $Engin) :
                                     ?>
-                                        <option value="<?php echo $Engin['TV_CODE']; ?>"> <?php echo $Engin['TV_LIBELLE']; ?> </option>
+                                        <option value="<?php echo $Engin['TV_CODE']; ?>" <?php if ($Eng == $Engin['TV_CODE']) : ?> selected<?php endif ?> > <?php echo $Engin['TV_LIBELLE']; ?> </option>
                                     <?php endforeach; ?>
                                 </select>
 
@@ -159,7 +161,7 @@ $Type_Inters = InterventionController::getAllType();
                                             <i class="far fa-calendar-alt"></i>
                                         </span>
                                     </div>
-                                    <input type="datetime-local" class="form-control float-right" name="Date_Heur_Depart" id="reservation">
+                                    <input type="datetime" class="form-control float-right" name="Date_Heur_Depart" value="{{$Interventions[2][0]->Date_Heur_Depart}}" id="reservation">
                                 </div>
                                 <!-- /.input group -->
                             </div>
@@ -173,7 +175,7 @@ $Type_Inters = InterventionController::getAllType();
                                             <i class="far fa-calendar-alt"></i>
                                         </span>
                                     </div>
-                                    <input type="datetime-local" class="form-control float-right" name="Date_Heure_Arriver" id="reservation">
+                                    <input type="datetime" class="form-control float-right" name="Date_Heure_Arriver" value="{{$Interventions[2][0]->Date_Heure_Arriver}}" id="reservation">
                                 </div>
                                 <!-- /.input group -->
                             </div>
@@ -190,7 +192,7 @@ $Type_Inters = InterventionController::getAllType();
                                             <i class="far fa-calendar-alt"></i>
                                         </span>
                                     </div>
-                                    <input type="datetime-local" class="form-control float-right" name="Date_Heure_Retour" id="reservation">
+                                    <input type="datetime" class="form-control float-right" name="Date_Heure_Retour" value="{{$Interventions[2][0]->Date_Heure_Retour}}" id="reservation">
                                 </div>
                                 <!-- /.input group -->
                             </div>
@@ -210,7 +212,7 @@ $Type_Inters = InterventionController::getAllType();
                             <!-- text input -->
                             <div class="form-group">
                                 <label>Responsable</label>
-                                <input type="text" class="form-control" name="Nom" placeholder="Nom & Prenom">
+                                <input type="text" class="form-control" name="Nom" value="{{$Interventions[1][0]->Nom}}" placeholder="Nom & Prenom">
                             </div>
                         </div>
                         <div class="col-sm-6">
