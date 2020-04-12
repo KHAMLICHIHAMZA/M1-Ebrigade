@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'pompiers',
     ],
 
     /*
@@ -38,7 +38,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'pompiers',
         ],
 
         'api' => [
@@ -66,9 +66,15 @@ return [
     */
 
     'providers' => [
+
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+
+        'pompiers' => [
+            'driver' => 'eloquent',
+            'model' => App\Pompier::class,
         ],
 
         // 'users' => [
@@ -98,6 +104,13 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
+        ],
+
+        'pompiers' => [
+            'provider' => 'pompiers',
+            'table' => 'password_resets',
+            'expire' => 60,
+         
         ],
     ],
 
