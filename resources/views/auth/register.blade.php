@@ -12,7 +12,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('P_NOM') }}</label>
+                            <label for="P_NOM" class="col-md-4 col-form-label text-md-right">{{ __('P_NOM') }}</label>
 
                             <div class="col-md-6">
                                 <input id="P_NOM" type="text" class="form-control @error('P_NOM') is-invalid @enderror" name="P_NOM" value="{{ old('P_NOM') }}" required autocomplete="P_NOM" autofocus>
@@ -29,7 +29,7 @@
                             <label for="P_EMAIL" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="P_EMAIL" type="P_EMAIL" class="form-control @error('P_EMAIL') is-invalid @enderror" name="P_EMAIL" value="{{ old('P_EMAIL') }}" required autocomplete="P_EMAIL">
+                                <input id="P_EMAIL" type="email" class="form-control @error('P_EMAIL') is-invalid @enderror" name="P_EMAIL" value="{{ old('P_EMAIL') }}" required autocomplete="P_EMAIL">
 
                                 @error('P_EMAIL')
                                     <span class="invalid-feedback" role="alert">
@@ -54,10 +54,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="P_MDP-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm P_MDP') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="P_MDP-confirm" type="password" class="form-control" name="P_MDP_confirmation" required autocomplete="new-P_MDP">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
 
