@@ -10,7 +10,8 @@ use PDOException;
 class Intervention extends Model
 {
     //Recuperation de la Liste des Interventions Enregistrer.
-    public static function getAllIntervention(){
+    public static function getAllIntervention()
+    {
         try {
             $sql=DB::table('interventions')->get();
             return $sql;
@@ -261,5 +262,10 @@ class Intervention extends Model
         $Responsable=Intervention::DeleteInterventionResponsable($Intervention[0]->Responsable_idResponsable);
         $InterTable=Intervention::DeleteInterventionTable($Intervention[0]->Numero_Intervention);
     }
+
+
+
+    
+
     
 }

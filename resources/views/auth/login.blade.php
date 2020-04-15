@@ -10,12 +10,12 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="P_EMAIL" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="P_EMAIL" type="email" class="form-control @error('P_EMAIL') is-invalid @enderror" name="P_EMAIL" value="{{ old('P_EMAIL') }}" required autocomplete="P_EMAIL" autofocus>
 
-                                @error('email')
+                                @error('P_EMAIL')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -24,12 +24,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="P_MDP" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input id="P_MDP" type="password" class="form-control @error('P_MDP') is-invalid @enderror" name="P_MDP" required autocomplete="current-P_MDP">
 
-                                @error('password')
+                                @error('P_MDP')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -66,5 +66,5 @@
                 </div>
             </div>
         </div>
-    
+
 @endsection

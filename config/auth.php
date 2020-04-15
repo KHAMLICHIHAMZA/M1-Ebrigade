@@ -66,10 +66,12 @@ return [
     */
 
     'providers' => [
+
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+
 
         // 'users' => [
         //     'driver' => 'database',
@@ -99,6 +101,8 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+
+
     ],
 
     /*

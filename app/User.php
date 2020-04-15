@@ -9,6 +9,10 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable;
+    protected $primaryKey = 'P_ID';
+    protected $name='P_NOM';
+    protected $email='P_EMAIL';
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'P_NOM', 'P_EMAIL', 'P_MDP',
     ];
 
     /**
@@ -25,7 +29,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'P_MDP',
     ];
 
     /**
@@ -33,7 +37,13 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+
+    public function id()
+    {
+        return 'P_ID';
+    }
+    public function getAuthPassword()
+    {
+      return $this->M_DP;
+    }
 }
