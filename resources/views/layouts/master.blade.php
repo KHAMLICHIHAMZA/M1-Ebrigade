@@ -181,16 +181,16 @@
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
-                <ul class="nav nav-treeview" style="display: none;">
+                <ul class="nav nav-treeview" style="display: none">
                     <li  class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="http://localhost:8000/AjoutIntervention" class="nav-link">
                             <i class="nav-icon fas fa-pencil "></i>
                             <p>ajout intervention</p>
                         </a>
                     </li>
 
                     <li  class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="http://localhost:8000/AllIntervention" class="nav-link">
                             <i class="nav-icon fas fa-pencil "></i>
                             <p>liste intervention</p>
                         </a>
@@ -291,7 +291,7 @@
             <div class="card-body">
               <div class="d-flex flex-row justify-content-end">
 
-@yield('content');
+@yield('content')
               </div>
             </div>
           </div>
