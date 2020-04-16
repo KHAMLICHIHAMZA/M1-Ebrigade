@@ -37,6 +37,8 @@ Route::get('/AllIntervention', 'InterventionController@listeAllInterventions')->
 Route::get('/AjoutIntervention', function () {
     return view('AddIntervention');
 });
+//Redirection vers la page de modification 
+Route::get('/DetailsIntervention/{id}','InterventionController@DetailsIntervention');
 //Redirection vers le controlleur qui traitera les infos saisie
 Route::name('AddInfoIntervention')->post('/AjoutIntervention/{request?}','InterventionController@addInterventionEngins');
 //Redirection vers la page de modification 

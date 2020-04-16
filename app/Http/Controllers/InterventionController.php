@@ -157,6 +157,17 @@ return $personnels;
         }
 
     //Modification des information d'une intervention
+    static public function DetailsIntervention($id){
+        $tableauxData=array();
+        $Intervention= Intervention::FindIntervention($id);
+        $Responsable = Intervention::FindResponsableIntervention($Intervention[0]->Responsable_idResponsable);
+        $Engins = Intervention::FindEginsUsed($id);
+        array_push($tableauxData,$Intervention,$Responsable,$Engins);
+        //dd($tableauxData);
+        return view('DetailsIntervention',['Interventions' => $tableauxData]);
+    }
+
+    //Modification des information d'une intervention
     static public function ShowDataIntervention($id){
         $tableauxData=array();
         $Intervention= Intervention::FindIntervention($id);
