@@ -1,0 +1,12 @@
+{
+    "Hello!" : "Hallo",
+    "Stay with us and keep learning" : "Bleib bei uns und lerne weiter",
+    "Prenom":"First Name",
+    "Nom":"Last Name",
+    "Email":"Email",
+    "Sexe":"Sex",
+    "Grade":"Grade",
+    "Profession":"Profession",
+    "Statut":"Statut",
+    "Action":"Action"
+}

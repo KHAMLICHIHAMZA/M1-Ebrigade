@@ -26,6 +26,7 @@ Auth::routes();
 Route::resource('/users','UserController');
 
 Route::resource('/rapport','RapportController');
+Route::get('lang/{locale}', 'LocalizationController@index');
 
 
 //URL /home fait appel a la methode Index du controller HomeController

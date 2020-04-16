@@ -100,8 +100,6 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
- dd($request->session()->all()) ;
-
         //$pompiers=DB::connection('mysql2')->table('pompier')->get();
         $stmt=DB::connection('mysql2')->table('pompier')->where('P_ID',$id)->update([
             'P_NOM'=> $request->input('P_NOM'),
