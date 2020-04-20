@@ -203,14 +203,22 @@
                 </a>
                 <ul class="nav nav-treeview" style="display: none;">
                     <li  class="nav-item">
+<<<<<<< HEAD
+                        <a href="http://localhost:8001/AjoutIntervention" class="nav-link">
+=======
                         <a href="" class="nav-link">
+>>>>>>> 14170ee0f5e37a1773dd6bb932deb99ebd5cb747
                             <i class="nav-icon fas fa-pencil "></i>
                             <p>ajout intervention</p>
                         </a>
                     </li>
 
                     <li  class="nav-item">
+<<<<<<< HEAD
+                        <a href="http://localhost:8001/AllIntervention" class="nav-link">
+=======
                         <a href="" class="nav-link">
+>>>>>>> 14170ee0f5e37a1773dd6bb932deb99ebd5cb747
                             <i class="nav-icon fas fa-pencil "></i>
                             <p>liste intervention</p>
                         </a>
