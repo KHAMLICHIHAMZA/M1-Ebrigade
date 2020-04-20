@@ -75,20 +75,42 @@
 
     </ul>
 
-
-
-
-    <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+    aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-auto">
+            @if($locale = session()->get('locale')  )
+            @php $locale = session()->get('locale'); @endphp
+            
+            <li class="nav-item dropdown">
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    @switch($locale)
+                        @case('us')
+                       English
+                        @break
+                        @case('fr')
+                         Francais
+                        @break
+                        @case('de')
+                         Deutsh
+                        @break
+                        @default
+                         English
+                    @endswitch
+                    <span class="caret"></span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="lang/en"><img src="{{asset('us.jpg')}}"> English</a>
+                    <a class="dropdown-item" href="lang/de"><img src="{{asset('de.jpg')}}"> Deutsh</a>
+                    <a class="dropdown-item" href="lang/fr"><img src="{{asset('fr.png')}}"> French</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+@endif
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
@@ -181,16 +203,24 @@
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
-                <ul class="nav nav-treeview" style="display: none">
+                <ul class="nav nav-treeview" style="display: none;">
                     <li  class="nav-item">
+<<<<<<< HEAD
                         <a href="http://localhost:8001/AjoutIntervention" class="nav-link">
+=======
+                        <a href="" class="nav-link">
+>>>>>>> 14170ee0f5e37a1773dd6bb932deb99ebd5cb747
                             <i class="nav-icon fas fa-pencil "></i>
                             <p>ajout intervention</p>
                         </a>
                     </li>
 
                     <li  class="nav-item">
+<<<<<<< HEAD
                         <a href="http://localhost:8001/AllIntervention" class="nav-link">
+=======
+                        <a href="" class="nav-link">
+>>>>>>> 14170ee0f5e37a1773dd6bb932deb99ebd5cb747
                             <i class="nav-icon fas fa-pencil "></i>
                             <p>liste intervention</p>
                         </a>
@@ -290,8 +320,20 @@
           <div class="card">
             <div class="card-body">
               <div class="d-flex flex-row justify-content-end">
+    <!-- SEARCH FORM
+    <form class="form-inline ml-3">
+        <div class="input-group input-group-sm">
+          <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-navbar" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    -->
+@yield('content');
 
-@yield('content')
               </div>
             </div>
           </div>
@@ -331,6 +373,8 @@
   $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
+
+
 
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}
 "></script>

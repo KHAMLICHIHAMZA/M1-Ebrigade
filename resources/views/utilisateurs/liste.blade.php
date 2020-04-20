@@ -6,18 +6,20 @@
    
                   <thead>
                     <tr>
-                        <th scope="col">Prenom</th>
-                        <th scope="col">Nom</th>
-                        <th scope="col">email</th>
-                        <th scope="col">Sexe</th>
-                        <th scope="col">Grade</th>
-                        <th scope="col">Profession</th>
-                        <th scope="col">Statut</th>
+                        
+                        <th scope="col">@lang("Prenom")</th>
+                        <th scope="col">@lang("Nom")</th>
+                        <th scope="col">@lang("Email")</th>
+                        <th scope="col">@lang("Sexe")</th>
+                        <th scope="col">@lang("Grade")</th>
+                        <th scope="col">@lang("Profession")</th>
+                        <th scope="col">@lang("Statut")</th>
 
-                        <th scope="col">Action</th>
+                        <th scope="col">@lang("Action")</th>
                     </tr>
                   </thead>
                   <tbody>
+                      
                   @foreach($users as $user)
 
                   <tr <?php // if ($_SESSION['username'] != $user['P_CODE'] && ($Intervention->ispersonnel($_SESSION['username']) == true or $Intervention->isresponsable($_SESSION['username']) == true)) echo "hidden" ?> >

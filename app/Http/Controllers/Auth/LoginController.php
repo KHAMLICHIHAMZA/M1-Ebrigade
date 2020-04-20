@@ -36,6 +36,8 @@ class LoginController extends Controller
      *
      * @return void
      */
+
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -43,6 +45,7 @@ class LoginController extends Controller
 
 
 
+public $user;
     public function login(Request $request)
     {
 
@@ -52,27 +55,59 @@ class LoginController extends Controller
 
         if (method_exists($this, 'hasTooManyLoginAttempts') &&
             $this->hasTooManyLoginAttempts($request)) {
-                dd($this);
 
             $this->fireLockoutEvent($request);
 
             return $this->sendLockoutResponse($request);
         }
+
             $user = User::where('P_EMAIL', $request->P_EMAIL)
                 ->where('P_MDP', md5($request->P_MDP))
                 ->first();
              if($user){   
+
                  Auth::login($user);
-                 return $this->sendLoginResponse($request);
+
+                 session(['P_ID' => $user->P_ID,
+                          'P_NOM' => $user->P_NOM,
+                          'P_EMAIL'=>$user->P_EMAIL,
+                          'P_STATUT'=>$user->P_STATUT,
+                          'P_GRADE'=>$user->P_GRADE
+
+                 
+                 
+                 
+                 ]);
+
                  return redirect('/home');
          }
+         
 
          $this->incrementLoginAttempts($request);
 
          return $this->sendFailedLoginResponse($request);
            
    }
-    public function id()
+
+   protected function authenticated(Request $request, $user)
+{
+    $this->setUserSession($user);
+    $this->sendLoginResponse($request);
+
+}
+
+protected function setUserSession($user)
+{
+    session(
+        [
+            'hamza' => $user->P_ID
+        ]
+    );
+
+}
+   
+
+   public function id()
     {
         return 'P_ID';
     }
