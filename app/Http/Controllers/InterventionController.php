@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Http;
 
 class InterventionController extends Controller
 {
+    //public function __construct()
+    //{
+      //$this->middleware('auth');
+    //}
     //Recuperation de la liste de tout les engins de l'Ebrigade "l'usage de l'API"
     public static function getAllEngins(){
         $Type_Inter=Http::get('http://localhost:8002/Engins');

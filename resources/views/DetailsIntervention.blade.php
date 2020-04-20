@@ -15,7 +15,7 @@ $Type_Inters = InterventionController::getAllType();
         @csrf
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title"><strong>Intervention :</strong></h3>
+                <h3 class="card-title"><strong>@lang("Intervention") :</strong></h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -25,14 +25,14 @@ $Type_Inters = InterventionController::getAllType();
                         <!-- text input -->
                         <div class="form-group">
 
-                            <label id="Numero_Intervention">Numero d'intervention </label>
+                            <label id="Numero_Intervention">@lang("Numero Intervention") </label>
                             <input type="text" class="form-control" name="Numero_Intervention" id="Numero_Intervention" value="{{$Interventions[0][0]->Numero_Intervention}}" readonly>
 
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>Commune d'intervention</label>
+                            <label>@lang("Commune d'intervention")</label>
                             <input type="text" class="form-control" name="Commune" value="{{$Interventions[0][0]->Commune}}" placeholder="Lieu d'intervention" readonly>
                         </div>
                     </div>
@@ -40,14 +40,14 @@ $Type_Inters = InterventionController::getAllType();
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>Adresse d'intervention</label>
+                            <label>@lang("Adresse d'intervention")</label>
                             <input type="text" class="form-control" name="Adresse" value="{{$Interventions[0][0]->Adresse}}" placeholder="Lieu d'intervention" readonly>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <!-- select -->
                         <div class="form-group">
-                            <label>Type d'intervention</label>
+                            <label>@lang("Type d'intervention")</label>
                             <select class="form-control" name="Type_interv" readonly>
                                 <?php
                                 $Type = $Interventions[0][0]->Type_interv;
@@ -66,7 +66,7 @@ $Type_Inters = InterventionController::getAllType();
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>Date & Heure de declanchement :</label>
+                            <label>@lang("Date & Heure de declanchement")</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
@@ -80,7 +80,7 @@ $Type_Inters = InterventionController::getAllType();
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>Date & Heure de fin :</label>
+                            <label>@lang("Date & Heure de fin")</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
@@ -99,7 +99,7 @@ $Type_Inters = InterventionController::getAllType();
                         <div class="form-group">
                             <div class="form-check" id="Important">
                                 <input class="form-check-input" name="Important" type="checkbox" id="Important" <?php if($Interventions[0][0]->Important =='on'): ?> checked <?php endif ?> readonly>
-                                <label class="form-check-label" id="Important">Important</label>
+                                <label class="form-check-label" id="Important">@lang("Important")</label>
                             </div>
                         </div>
                     </div>
@@ -118,7 +118,7 @@ $Type_Inters = InterventionController::getAllType();
             <!-- general form elements disabled -->
             <div class="card-primary">
                 <div class="card-header">
-                    <h3 class="card-title"><strong>Engins et personnel :</strong></h3>
+                    <h3 class="card-title"><strong>@lang("Engins et personnel")</strong></h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -127,7 +127,7 @@ $Type_Inters = InterventionController::getAllType();
                         <div class="col-sm-6">
                             <!-- select -->
                             <div class="form-group">
-                                <label>Nom de l'engin N1</label>
+                                <label>@lang("Nom de l'engin")</label>
                                 <select class="form-control" name="Nom_Engin" id="Nom_Engin" readonly>
                                     <?php
                                     $Engins = InterventionController::getAllEngins();
@@ -148,7 +148,7 @@ $Type_Inters = InterventionController::getAllType();
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Date & Heure depart :</label>
+                                <label>@lang("Date & Heure depart")</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -162,7 +162,7 @@ $Type_Inters = InterventionController::getAllType();
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Date & Heure d'arriver sur le lieux :</label>
+                                <label>@lang("Date & Heure d'arriver sur le lieux")</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -179,7 +179,7 @@ $Type_Inters = InterventionController::getAllType();
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Date & Heure de retour :</label>
+                                <label>@lang("Date & Heure de retour")</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -196,7 +196,7 @@ $Type_Inters = InterventionController::getAllType();
                 </div>
 
                 <div class="card-header">
-                    <h3 class="card-title"><strong> Responsable </strong></h3>
+                    <h3 class="card-title"><strong> @lang("Responsable") </strong></h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -205,15 +205,15 @@ $Type_Inters = InterventionController::getAllType();
                         <div class="col-sm-6">
                             <!-- text input -->
                             <div class="form-group">
-                                <label>Responsable</label>
+                                <label>@lang("Responsable") </label>
                                 <input type="text" class="form-control" name="Nom" value="{{$Interventions[1][0]->Nom}}" placeholder="Nom & Prenom" readonly>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <!-- select -->
                             <div class="form-group"></br>
-                                <a href="http://127.0.0.1:8000/ModifierIntervention/<?php echo $Interventions[0][0]->Numero_Intervention ?>">
-                                    <button type="submit" class="btn btn-block btn" name="submit" value="Valider Formulaire">Modifier l'intervention</boutton>
+                                <a href="http://127.0.0.1:8001/ModifierIntervention/<?php echo $Interventions[0][0]->Numero_Intervention ?>">
+                                    <button type="submit" class="btn btn-block btn" name="submit" value="Valider Formulaire">@lang("Modifier l'intervention")</boutton>
                                 </a>
                             </div>
                         </div>

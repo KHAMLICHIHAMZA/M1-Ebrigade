@@ -8,7 +8,29 @@
     "Grade":"Grade",
     "Profession":"Profession",
     "Statut":"Statut",
-    "Action":"Action"
-  
+    "Action":"Action",
+
+    "Intervention":"Intervention",
+    "Commune d'intervention":"Commune d'intervention",
+    "Adresse d'intervention":"Adresse d'intervention",
+    "Type d'intervention":"Type d'intervention",
+    "Date & Heure de declanchement":"Date & Heure de declanchement",
+    "Date & Heure de fin":"Date & Heure de fin",
+    "Important":"Important",
+    "Engins et personnel":"Engins et personnel",
+    "Nom de l'engin":"Nom de l'engin",
+    "Valider":"Valider",
+    "Date & Heure depart":"Date & Heure depart",
+    "Date & Heure d'arriver sur le lieux":"Date & Heure d'arriver sur le lieux",
+    "Date & Heure de retour":"Date & Heure de retour",
+    "Responsable":"Responsable",
+    "Valider l'ajout du formulaire":"Valider l'ajout du formulaire",
+
+    "Numero Intervention":"Numero Intervention",
+    "Commune":"Commune",
+    "Adresse":"Adresse",
+    "Modifier l'intervention":"Modifier l'intervention"
+
+
 
 }

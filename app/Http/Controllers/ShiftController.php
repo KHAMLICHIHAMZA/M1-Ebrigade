@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Shift;
+use Brian2694\Toastr\Toastr;
 use Illuminate\Http\Request;
 use Gate;
-use Brian2694\Toastr\Facades\Toastr;
+//use Brian2694\Toastr\Facades\Toastr;
+
 
 class ShiftController extends Controller
 {
@@ -20,7 +22,7 @@ class ShiftController extends Controller
             //abort(401);
         //}
         $shifts = Shift::paginate(5);
-        return view('admin.shift.index',compact('shifts'));
+        return view('shift.index',compact('shifts'));
     }
 
     /**
@@ -44,9 +46,9 @@ class ShiftController extends Controller
      */
     public function store(Request $request)
     {
-        if(!Gate::allows('isAdmin')){
-            abort(401);
-        }
+        //if(!Gate::allows('isAdmin')){
+            //abort(401);
+        //}
         $request -> validate([
             'shift' => 'required',
         ]);
@@ -76,9 +78,9 @@ class ShiftController extends Controller
      */
     public function edit($id)
     {
-        if(!Gate::allows('isAdmin')){
-            abort(401);
-        }
+        //if(!Gate::allows('isAdmin')){
+            //abort(401);
+        //}
         $shift = Shift::find($id);
         return view('admin.shift.edit',compact('shift'));
     }
@@ -92,9 +94,9 @@ class ShiftController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(!Gate::allows('isAdmin')){
-            abort(401);
-        }
+        //if(!Gate::allows('isAdmin')){
+            //abort(401);
+        //}
         $request -> validate([
            'shift' => 'required',
         ]);
@@ -113,9 +115,9 @@ class ShiftController extends Controller
      */
     public function delete($id)
     {
-        if(!Gate::allows('isAdmin')){
-            abort(401);
-        }
+        //if(!Gate::allows('isAdmin')){
+            //abort(401);
+        //}
         $shift = Shift::find($id);
         $shift -> delete();
         Toastr::error('Shift successfully deleted!','Deleted');

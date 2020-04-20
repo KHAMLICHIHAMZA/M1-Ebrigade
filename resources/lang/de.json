@@ -8,5 +8,28 @@
     "Grade":"Rang",
     "Profession":"Beruf",
     "Statut":"Status",
-    "Action":"Aktion"
+    "Action":"Aktion",
+
+    "Intervention":"Intervention",
+    "Commune d'intervention":"Interventionskommune",
+    "Adresse d'intervention":"Interventionsadresse",
+    "Type d'intervention":"Art der Intervention",
+    "Date & Heure de declanchement":"Reisedatum und -zeit",
+    "Date & Heure de fin":"Enddatum und -zeit",
+    "Important":"Wichtig",
+    "Engins et personnel":"Ausrüstung und Personal",
+    "Nom de l'engin":"Name der Maschine",
+    "Valider":"Validieren",
+    "Date & Heure depart":"Datum und Uhrzeit der Abreise",
+    "Date & Heure d'arriver sur le lieux":"Datum und Uhrzeit der Ankunft",
+    "Date & Heure de retour":"Datum und Uhrzeit der Rückgabe",
+    "Responsable":"Verantwortlich",
+    "Valider l'ajout du formulaire":"Überprüfen Sie das Hinzufügen des Formulars",
+
+    "Numero Intervention":"Interventionsnummer",
+    "Commune":"Häufig",
+    "Adresse":"Adresse",
+    "Modifier l'intervention":"Ändern Sie die Intervention"
+
+
 }
