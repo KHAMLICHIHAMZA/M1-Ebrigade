@@ -3,7 +3,6 @@
         <div class="card col-12">
             <div class="card-header ">
                 <h3 class="card-title">Liste Des Rapport</h3>
-
                 <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 230px;">
                         <select class="form-control">
@@ -12,7 +11,6 @@
                             <option>En cours de validation</option>
                             <option>Rejetter</option>
                         </select>
-
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
                         </div>

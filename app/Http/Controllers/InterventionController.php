@@ -26,12 +26,12 @@ class InterventionController extends Controller
     //Recuperation des Roles associers a un engin "l'usage de l'API"
     public static function getRolebyEngins($TV)
     {
-        
+
         //die($TV."test0");
         $Role=Http::get('http://localhost:8002/NamesRolesEngin/'.$TV);
         //die($Role);
 
-        //$RoleEngin = file_get_contents("http://localhost/api/utilisateurs.php?c=Engin&m=getRolesEngin&P_CODE=".$TV);       
+        //$RoleEngin = file_get_contents("http://localhost/api/utilisateurs.php?c=Engin&m=getRolesEngin&P_CODE=".$TV);
         $type=json_decode($Role,true);
         return $type;
     }
@@ -74,14 +74,14 @@ class InterventionController extends Controller
                     'Date_Heure_Fin' => $request->input('Date_Heure_Fin'),
                     'Important' => $request->input('Important'),
                     'Opm' => $request->input('Opm'),
-                );   
+                );
                 if(is_null($TableIntervention['Important'])){
                     $TableIntervention['Important']="off";
                 }
                 if(!isset($TableIntervention['Opm'])){
                     $TableIntervention['Opm']="off";
                 }
-                //dd($TableIntervention);          
+                //dd($TableIntervention);
             //}else{
                 $TableEngin = array(
                     'Nom_Engin' => $request->input('Nom_Engin'),
@@ -89,19 +89,19 @@ class InterventionController extends Controller
                     'Date_Heure_Arriver' => $request->input('Date_Heure_Arriver'),
                     'Date_Heure_Retour' => $request->input('Date_Heure_Retour'),
                 );
-                //dd($TableEngin);          
+                //dd($TableEngin);
                 //Sauvegarde d'un responsable dans la BDD
                 $InserResp = Intervention::AddResponsable($request->input('Nom'));
                 //Sauvegarde des informations de l'engin utiliser lors de l'intervention
                 $InserEngins = Intervention::AddEnginIntervention($TableEngin['Nom_Engin'],$TableEngin['Date_Heur_Depart'],$TableEngin['Date_Heure_Arriver'],$TableEngin['Date_Heure_Retour']);
                 $InserInterv = Intervention::AddIntervention($TableIntervention['Commune'],$TableIntervention['Adresse'],$TableIntervention['Type_interv'],$TableIntervention['Date_Heure_Debut'],$TableIntervention['Date_Heure_Fin'],$TableIntervention['Important'],$TableIntervention['Opm']);
-                
+
                 $test=true;
                 while ($test){
                     $tmp=$request->input('Role'.$i);
                     //dd($tmp);
                     if(isset($tmp)){
-                        $InserPersonnel = Intervention::AddPersonnel($request->input('Role'.$i));   
+                        $InserPersonnel = Intervention::AddPersonnel($request->input('Role'.$i));
                         $i++;
                     }else{
                         $test=false;
@@ -111,11 +111,11 @@ class InterventionController extends Controller
         return InterventionController::listeAllInterventions();
     }
 
-    //suppression d'une intervention 
+    //suppression d'une intervention
     public static function deleteInterventionEngins($request){
         Intervention::DeleteIntervention($request);
         return InterventionController::listeAllInterventions();
-    } 
+    }
 
     public static function getbyinterventionid($id)
     {
@@ -123,16 +123,16 @@ class InterventionController extends Controller
         return  $interventions;
     }
 
-    public static function getinterventionrapport($id){
+    public static function getrapportbyInterventionNum($id){
 
-        $interventions=DB::table('rapports')->where('Numero_intervention',$id)->get();
+        $interventions=DB::table('rapports')->where('Numero_intervention',$id)->select('rapports.*')->get();
         return $interventions;
     }
 
     public  function getenginbyinterventionID($id)
-    
+
     {
-   
+
     $engins = DB::table('interventions')
     ->join('interventions_engins', 'interventions.Numero_Intervention', '=', 'interventions_engins.Intervention_Numero_Intervention')
     ->join('engins', 'engins.idEngins', '=', 'interventions_engins.Engins_idEngins')
@@ -148,16 +148,16 @@ class InterventionController extends Controller
     public  function getpersonnelbyenginID($id,$interventionid)
     {
 
-$personnels = DB::table('engins_personnels')
-->join('engins', 'engins.idEngins', '=', 'engins_personnels.Engins_idEngins')
-->join('personnels', 'engins_personnels.Personnel_idPersonnel', '=', 'personnels.idPersonnel')
-->where('engins.idEngins',$id)
-->where('engins_personnels.Intervention_Numero_intervention',$interventionid)
-->select('personnels.*')
-->get();
+    $personnels = DB::table('engins_personnels')
+    ->join('engins', 'engins.idEngins', '=', 'engins_personnels.Engins_idEngins')
+    ->join('personnels', 'engins_personnels.Personnel_idPersonnel', '=', 'personnels.idPersonnel')
+    ->where('engins.idEngins',$id)
+    ->where('engins_personnels.Intervention_Numero_intervention',$interventionid)
+    ->select('personnels.*')
+    ->get();
 
 return $personnels;
-         
+
         }
 
     //Modification des information d'une intervention
@@ -208,9 +208,9 @@ return $personnels;
                     'Date_Heure_Fin' => $request->input('Date_Heure_Fin'),
                     'Important' => $Important,
                     'Opm' => $Opm,
-                );   
+                );
 
-                //dd($TableIntervention);          
+                //dd($TableIntervention);
             //}else{
                 $TableEngin = array(
                     'Nom_Engin' => $request->input('Nom_Engin'),
@@ -218,7 +218,7 @@ return $personnels;
                     'Date_Heure_Arriver' => $request->input('Date_Heure_Arriver'),
                     'Date_Heure_Retour' => $request->input('Date_Heure_Retour'),
                 );
-                //dd($TableEngin);          
+                //dd($TableEngin);
                 //Modification d'un responsable dans la BDD
                 $UpdateResp = Intervention::UpdateResponsable($TableIntervention['Numero_Intervention'],$request->input('Nom'));
                 //Modification des informations de l'engin utiliser lors de l'intervention
@@ -235,26 +235,26 @@ return $personnels;
                     $tmp=$request->input('Role'.$i);
                     //dd($tmp);
                     if(isset($tmp)){
-                        $InserPersonnel = Intervention::UpdatePersonel($TableIntervention['Numero_Intervention'],$request->input('Role'.$i));   
+                        $InserPersonnel = Intervention::UpdatePersonel($TableIntervention['Numero_Intervention'],$request->input('Role'.$i));
                         $i++;
                     }else{
                         $test=false;
                     }
                 }
         }
-        return InterventionController::listeAllInterventions();   
+        return InterventionController::listeAllInterventions();
     }
 
     public static function ispersonnel($P_CODE)
     {
-       
+
         $personnels = DB::table('personnels')
         ->where('personnels.P_CODE',$P_CODE)
         ->select('personnels.*')
         ->first();
     if($personnels)
     {
-    return true;   
+    return true;
     }
     else
     {
@@ -268,18 +268,33 @@ return $personnels;
         ->where('responsables.P_CODE',$P_CODE)
         ->select('responsables.*')
         ->first();
-       
+
         if($responsable)
         {
-        return true;   
+        return true;
         }
         else
         {
         return false;
         }
-        return view('/home',[
-            'responsable' => $responsable,
-            ]);
+    }
+
+    public static function ischefducorp()
+    {
+        $chefducorp = DB::table('responsables')
+        ->where('responsables.P_CODE',0000)
+        ->select('responsables.*')
+        ->first();
+
+        if($chefducorp)
+        {
+        return true;
+        }
+        else
+        {
+        return false;
+        }
+
 
     }
 
@@ -291,19 +306,19 @@ return $personnels;
             ->where('responsables.P_CODE',session('P_CODE'))
             ->whereNull('rapports.Numero_intervention')
             ->select('interventions.*')
-            ->get();  
+            ->get();
 
    return view('rapports.rapport_en_attente_de_redaction',[
             'interventions' => $listeIntervention,
-            
+
         ]);
 
         }
-    
+
     public static function listeallrapportchef()
-    
+
     {
-    
+
         $listeR = DB::table('rapports')
         ->whereNull('rapports.statut')
         ->orWhere('rapports.statut','rejete')
@@ -312,7 +327,7 @@ return $personnels;
 
     return view('rapports.rapport_chef',[
     'rapport' => $listeR,
-    
+
 ]);
 
 
@@ -324,13 +339,13 @@ return $personnels;
         ->where('responsables.P_CODE',$P_CODE)
         ->select('responsables.*')
         ->first();
-       
+
 return $responsable;
     }
 
     public static function ispersonneltest($P_CODE)
     {
-       
+
         $personnels = DB::table('personnels')
         ->where('personnels.P_CODE',$P_CODE)
         ->select('personnels.*')
@@ -339,31 +354,57 @@ return $responsable;
     }
 
 
-    public static function detail($id,$pageretourner)
+    public static function detailvalidationrapport($id)
     {
         //get Intervention by numero d'intervention
-        $intervention =getbyinterventionid($id)
-
-        $rapports = InterventionController::getinterventionrapport($id);
+        //
+        $intervention =self::getbyinterventionid($id);
+        //rapport correspandant a l'intervention
+        $rapports = InterventionController::getrapportbyInterventionNum($id);
         if(isset($rapports[0]))
         $rapports = $rapports[0];
+        //L'engin utilisé dans l'intervention
         $listeengin=InterventionController::getenginbyinterventionID($id);
+        //
         $listepersonnel= InterventionController::getpersonnelbyenginID(1,$id);
+        //
         if(isset($rapports->id_rapport))
-        $comment=Rapport::listerapportcommentaire($rapports->id_rapport);
-        return view("rapports.$pageretourner",[
+        $comment=RapportController::listerapportcommentaire($rapports->id_rapport);
+        return view("rapports.validet",[
             'intervention' => $intervention,
             'engins' => $listeengin,
             'idinterventions' => $id,
             'rapport' => $rapports,
 
             ]);
-        
+
+    }
+    public static function detailredactionrapport($id)
+    {
+        //get Intervention by numero d'intervention
+        //
+        $intervention =self::getbyinterventionid($id);
+        //rapport correspandant a l'intervention
+        $rapports = InterventionController::getrapportbyInterventionNum($id);
+        if(isset($rapports[0]))
+        $rapports = $rapports[0];
+        //L'engin utilisé dans l'intervention
+        $listeengin=InterventionController::getenginbyinterventionID($id);
+        //
+        $listepersonnel= InterventionController::getpersonnelbyenginID(1,$id);
+        //
+        if(isset($rapports->id_rapport))
+        $comment=RapportController::listerapportcommentaire($rapports->id_rapport);
+        return view("rapports.rediger",[
+            'intervention' => $intervention,
+            'engins' => $listeengin,
+            'idinterventions' => $id,
+            'rapport' => $rapports,
+
+            ]);
+
     }
 
-    public static function redactionRapport($id)
-    {
-        self::detail($id,'redactionrapport');
-    }
+
 
 }

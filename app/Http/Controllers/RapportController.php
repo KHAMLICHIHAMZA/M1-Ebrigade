@@ -19,11 +19,11 @@ class RapportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
- 
-     
+
+
     public static function listerapportcommentaire($id)
     {
-        $RapportM = DB::table('commentaires')->where('id_rapport', $id)->get();
+        $RapportM = DB::table('commentaires')->where('id_rapport', $id)->select('commentaires.*')->get();
 
         return  $RapportM;
     }
@@ -39,12 +39,12 @@ class RapportController extends Controller
         ->get();
 
         return view('rapports.rapport_responsable',[
-            'rapport' => $rapport,     
+            'rapport' => $rapport,
         ]);
 
-            
+
     }
-       
+
     public static function Modificationrapport($id,$contenu)
     {
 
@@ -60,7 +60,7 @@ class RapportController extends Controller
     {
 
         $intervention =InterventionController::getbyinterventionid($id);
-        $rapports = InterventionController::getinterventionrapport($id);
+        //$rapports = InterventionController::getinterventionrapport($id);
         if(isset($rapports[0]))
         $rapports = $rapports[0];
         $listeengin=InterventionController::getenginbyinterventionID($id);
@@ -74,7 +74,7 @@ class RapportController extends Controller
             'rapport' => $rapports,
 
             ]);
-        
+
     }
     public static function correctionrapport($id)
     {
@@ -97,7 +97,7 @@ class RapportController extends Controller
 
     public function create()
     {
-        
+
     }
 
     /**

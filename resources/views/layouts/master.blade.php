@@ -82,7 +82,7 @@
         <ul class="navbar-nav ml-auto">
             @if($locale = session()->get('locale')  )
             @php $locale = session()->get('locale'); @endphp
-            
+
             <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -220,8 +220,8 @@
                 </ul>
             </li>
 
-          
-            <li @if ( ! App\Http\Controllers\InterventionController::ispersonnel(session('P_CODE'))  &&  ! App\Http\Controllers\InterventionController::isresponsable(session('P_CODE')) ) hidden  @endif class="nav-item has-treeview">
+
+            <li @if ( App\Http\Controllers\InterventionController::ispersonnel(session('P_CODE')) == true ) hidden  @endif class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-list"></i>
                     <p>
@@ -229,36 +229,38 @@
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
-
                 <ul class="nav nav-treeview" style="display: none;">
-                    <li @if (App\Http\Controllers\InterventionController::isresponsable(session('P_CODE'))) hidden  @endif class="nav-item">
+                    <li @if (App\Http\Controllers\InterventionController::isresponsable(session('P_CODE')) == false)) hidden  @endif class="nav-item">
                         <a href="{{route('listeIRapportnonrediger')}}" class="nav-link">
                             <i class="nav-icon fas fa-pencil "></i>
                             <p>Rediger Rapport</p>
-                        </a>  
+                        </a>
                     </li>
-
-                    <li @if (App\Http\Controllers\InterventionController::isresponsable(session('P_CODE'))) hidden  @endif class="nav-item">
+                    <li @if (App\Http\Controllers\InterventionController::isresponsable(session('P_CODE')) == false) hidden  @endif class="nav-item">
                         <a href="{{route('listeAllrapportresponsable')}}" class="nav-link">
                             <i class="nav-icon fas fa-pencil "></i>
                             <p>liste all rapport</p>
                         </a>
                     </li>
                     <div>
+                        <li @if ( App\Http\Controllers\InterventionController::isresponsable(session('P_CODE'))  == true)
+                         hidden
+                        @elseif (App\Http\Controllers\InterventionController::ischefducorp(session('P_CODE'))  == true)
 
-                        <li @if ( ! App\Http\Controllers\InterventionController::isresponsable(session('P_CODE')) ) hidden  @endif class="nav-item">
+                        @else
+                        hidden
+                        @endif class="nav-item">
                             <a href="{{route('listeallrapportchef')}}" class="nav-link">
                                 <i class="nav-icon fas fa-layers-text "></i>
                                 <p>Valider Rapport</p>
                             </a>
                         </li>
                     </div>
-
                 </ul>
             </li>
 
 
-            
+
           <li class="nav-item">
             <a href="" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>

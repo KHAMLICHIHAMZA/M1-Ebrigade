@@ -37,17 +37,17 @@ Route::get('/AllIntervention', 'InterventionController@listeAllInterventions')->
 Route::get('/AjoutIntervention', function () {
     return view('AddIntervention');
 });
-//Redirection vers la page de modification 
+//Redirection vers la page de modification
 Route::get('/DetailsIntervention/{id}','InterventionController@DetailsIntervention');
 //Redirection vers le controlleur qui traitera les infos saisie
 Route::name('AddInfoIntervention')->post('/AjoutIntervention/{request?}','InterventionController@addInterventionEngins');
-//Redirection vers la page de modification 
+//Redirection vers la page de modification
 Route::get('/ModifierIntervention/{id}','InterventionController@ShowDataIntervention');
 
 
 //Traitement de la modification des champs saisie
 Route::name('UpdateIntervention')->post('/ModifierIntervention/{request?}','InterventionController@UpdateInterventionEngins');
-//Redirection de la demande de suppression d'une intervention 
+//Redirection de la demande de suppression d'une intervention
 Route::get('/SupprimerIntervention/{id}', 'InterventionController@deleteInterventionEngins')->name('deleteInterventionEngins');
 //URL /php permet l'usage et le fonctionnement du code ajax qui se trouve dans la View AddIntervention
 Route::get('/php', function () {
@@ -69,6 +69,10 @@ Route::get('user/{us}', 'UserController@delete')->name('user.delete');
 Route::get('/Rapports/listeRapportsNR','InterventionController@listeIRapportnonrediger')->name('listeIRapportnonrediger');
 Route::get('/Rapports/listeAllrapportresponsable','RapportController@listeAllrapportresponsable')->name('listeAllrapportresponsable');
 Route::get('/Rapports/listeallrapportchef','InterventionController@listeIRapportnonrediger')->name('listeallrapportchef');
+Route::get('/Rapports/rediger/{id}','InterventionController@detailredactionrapport');
+Route::get('/Rapports/valider/{id}','InterventionController@detailvalidationrapport');
+
+
 
 
 
