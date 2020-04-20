@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Http;
 
 class InterventionController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
     //Recuperation de la liste de tout les engins de l'Ebrigade "l'usage de l'API"
     public static function getAllEngins(){
         $Type_Inter=Http::get('http://localhost:8002/Engins');
@@ -115,7 +119,7 @@ class InterventionController extends Controller
 
     public static function getbyinterventionid($id)
     {
-        $interventions=DB::table('interventions')->where('Numero_Intervention',$id)->get();
+        $interventions=DB::table('interventions')->where('Numero_Intervention',$id)->select('interventions.*')->get();
         return  $interventions;
     }
 
@@ -226,6 +230,7 @@ return $personnels;
                 //Mise a zero de la table qui contient la liaison entre les engins et les personnels
                 $MiseAJourEngiPers = Intervention::DeleteEnginsPersonnels($TableIntervention['Numero_Intervention']);
                 $test=true;
+
                 while ($test){
                     $tmp=$request->input('Role'.$i);
                     //dd($tmp);
@@ -239,4 +244,126 @@ return $personnels;
         }
         return InterventionController::listeAllInterventions();   
     }
+
+    public static function ispersonnel($P_CODE)
+    {
+       
+        $personnels = DB::table('personnels')
+        ->where('personnels.P_CODE',$P_CODE)
+        ->select('personnels.*')
+        ->first();
+    if($personnels)
+    {
+    return true;   
+    }
+    else
+    {
+    return false;
+    }
+
+    }
+    public static function isresponsable($P_CODE)
+    {
+        $responsable = DB::table('responsables')
+        ->where('responsables.P_CODE',$P_CODE)
+        ->select('responsables.*')
+        ->first();
+       
+        if($responsable)
+        {
+        return true;   
+        }
+        else
+        {
+        return false;
+        }
+        return view('/home',[
+            'responsable' => $responsable,
+            ]);
+
+    }
+
+     public static function listeIRapportnonrediger()
+     {
+            $listeIntervention = DB::table('interventions')
+            ->leftJoin('rapports','interventions.Numero_Intervention','=','rapports.Numero_intervention')
+            ->join('responsables', 'interventions.Responsable_idResponsable', '=', 'responsables.idResponsable')
+            ->where('responsables.P_CODE',session('P_CODE'))
+            ->whereNull('rapports.Numero_intervention')
+            ->select('interventions.*')
+            ->get();  
+
+   return view('rapports.rapport_en_attente_de_redaction',[
+            'interventions' => $listeIntervention,
+            
+        ]);
+
+        }
+    
+    public static function listeallrapportchef()
+    
+    {
+    
+        $listeR = DB::table('rapports')
+        ->whereNull('rapports.statut')
+        ->orWhere('rapports.statut','rejete')
+        ->select('rapports.*')
+        ->get();
+
+    return view('rapports.rapport_chef',[
+    'rapport' => $listeR,
+    
+]);
+
+
+
+    }
+    public static function isresponsabletest($P_CODE)
+    {
+        $responsable = DB::table('responsables')
+        ->where('responsables.P_CODE',$P_CODE)
+        ->select('responsables.*')
+        ->first();
+       
+return $responsable;
+    }
+
+    public static function ispersonneltest($P_CODE)
+    {
+       
+        $personnels = DB::table('personnels')
+        ->where('personnels.P_CODE',$P_CODE)
+        ->select('personnels.*')
+        ->first();
+        return $personnels;
+    }
+
+
+    public static function detail($id,$pageretourner)
+    {
+        //get Intervention by numero d'intervention
+        $intervention =getbyinterventionid($id)
+
+        $rapports = InterventionController::getinterventionrapport($id);
+        if(isset($rapports[0]))
+        $rapports = $rapports[0];
+        $listeengin=InterventionController::getenginbyinterventionID($id);
+        $listepersonnel= InterventionController::getpersonnelbyenginID(1,$id);
+        if(isset($rapports->id_rapport))
+        $comment=Rapport::listerapportcommentaire($rapports->id_rapport);
+        return view("rapports.$pageretourner",[
+            'intervention' => $intervention,
+            'engins' => $listeengin,
+            'idinterventions' => $id,
+            'rapport' => $rapports,
+
+            ]);
+        
+    }
+
+    public static function redactionRapport($id)
+    {
+        self::detail($id,'redactionrapport');
+    }
+
 }

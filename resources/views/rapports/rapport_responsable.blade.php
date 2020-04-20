@@ -1,3 +1,7 @@
+
+@extends('layouts.master')
+@section('content')
+
 <div class="row col-12">
     <div class="col-12">
         <div class="card col-12">
@@ -50,3 +54,4 @@
         <!-- /.card -->
     </div>
 </div>
+@endsection

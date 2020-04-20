@@ -8,5 +8,11 @@
     "Grade":"Grade",
     "Profession":"Profession",
     "Statut":"Statut",
-    "Action":"Action"
+    "Action":"Action",
+     "numero Intervention":"Intervention number",
+     "Commune":"common",
+     "adresse":"adress",
+     "typeintervention":"intervention's type",
+     "date heure debut":"start  hour date",
+     "date heure fin":"end hour date"
 }

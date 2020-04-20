@@ -8,7 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class RapportController extends Controller
 {
-
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
 
 
     /**
@@ -25,19 +28,18 @@ class RapportController extends Controller
         return  $RapportM;
     }
 
-    public static function listeAllrapportresponsable($P_CODE)
+    public static function listeAllrapportresponsable()
     {
         //liste Allrapport resposable bylogin
         $rapport = DB::table('rapports')
         ->join('interventions', 'rapports.Numero_intervention', '=', 'interventions.Numero_Intervention')
         ->join('responsables', 'interventions.Responsable_idResponsable', '=', 'responsables.idResponsable')
-        ->where('responsables.P_CODE',$P_CODE)
+        ->where('responsables.P_CODE',session('P_CODE'))
         ->select('rapports.*')
         ->get();
 
-        return view('rapport.rapport_responsable',[
+        return view('rapports.rapport_responsable',[
             'rapport' => $rapport,     
-            //'pompiers'=>$pompiers
         ]);
 
             

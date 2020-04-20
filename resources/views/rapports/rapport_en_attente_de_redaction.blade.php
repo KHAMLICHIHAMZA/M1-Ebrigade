@@ -1,18 +1,18 @@
-
-
+@extends('layouts.master')
+@section('content')
 
 <table class="table table-hover">
     <thead>
     <tr>
-        <th scope="col">numero Intervention</th>
-        <th scope="col">Commune</th>
-        <th scope="col">adresse</th>
-        <th scope="col">typeintervention</th>
-        <th scope="col">date heure debut</th>
-        <th scope="col">date heure fin </th>
+        <th scope="col">@lang("numero Intervention")</th>
+        <th scope="col">@lang("Commune") </th>
+        <th scope="col">@lang("adresse")</th>
+        <th scope="col">@lang("typeintervention")</th>
+        <th scope="col">@lang("date heure debut")</th>
+        <th scope="col">@lang("date heure fin")</th>
 
         <!-- <th scope="col">membre equipe</th> -->
-        <th scope="col">Action</th>
+        <th scope="col">@lang("Action")</th>
     </tr>
     </thead>
     <tbody>
@@ -37,6 +37,12 @@
 
     <!--jusque la qui doit changer-->
 </table>
-</br>
-</br>
-<?php if(!isset($interventions[0])) echo "tous les rapports sont rediger" ?>
+
+<?php if(!isset($interventions[0]))
+{       
+   $message = '<div class="alert alert-error hidden" role="alert">rien a rediger</div>';
+echo $message;
+
+} 
+ ?>
+@endsection

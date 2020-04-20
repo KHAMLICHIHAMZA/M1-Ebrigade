@@ -26,7 +26,7 @@
                         <td scope="col">{{$user->P_PRENOM}}</td>
                         <td scope="col">{{$user->P_NOM}}</td>
                         <td scope="col">{{$user->P_EMAIL}}</td>
-                        <td scope="col"> {{$user->P_SEXE }}</td>
+                        <td scope="col">{{$user->P_SEXE }}</td>
                         <td scope="col">{{$user->P_GRADE }}</td>
                         <td scope="col">{{$user->P_PROFESSION }}</td>
                         <td scope="col">{{$user->P_STATUT }}</td>
@@ -39,7 +39,7 @@
 
 
 
-                      <form  class="mr-1" method="" action="{{ route('user.delete',['us' => $user->P_ID]) }}">
+                      <form  class="mr-1"  @if ( ! App\Http\Controllers\InterventionController::isresponsable(session('P_CODE'))) hidden  @endif method="" action="{{ route('user.delete',['us' => $user->P_ID]) }}">
 
                         <button name class="btn btn-sm btn-danger"><i class="fa fa-trash" ></i></button>
 

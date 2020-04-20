@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -160,6 +159,8 @@
 
 
 
+
+
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -171,7 +172,7 @@
       <img src="" alt="" class="brand-image img-responsive elevation-3"
            style="opacity: .8">
 
-      <span class="brand-text font-weight-light"> </span>
+      <span class="brand-text font-weight-light"> {{session('P_NOM')}}</span>
     </a>
 
     <!-- Sidebar -->
@@ -192,9 +193,6 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-
-
-
             <li  class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-list"></i>
@@ -222,9 +220,8 @@
                 </ul>
             </li>
 
-
-
-            <li  class="nav-item has-treeview">
+          
+            <li @if ( ! App\Http\Controllers\InterventionController::ispersonnel(session('P_CODE'))  &&  ! App\Http\Controllers\InterventionController::isresponsable(session('P_CODE')) ) hidden  @endif class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-list"></i>
                     <p>
@@ -232,23 +229,25 @@
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
+
                 <ul class="nav nav-treeview" style="display: none;">
-                    <li  class="nav-item">
-                        <a href="" class="nav-link">
+                    <li @if (App\Http\Controllers\InterventionController::isresponsable(session('P_CODE'))) hidden  @endif class="nav-item">
+                        <a href="{{route('listeIRapportnonrediger')}}" class="nav-link">
                             <i class="nav-icon fas fa-pencil "></i>
                             <p>Rediger Rapport</p>
-                        </a>
+                        </a>  
                     </li>
 
-                    <li class="nav-item">
-                        <a href="" class="nav-link">
+                    <li @if (App\Http\Controllers\InterventionController::isresponsable(session('P_CODE'))) hidden  @endif class="nav-item">
+                        <a href="{{route('listeAllrapportresponsable')}}" class="nav-link">
                             <i class="nav-icon fas fa-pencil "></i>
                             <p>liste all rapport</p>
                         </a>
                     </li>
-                    <div  >
-                        <li  class="nav-item">
-                            <a href="" class="nav-link">
+                    <div>
+
+                        <li @if ( ! App\Http\Controllers\InterventionController::isresponsable(session('P_CODE')) ) hidden  @endif class="nav-item">
+                            <a href="{{route('listeallrapportchef')}}" class="nav-link">
                                 <i class="nav-icon fas fa-layers-text "></i>
                                 <p>Valider Rapport</p>
                             </a>
@@ -257,6 +256,9 @@
 
                 </ul>
             </li>
+
+
+            
           <li class="nav-item">
             <a href="" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>

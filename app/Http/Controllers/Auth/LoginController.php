@@ -67,17 +67,17 @@ public $user;
              if($user){   
 
                  Auth::login($user);
+                 session([
 
-                 session(['P_ID' => $user->P_ID,
-                          'P_NOM' => $user->P_NOM,
-                          'P_EMAIL'=>$user->P_EMAIL,
-                          'P_STATUT'=>$user->P_STATUT,
-                          'P_GRADE'=>$user->P_GRADE
-
-                 
-                 
-                 
-                 ]);
+                          'P_ID'    => $user->P_ID,
+                          'P_NOM'   => $user->P_NOM,
+                          'P_EMAIL' => $user->P_EMAIL,
+                          'P_STATUT'=> $user->P_STATUT,
+                          'P_GRADE' => $user->P_GRADE,
+                          'P_CODE'  => $user->P_CODE
+                          
+                                          
+                          ]);
 
                  return redirect('/home');
          }

@@ -43,6 +43,8 @@ Route::get('/DetailsIntervention/{id}','InterventionController@DetailsInterventi
 Route::name('AddInfoIntervention')->post('/AjoutIntervention/{request?}','InterventionController@addInterventionEngins');
 //Redirection vers la page de modification 
 Route::get('/ModifierIntervention/{id}','InterventionController@ShowDataIntervention');
+
+
 //Traitement de la modification des champs saisie
 Route::name('UpdateIntervention')->post('/ModifierIntervention/{request?}','InterventionController@UpdateInterventionEngins');
 //Redirection de la demande de suppression d'une intervention 
@@ -61,4 +63,12 @@ Route::get('/parametres', function () {
 });
 
 Route::get('user/{us}', 'UserController@delete')->name('user.delete');
+
+//rapport Routes
+
+Route::get('/Rapports/listeRapportsNR','InterventionController@listeIRapportnonrediger')->name('listeIRapportnonrediger');
+Route::get('/Rapports/listeAllrapportresponsable','RapportController@listeAllrapportresponsable')->name('listeAllrapportresponsable');
+Route::get('/Rapports/listeallrapportchef','InterventionController@listeIRapportnonrediger')->name('listeallrapportchef');
+
+
 

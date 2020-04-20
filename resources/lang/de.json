@@ -8,5 +8,12 @@
     "Grade":"Rang",
     "Profession":"Beruf",
     "Statut":"Status",
-    "Action":"Aktion"
+    "Action":"Aktion",
+    //vue liste de rapport en attente de readaction
+    "numero Intervention":"Interventionsnummer",
+    "Commune":"Häufig",
+    "adresse":"Adresse",
+    "typeintervention":"Art der Intervention",
+    "date heure debut":"Datum Startzeit",
+    "date heure fin":"Datum Endzeit"
 }
