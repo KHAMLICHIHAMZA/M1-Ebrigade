@@ -31,6 +31,10 @@ Route::get('lang/{locale}', 'LocalizationController@index');
 
 //URL /home fait appel a la methode Index du controller HomeController
 Route::get('/home', 'HomeController@index')->name('home');
+//URL /AllArchive fait appel a la methode listeArchive du controller ArchiveController
+Route::get('/AllArchive', 'ArchiveController@listeArchives')->name('listeArchives');
+//Redirection vers le controlleur qui traitera la recherche demander
+Route::name('Search')->post('/AllArchive/{request?}','ArchiveController@findArchive');
 //URL /AllIntervention fait appel a la methode listeIntervention du controller InterventionController
 Route::get('/AllIntervention', 'InterventionController@listeAllInterventions')->name('listeAllInterventions');
 //Redirection vers la page d'ajout intervention
