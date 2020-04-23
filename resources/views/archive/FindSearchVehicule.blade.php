@@ -50,16 +50,16 @@
                 <tbody>
                     @foreach($Interventions as $Intervention )
                     <tr>
-                        <td scope="col" align="center">{{$Intervention->Numero_Intervention}}</td>
-                        <td scope="col" align="center">{{$Intervention->Commune}}</td>
-                        <td scope="col" align="center">{{$Intervention->Adresse}}</td>
-                        <td scope="col" align="center"> {{$Intervention->Type_interv }}</td>
-                        <td scope="col" align="center">{{$Intervention->Date_Heure_Debut }}</td>
-                        <td scope="col" align="center">{{$Intervention->Date_Heure_Fin }}</td>
-                        <td scope="col" align="center">{{$Intervention->Opm }}</td>
-                        <td scope="col" align="center">{{$Intervention->Important }}</td>
+                        <td scope="col" align="center">{{$Intervention[0]->Numero_Intervention}}</td>
+                        <td scope="col" align="center">{{$Intervention[0]->Commune}}</td>
+                        <td scope="col" align="center">{{$Intervention[0]->Adresse}}</td>
+                        <td scope="col" align="center"> {{$Intervention[0]->Type_interv }}</td>
+                        <td scope="col" align="center">{{$Intervention[0]->Date_Heure_Debut }}</td>
+                        <td scope="col" align="center">{{$Intervention[0]->Date_Heure_Fin }}</td>
+                        <td scope="col" align="center">{{$Intervention[0]->Opm }}</td>
+                        <td scope="col" align="center">{{$Intervention[0]->Important }}</td>
                         <td class="d-flex flex-row" align="center">
-                            <a href="http://127.0.0.1:8001/DetailsIntervention/<?php echo $Intervention->Numero_Intervention ?>"><button class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></button></a>
+                            <a href="http://127.0.0.1:8001/DetailsIntervention/<?php echo $Intervention[0]->Numero_Intervention ?>"><button class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></button></a>
                         </td>
                     </tr>
                     @endforeach
