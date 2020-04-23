@@ -397,7 +397,7 @@ return $responsable;
     {
         //get Intervention by numero d'intervention
         $intervention =self::getbyinterventionid($id);
-        
+
         //rapport correspandant a l'intervention
         $rapports = InterventionController::getrapportbyInterventionNum($id);
         if(isset($rapports[0]))
@@ -459,7 +459,7 @@ return $responsable;
         DB::table('rapports')->insert(['contenu' =>$request->input('rapport'), 'Numero_intervention' => $id]);
 
         return redirect()->route('listeAllrapportresponsable');
-        
+
     }
 
     public function detailscorrectionrapport($id)
@@ -520,10 +520,10 @@ return view("rapports.correction_rapport",[
 
 
             return redirect()->route('listeallrapportchef');
-            
+
     }
 
-    public static function valide($request,$id) 
+    public static function valide($request,$id)
     {
 
         InterventionController::validerapport($request,$id);

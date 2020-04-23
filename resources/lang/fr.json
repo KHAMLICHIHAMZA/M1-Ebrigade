@@ -10,7 +10,6 @@
     "Statut":"Statut",
     "Action":"Action",
     "numero Intervention":"numero Intervention",
-    "Commune":"Commune",
     "adresse":"adresse",
     "typeintervention":"typeintervention",
     "date heure debut":"date heure debut",
@@ -20,13 +19,34 @@
     "finir":"finir",
     "remplir intervention":"remplir intervention",
     "passer":"passer",
-    "voir":"voir", 
+    "voir":"voir",
     "date dengagement":"date dengagement",
     "Tel":"Telephone",
     "Pays":"Pays",
     "Service":"Service",
     "retour":"retour",
-    "update":"modifier"
+    "update":"modifier",
+    "Intervention":"Intervention",
+    "Commune d'intervention":"Commune d'intervention",
+    "Adresse d'intervention":"Adresse d'intervention",
+    "Type d'intervention":"Type d'intervention",
+    "Date & Heure de declanchement":"Date & Heure de declanchement",
+    "Date & Heure de fin":"Date & Heure de fin",
+    "Important":"Important",
+    "Engins et personnel":"Engins et personnel",
+    "Nom de l'engin":"Nom de l'engin",
+    "Valider":"Valider",
+    "Date & Heure depart":"Date & Heure depart",
+    "Date & Heure d'arriver sur le lieux":"Date & Heure d'arriver sur le lieux",
+    "Date & Heure de retour":"Date & Heure de retour",
+    "Responsable":"Responsable",
+    "Valider l'ajout du formulaire":"Valider l'ajout du formulaire",
+    "Numero Intervention":"Numero Intervention",
+    "Commune":"Commune",
+    "Adresse":"Adresse",
+    "Modifier l'intervention":"Modifier l'intervention"
+
+
 
 
 }

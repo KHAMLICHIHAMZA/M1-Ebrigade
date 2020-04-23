@@ -26,7 +26,23 @@
     "Pays":"country",
     "Service":"Service",
     "retour":"back",
-    "update":"update"
-
-
+    "update":"update",
+    "Intervention":"Intervention",
+    "Commune d'intervention":"Intervention commune",
+    "Adresse d'intervention":"Intervention address",
+    "Type d'intervention":"Type of intervention",
+    "Date & Heure de declanchement":"Trip Date & Time",
+    "Date & Heure de fin":"End Date & Time",
+    "Important":"Important",
+    "Engins et personnel":"Equipment and personnel",
+    "Nom de l'engin":"Name of the machine",
+    "Valider":"Validate",
+    "Date & Heure depart":"Starting Date & Time",
+    "Date & Heure d'arriver sur le lieux":"Date & Time of arrival",
+    "Date & Heure de retour":"Date & Time of return",
+    "Responsable":"Responsible",
+    "Valider l'ajout du formulaire":"Validate the addition of the form",
+    "Numero Intervention":"Intervention Number",
+    "Adresse":"Adress",
+    "Modifier l'intervention":"Modify the intervention"
 }

@@ -264,6 +264,33 @@ class Intervention extends Model
         $InterTable=Intervention::DeleteInterventionTable($Intervention[0]->Numero_Intervention);
     }
 
+    //Rechercher d'une intervention dans les archive via le Numero d'Intervention
+    static public function SearchArchiveByNumInter($Numero_Intervention){
+        $stmt1=DB::table('interventions')->select()->where('Numero_Intervention',$Numero_Intervention)->get();
+        return $stmt1;
+    }
+
+    //Rechercher de tout les interventions dans les archive qui ont le meme Type d'Intervention
+    static public function SearchArchiveByTypeInter($Type_interv){
+        $stmt1=DB::table('interventions')->select()->where('Type_interv',$Type_interv)->get();
+        return $stmt1;
+    }
+
+    //Rechercher de tout les interventions dans les archives qui ont le meme Engin Utiliser
+    static public function SearchArchiveByEngin($Nom_Engin){
+        $liste=array();
+        $stmt1=DB::table('engins')->select()->where('Nom_Engin',$Nom_Engin)->get();
+        //dd($stmt1[1]);
+        $i=0;
+        while(isset($stmt1[$i])){
+            $stmt2=DB::table('interventions_engins')->select()->where('Engins_idEngins',$stmt1[$i]->idEngins)->get();
+            $stmt3=DB::table('interventions')->select()->where('Numero_Intervention',$stmt2[0]->Intervention_Numero_Intervention)->get();
+            $liste[$i]=$stmt3;
+            $i++;
+        }
+        return $liste;
+        
+   }
 
 
     

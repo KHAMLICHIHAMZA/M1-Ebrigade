@@ -14,7 +14,7 @@ $Type_Inters = InterventionController::getAllType();
   @csrf
     <div class="card card-primary">
       <div class="card-header">
-        <h3 class="card-title"><strong>Intervention :</strong></h3>
+        <h3 class="card-title"><strong>@lang("Intervention") :</strong></h3>
       </div>
       <!-- /.card-header -->
       <div class="card-body">
@@ -24,14 +24,14 @@ $Type_Inters = InterventionController::getAllType();
             <!-- text input -->
             <div class="form-group">
 
-              <label id="Commune">Cominterventionmune d' </label>
+              <label id="Commune">@lang("Commune d'intervention") </label>
               <input type="text" class="form-control" name="Commune" id="Commune" placeholder="Commune ...">
 
             </div>
           </div>
           <div class="col-sm-6">
             <div class="form-group">
-              <label>Adresse d'intervention</label>
+              <label>@lang("Adresse d'intervention")</label>
               <input type="text" class="form-control" name="Adresse" placeholder="Lieu d'intervention">
             </div>
           </div>
@@ -40,7 +40,7 @@ $Type_Inters = InterventionController::getAllType();
           <div class="col-sm-6">
             <!-- select -->
             <div class="form-group">
-              <label>Type d'intervention</label>
+              <label>@lang("Type d'intervention")</label>
               <select class="form-control" name="Type_interv">
                 <?php
                 foreach ($Type_Inters as $Type_Inter) :
@@ -58,7 +58,7 @@ $Type_Inters = InterventionController::getAllType();
         <div class="row">
           <div class="col-sm-6">
             <div class="form-group">
-              <label>Date & Heure de declanchement :</label>
+              <label>@lang("Date & Heure de declanchement")</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text">
@@ -72,7 +72,7 @@ $Type_Inters = InterventionController::getAllType();
           </div>
           <div class="col-sm-6">
             <div class="form-group">
-              <label>Date & Heure de fin :</label>
+              <label>@lang("Date & Heure de fin")</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text">
@@ -91,7 +91,7 @@ $Type_Inters = InterventionController::getAllType();
             <div class="form-group">
               <div class="form-check">
                 <input class="form-check-input" name="Important" type="checkbox" checked>
-                <label class="form-check-label">Important</label>
+                <label class="form-check-label">@lang("Important")</label>
               </div>
             </div>
           </div>
@@ -110,7 +110,7 @@ $Type_Inters = InterventionController::getAllType();
       <!-- general form elements disabled -->
       <div class="card-primary">
         <div class="card-header">
-          <h3 class="card-title"><strong>Engins et personnel :</strong></h3>
+          <h3 class="card-title"><strong>@lang("Engins et personnel")</strong></h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -119,7 +119,7 @@ $Type_Inters = InterventionController::getAllType();
             <div class="col-sm-6">
               <!-- select -->
               <div class="form-group">
-                <label>Nom de l'engin N1</label>
+                <label>@lang("Nom de l'engin")</label>
                 <select class="form-control" name="Nom_Engin" id="Nom_Engin">
                   <?php
                   $Engins = InterventionController::getAllEngins();
@@ -134,7 +134,7 @@ $Type_Inters = InterventionController::getAllType();
             <div class="col-sm-3">
               <!-- select -->
               <div class="form-group"></br>
-                <button type="" class="btn btn-block btn-success" id="submitBtn" value="submitBtn">Valider</button>
+                <button type="" class="btn btn-block btn-success" id="submitBtn" value="submitBtn">@lang("Valider")</button>
               </div>
             </div>
           </div>
@@ -145,7 +145,7 @@ $Type_Inters = InterventionController::getAllType();
           <div class="row">
             <div class="col-sm-6">
               <div class="form-group">
-                <label>Date & Heure depart :</label>
+                <label>@lang("Date & Heure depart")</label>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text">
@@ -159,7 +159,7 @@ $Type_Inters = InterventionController::getAllType();
             </div>
             <div class="col-sm-6">
               <div class="form-group">
-                <label>Date & Heure d'arriver sur le lieux :</label>
+                <label>@lang("Date & Heure d'arriver sur le lieux")</label>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text">
@@ -176,7 +176,7 @@ $Type_Inters = InterventionController::getAllType();
           <div class="row">
             <div class="col-sm-6">
               <div class="form-group">
-                <label>Date & Heure de retour :</label>
+                <label>@lang("Date & Heure de retour")</label>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text">
@@ -193,7 +193,7 @@ $Type_Inters = InterventionController::getAllType();
         </div>
 
         <div class="card-header">
-          <h3 class="card-title"><strong> Responsable </strong></h3>
+          <h3 class="card-title"><strong> @lang("Responsable") </strong></h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -209,7 +209,7 @@ $Type_Inters = InterventionController::getAllType();
             <div class="col-sm-6">
               <!-- select -->
               <div class="form-group"></br>
-                <button type="submit" class="btn btn-block btn-success" name="submit" value="Valider Formulaire">Valider l'ajout du formulaire</boutton>
+                <button type="submit" class="btn btn-block btn-success" name="submit" value="Valider Formulaire">@lang("Valider l'ajout du formulaire")</boutton>
               </div>
             </div>
           </div>
