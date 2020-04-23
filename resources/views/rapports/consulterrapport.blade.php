@@ -76,12 +76,12 @@
                                     </thead>
                                     <tbody>
                                     <?php foreach($engins as $e){ ?>
-                                        <tr>
-                                            <th><?php if (isset($e->Nom_Engin))  echo $e->Nom_Engin?></th>
-                                            <td><?php if (isset($e->Date_Heur_Depart))  echo $e->Date_Heur_Depart ?></td>
-                                            <td><?php if (isset($e->Date_Heure_Arriver))  echo $e->Date_Heure_Arriver?></td>
-                                            <td><?php if (isset($e->Date_Heure_Retour))  echo $e->Date_Heure_Retour?></td>
-                                        </tr>
+                                    <tr>
+                                        <th><?php if (isset($e->Nom_Engin))  echo $e->Nom_Engin?></th>
+                                        <td><?php if (isset($e->Date_Heur_Depart))  echo $e->Date_Heur_Depart ?></td>
+                                        <td><?php if (isset($e->Date_Heure_Arriver))  echo $e->Date_Heure_Arriver?></td>
+                                        <td><?php if (isset($e->Date_Heure_Retour))  echo $e->Date_Heure_Retour?></td>
+                                    </tr>
                                     <?php }  ?>
                                     </tbody></table>
                             </div>
@@ -99,7 +99,7 @@
                                         $drp = 0;
                                         foreach($engins as $e){?>
                                             <li class="nav-item"><a class="nav-link <?php if ($drp== 0)  echo 'active' ?> " href="#<?php if (isset($e->Nom_Engin))  echo $e->Nom_Engin?>" data-toggle="tab"><?php if (isset($e->Nom_Engin))  echo $e->Nom_Engin?></a></li>
-                                            <?php $drp++;  } ?>
+                                        <?php $drp++;  } ?>
                                     </ul>
                                 </div><!-- /.card-header -->
                                 <div class="card-body">
@@ -121,10 +121,10 @@
                                                         </thead>
                                                         <tbody>
                                                         <?php foreach($listePersonnel as $p){ ?>
-                                                            <tr>
-                                                                <th><?php if (isset($p->Role))  echo $p->Role ;?></th>
-                                                                <td><?php if (isset($p->Nom))  echo $p->Nom ; ?></td>
-                                                            </tr>
+                                                        <tr>
+                                                            <th><?php if (isset($p->Role))  echo $p->Role ;?></th>
+                                                            <td><?php if (isset($p->Nom))  echo $p->Nom ; ?></td>
+                                                        </tr>
                                                         <?php } ?>
                                                         </tbody>
                                                     </table>
@@ -188,73 +188,26 @@
                                 <div>
                                     <i class="fas fa-envelope bg-blue"></i>
                                     <div class="timeline-item">
-                                        <span class="time"><i class="fas fa-clock"></i> 12:05</span>
+                                        <span class="time"><i class="fas fa-clock"></i> <?php if (isset($rapport->date))  echo date('d/m/Y',strtotime($rapport->date)); ?></span>
                                         <h3 class="timeline-header"> RAPPORT </h3>
 
-                                        <div class="timeline-body">
+                                        <div class="  timeline-body">
                                             <?php if (isset($rapport->contenu))  echo $rapport->contenu ; ?>
+
+                                            <!--  ************************** rapport     *****************************33 -->
                                         </div>
-
-                                        <section class="content-header">
-                                            <div class="container-fluid">
-                                                <div class="row mb-2">
-                                                    <div class="col-sm-6">
-
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <ol class="breadcrumb float-sm-right">
-                                                            <li class="breadcrumb-item"></li>
-
-                                                        </ol>
-                                                    </div>
-                                                </div>
-                                            </div><!-- /.container-fluid -->
-                                        </section>
-                                                                    
-
-
-
-
-                                        <form   class=" col-sm-12" action="{{  route('validerapport',['id' => $rapport->id_rapport])}}" method="POST">
-                                            @csrf
-
-                                            <div class="col-sm-12">
-
-                                                    <textarea name="commentaire" class="form-control" rows="2" placeholder="commentaire ..."></textarea>
-                                                </div>
-                                            </div>
-                                            <!-- /.card-body -->
-                                            <div class="" style="display: flex; ">
-
-                                                <input style="margin-right : 2%; "  type="submit" name="m" class="btn btn-primary align-items-center" value="valide">
-                                                <input type="submit" name="m" class="btn btn-danger align-items-center" value="rejete">
-                                            </div>
-                                        </form>
-
-
-
-                                        <section class="content-header">
-                                            <div class="container-fluid">
-                                                <div class="row mb-2">
-                                                    <div class="col-sm-6">
-
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <ol class="breadcrumb float-sm-right">
-                                                            <li class="breadcrumb-item"></li>
-
-                                                        </ol>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </section>
-
-
-
 
                                     </div>
                                 </div>
+                                <!-- END timeline item -->
+                                <!-- timeline item -->
 
+                                <!-- END timeline item -->
+                                <!-- timeline item -->
+
+                                <!-- END timeline item -->
+                                <!-- timeline time label -->
+                               
                                 <?php if(isset($commentaire)) foreach($commentaire as $c){?>
                                     <div>
                                         <i class="fas fa-comments bg-yellow"></i>
@@ -267,20 +220,9 @@
 
                                         </div>
                                     </div>
-                                <?php } ?>
+                                    <?php } ?>
 
-                                
-                                <!-- END timeline item -->
-                                <!-- timeline item -->
 
-                                <!-- END timeline item -->
-                                <!-- timeline item -->
-
-                                <!-- END timeline item -->
-                                <!-- timeline time label -->
-                                <div class="time-label">
-
-                                </div>
                                 <!-- /.timeline-label -->
                                 <!-- timeline item -->
 
@@ -300,14 +242,8 @@
 
             </section>
 
-
-
         </div>
     </div>
     <!-- /.card -->
 </div>
 @endsection
-
-
-
-

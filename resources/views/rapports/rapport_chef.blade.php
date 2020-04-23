@@ -1,3 +1,5 @@
+@extends('layouts.master')
+@section('content')
 <div class="row col-12">
     <div class="col-12">
         <div class="card col-12">
@@ -36,7 +38,8 @@
                         <td><?php if (isset($r->date)) echo $r->date  ?></td>
                         <td><?php if ($r->statut == null) echo 'En attente de validation'; if ($r->statut != null) echo $r->statut;  ?></td>
                         <td  class="d-flex flex-row" >
-                            <a href="index.php?c=InterventionsController&m=validationRapport&id=<?php if (isset($r->Numero_intervention)) echo $r->Numero_intervention  ?>"><button class="btn btn-sm btn-primary  " <?php if ($r->statut == 'rejete') echo "disabled"  ?>><i class="fa fa-pencil" ></i>consulter</button></a>
+                            <a href="http://127.0.0.1:8001/Rapport/validationRapport/<?php if (isset($r->Numero_intervention)) echo $r->Numero_intervention  ?>"><button class="btn btn-sm btn-primary  " <?php if ($r->statut == 'rejete') echo "disabled"  ?>><i class="fa fa-pencil" ></i>consulter</button></a>
+
                         </td>
                     </tr>
                     <?php } ?>
@@ -51,3 +54,4 @@
         <!-- /.card -->
     </div>
 </div>
+@endsection

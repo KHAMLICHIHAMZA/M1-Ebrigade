@@ -1,15 +1,14 @@
-
-{{dd("hello tu est dans rediger")
-}}<div class="card card-primary " style="width: 100%">
+@extends('layouts.master')
+@section('content')
+<div class="card card-primary " style="width: 100%">
     <div class="card-header">
         <h3 class="card-title">
             <i class="fas fa-edit"></i>
-            INTERVENTION n° <?php if (isset($intervention->Commune)) echo $intervention->Numero_Intervention?>
+          INTERVENTION n° <?php if (isset($intervention->Commune)) echo $intervention->Numero_Intervention?>
         </h3>
     </div>
     <div class="card-body">
         <h4>DETAIL</h4>
-
 
         <div class="row">
             <div class="col-5 col-sm-3">
@@ -30,7 +29,7 @@
                                 <thead>
                                 <tr>
                                     <th style="width:50%" > Responsable :</th>
-                                    <td>Oumar</td>
+                                    <td>{{ session('P_NOM') }}</td>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -109,16 +108,14 @@
                                         $drp = 0;
                                         foreach($engins as $e){?>
                                             <div class="<?php if ($drp== 0)  echo 'active' ?> tab-pane" id="<?php if (isset($e->Nom_Engin))  echo $e->Nom_Engin ; ?>">
-                                                <?php $listePersonnel = $interventionM->getpersonnelbyenginID($e->idEngins,$intervention->Numero_Intervention) ; ?>
-
-                                                <div class="table-responsive">
+                                                
+                                                <?php $listePersonnel = App\Http\Controllers\InterventionController::getpersonnelbyenginID($e->idEngins,$intervention->Numero_Intervention); ?>
                                                     <table class="table">
                                                         <thead>
                                                         <tr>
                                                             <th style="width:50%">Role</th>
                                                             <td>Nom</td>
                                                         </tr>
-                                                        </thead>
                                                         <tbody>
                                                         <?php foreach($listePersonnel as $p){ ?>
                                                             <tr>
@@ -170,20 +167,21 @@
                     </div>
                 </div><!-- /.container-fluid -->
             </section>
+            <form  class=" col-sm-12" action="{{  route('ajoutRapport',['id' =>  $intervention->Numero_Intervention])}}" method="POST" >
+                @csrf
 
-            <form  class=" col-sm-12" action="index.php" role="form">
+
                 <div class="col-sm-12">
                     <!-- textarea -->
-                    <input name="m" type="hidden" class="form-control" type="text" placeholder="Default input" value="ajoutrapport">
-                    <input name="c" type="hidden" class="form-control" type="text" placeholder="Default input" value="InterventionsController">
-                    <input name="numero_intervention" type="hidden" class="form-control" type="text" placeholder="Default input" value="<?php if (isset($intervention->Commune)) echo $intervention->Numero_Intervention?>">
                     <div class="form-group">
                         <textarea name="rapport" class="form-control" rows="7" placeholder="Rapport ..."></textarea>
                     </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary align-items-center">Valider</button>
+
+                   <button class="btn btn-sm btn-primary"><i class="fa fa-pencil" ></i>Rediger rapport</button>
+
                 </div>
             </form>
 
@@ -193,3 +191,4 @@
     </div>
     <!-- /.card -->
 </div>
+@endsection

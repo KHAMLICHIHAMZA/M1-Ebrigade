@@ -1,4 +1,4 @@
 <?php
 return [
-    'title' => 'Bienvenue dans la gestion des interventions'
+    'title' => 'fff'
 ];

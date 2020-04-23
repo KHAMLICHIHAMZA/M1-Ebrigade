@@ -10,16 +10,16 @@
               <div class="sticky-top mb-3">
                 <div class="card">
                   <div class="card-header">
-                    <h4 class="card-title">Evenements à Déplacement</h4>
+                    <h4 class="card-title">@lang('Evenements à Déplacement')</h4>
                   </div>
                   <div class="card-body">
                     <!-- the events -->
                     <div id="external-events">
-                      <div class="external-event bg-success">Déjeuner</div>
-                      <div class="external-event bg-warning">Finito</div>
-                      <div class="external-event bg-info">Remplir feuille d'intervention</div>
-                      <div class="external-event bg-primary">passer un fil </div>
-                      <div class="external-event bg-danger">voir le boss</div>
+                      <div class="external-event bg-success">@lang('Déjeuner')</div>
+                      <div class="external-event bg-warning">@lang('finir')</div>
+                      <div class="external-event bg-info">@lang('remplir intervention')</div>
+                      <div class="external-event bg-primary">@lang('passer')</div>
+                      <div class="external-event bg-danger">@lang('voir')</div>
                       <div class="checkbox">
                         <label for="drop-remove">
                           <input type="checkbox" id="drop-remove">

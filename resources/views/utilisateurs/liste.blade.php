@@ -30,16 +30,15 @@
                         <td scope="col">{{$user->P_GRADE }}</td>
                         <td scope="col">{{$user->P_PROFESSION }}</td>
                         <td scope="col">{{$user->P_STATUT }}</td>
-
-                        <td  class="d-flex flex-row" >
-
-                        <form  class="mr-1" method="" action="{{ route('users.edit',['user' => $user->P_ID]) }}">
+                     <td  class="d-flex flex-row" >
+                       
+                 <form  class="mr-1" @unless (  session('P_CODE') == '1234'   )   hidden @endunless method="" action="{{ route('users.edit',['user' => $user->P_ID]) }}">
                         <button class="btn btn-sm btn-warning"><i class="fa fa-edit" ></i></button>
                       </form>
 
 
 
-                      <form  class="mr-1"  @if ( ! App\Http\Controllers\InterventionController::isresponsable(session('P_CODE'))) hidden  @endif method="" action="{{ route('user.delete',['us' => $user->P_ID]) }}">
+                      <form  class="mr-1"  @unless (  session('P_CODE') == '1234'  )   hidden @endunless method="" action="{{ route('user.delete',['us' => $user->P_ID]) }}">
 
                         <button name class="btn btn-sm btn-danger"><i class="fa fa-trash" ></i></button>
 
@@ -48,7 +47,7 @@
                      </form>
 
 
-                        <form  class="mr-1" method="" action="{{ route('users.show',['user' => $user->P_ID]) }}">
+                        <form  class="mr-1"  @if (  App\Http\Controllers\InterventionController::isresponsable(session('P_CODE')) == false && $user->P_CODE != session('P_CODE'))  hidden @endif method="" action="{{ route('users.show',['user' => $user->P_ID]) }}">
                           <input type="hidden" name="P_ID" value="">
                           <a >
                            <button class="btn btn-sm btn-info"><i class="fa fa-eye" ></i></button>

@@ -26,9 +26,13 @@
             <td scope="col"><?php if (isset($i->Date_Heure_Fin)) echo  $i->Date_Heure_Fin ;?></td>
 
             <td  class="d-flex flex-row" >
-                
-                              <a href="http://127.0.0.1:8000/Rapports/rediger/<?php if (isset($i->Numero_Intervention)) echo $i->Numero_Intervention  ?>"><button class="btn btn-sm btn-warning"><i class="fa fa-pencil" ></i>Rediger rapport</button></a>
+                        <a href="http://localhost:8001/Rapports/rediger/<?php if (isset($i->Numero_Intervention)) echo $i->Numero_Intervention  ?>">     <button class="btn btn-sm btn-warning"><i class="fa fa-pencil" ></i>Rediger rapport</button></a>
             </td>
+
+ 
+
+
+
 
         </tr>
     <?php endforeach;?>

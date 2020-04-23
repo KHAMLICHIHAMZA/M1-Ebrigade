@@ -116,7 +116,7 @@ class Intervention extends Model
 
     static public function AddPersonnel($Personnel){
         //$LastLine=DB::connect()->prepare('SELECT idResponsable from Responsable order by idResponsable DESC LIMIT 1');
-        $LastLine=DB::table('Responsables')->latest('idResponsable')->first();
+        $LastLine=DB::table('responsables')->select("responsables.*")->where('P_CODE',session('P_CODE'))->first();
 
         $stmt=DB::table('personnels')->insert([
             'Nom' => $Personnel,
@@ -149,8 +149,9 @@ class Intervention extends Model
     static public function AddIntervention($Commune,$Adresse,$Type_interv,$Date_Heure_Debut,$Date_Heure_Fin,$Important,$Opm){
         //Recuperer la dernier ligne de la table engins sauvegarder dans la BDD 
         $LastLine=DB::table('engins')->latest('idEngins')->first();
-        
-        //Insertion des information de la table intervention dans la BDD
+
+        $Last=DB::table('responsables')->select("responsables.*")->where('P_CODE',session('P_CODE'))->first();
+         //Insertion des information de la table intervention dans la BDD
         $stmt=DB::table('interventions')->insert([
             'Commune' => $Commune,
             'Adresse'=>$Adresse,
@@ -159,7 +160,7 @@ class Intervention extends Model
             'Important'=>$Important,
             'Date_Heure_Debut'=>$Date_Heure_Debut,
             'Date_Heure_Fin'=>$Date_Heure_Fin,
-            'Responsable_idResponsable'=>$LastLine->idEngins]
+            'Responsable_idResponsable'=>$Last->idResponsable]
         );
 
         //Fermeture et initialisation du curseur

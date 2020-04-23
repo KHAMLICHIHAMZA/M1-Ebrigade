@@ -1,6 +1,6 @@
 {
     "Hello!" : "Hallo",
-    "Stay with us and keep learning" : "Bleib bei uns und lerne weiter",
+    "Stay with us and keep learning" : "Stay with us and keep learning",
     "Prenom":"First Name",
     "Nom":"Last Name",
     "Email":"Email",
@@ -9,10 +9,24 @@
     "Profession":"Profession",
     "Statut":"Statut",
     "Action":"Action",
-     "numero Intervention":"Intervention number",
-     "Commune":"common",
-     "adresse":"adress",
-     "typeintervention":"intervention's type",
-     "date heure debut":"start  hour date",
-     "date heure fin":"end hour date"
+    "numero Intervention":"Intervention number",
+    "Commune":"common",
+    "adresse":"adress",
+    "typeintervention":"intervention's type",
+    "date heure debut":"start  hour date",
+    "date heure fin":"end hour date",
+    "Evenements à Déplacement":"rrrrr",
+    "Déjeuner":"renenne",
+    "finir":"nenenene",
+    "remplir intervention":"enenenenenen",
+    "passer":"ene",
+    "voir":"fff",
+    "date dengagement":"engament date",
+    "Tel":"Tel",
+    "Pays":"country",
+    "Service":"Service",
+    "retour":"back",
+    "update":"update"
+
+
 }

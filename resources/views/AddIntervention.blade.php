@@ -24,7 +24,7 @@ $Type_Inters = InterventionController::getAllType();
             <!-- text input -->
             <div class="form-group">
 
-              <label id="Commune">Commune d'intervention </label>
+              <label id="Commune">Cominterventionmune d' </label>
               <input type="text" class="form-control" name="Commune" id="Commune" placeholder="Commune ...">
 
             </div>

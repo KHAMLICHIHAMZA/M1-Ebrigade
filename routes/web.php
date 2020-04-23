@@ -66,11 +66,23 @@ Route::get('user/{us}', 'UserController@delete')->name('user.delete');
 
 //rapport Routes
 
+
+
 Route::get('/Rapports/listeRapportsNR','InterventionController@listeIRapportnonrediger')->name('listeIRapportnonrediger');
 Route::get('/Rapports/listeAllrapportresponsable','RapportController@listeAllrapportresponsable')->name('listeAllrapportresponsable');
-Route::get('/Rapports/listeallrapportchef','InterventionController@listeIRapportnonrediger')->name('listeallrapportchef');
-Route::get('/Rapports/rediger/{id}','InterventionController@detailredactionrapport');
+Route::get('/Rapports/listeallrapportchef','InterventionController@listeallrapportchef')->name('listeallrapportchef');
+Route::get('/Rapports/rediger/{id}','InterventionController@detailredactionrapport')->name('rediger');
 Route::get('/Rapports/valider/{id}','InterventionController@detailvalidationrapport');
+Route::get('/Rapport/ConsulterRapport/{id}','InterventionController@detailintervention');
+Route::get('/Rapport/validationRapport/{id}','InterventionController@detailvalidationrapport');
+Route::get('/Rapport/CorrigerRapport/{id}','InterventionController@detailscorrectionrapport');
+Route::put('/Rapport/Modificationrapport/{id}','RapportController@Modificationrapport')->name('modificationrapport');
+Route::post('/Rapports/ajoutRapport/{id}','InterventionController@ajoutRapport')->name('ajoutRapport');
+Route::post('/Rapports/chefvaliderapport/{id}','InterventionController@validerapport')->name('validerapport');
+
+
+
+
 
 
 

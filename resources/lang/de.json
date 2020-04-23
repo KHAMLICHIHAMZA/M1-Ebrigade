@@ -9,11 +9,22 @@
     "Profession":"Beruf",
     "Statut":"Status",
     "Action":"Aktion",
-    //vue liste de rapport en attente de readaction
     "numero Intervention":"Interventionsnummer",
     "Commune":"Häufig",
     "adresse":"Adresse",
     "typeintervention":"Art der Intervention",
     "date heure debut":"Datum Startzeit",
-    "date heure fin":"Datum Endzeit"
+    "date heure fin":"Datum Endzeit",
+    "Evenements à Déplacement":"eeeeeeeeee",
+    "Déjeuner":"eeeeeeeeee",
+    "finir":"dffffffff",
+    "remplir intervention":"fffffffff",
+    "passer":"ffffffff",
+    "voir":"fffffffffff",
+    "datedengagement":"Datum der Verlobung",
+    "Tel":"Telefonnummer",
+    "Pays":"Land",
+    "Service":"Service",
+    "retour":"zurück",
+    "update":"aktualisieren"
 }

@@ -119,7 +119,7 @@ class InterventionController extends Controller
 
     public static function getbyinterventionid($id)
     {
-        $interventions=DB::table('interventions')->where('Numero_Intervention',$id)->select('interventions.*')->get();
+        $interventions=DB::table('interventions')->where('Numero_Intervention',$id)->select('interventions.*')->first();
         return  $interventions;
     }
 
@@ -129,7 +129,7 @@ class InterventionController extends Controller
         return $interventions;
     }
 
-    public  function getenginbyinterventionID($id)
+    public static  function getenginbyinterventionID($id)
 
     {
 
@@ -145,7 +145,7 @@ class InterventionController extends Controller
     }
 
 
-    public  function getpersonnelbyenginID($id,$interventionid)
+    public  static function getpersonnelbyenginID($id,$interventionid)
     {
 
     $personnels = DB::table('engins_personnels')
@@ -281,9 +281,9 @@ return $personnels;
 
     public static function ischefducorp()
     {
-        $chefducorp = DB::table('responsables')
-        ->where('responsables.P_CODE',0000)
-        ->select('responsables.*')
+        $chefducorp = DB::table('users')
+        ->where('users.P_CODE',1234)
+        ->select('users.*')
         ->first();
 
         if($chefducorp)
@@ -352,6 +352,16 @@ return $responsable;
         ->first();
         return $personnels;
     }
+    public static function getResponsableIntervention($id)
+    {
+        $resp = DB::table('responsables')
+        ->join('interventions', 'interventions.Responsable_idResponsable', '=', 'responsables.idResponsable')
+        ->where('interventions.Numero_Intervention',$id)
+        ->select('responsables.*')
+        ->first();
+        return $resp;
+
+    }
 
 
     public static function detailvalidationrapport($id)
@@ -368,6 +378,8 @@ return $responsable;
         //
         $listepersonnel= InterventionController::getpersonnelbyenginID(1,$id);
         //
+        $responsable= InterventionController::getResponsableIntervention($id);
+
         if(isset($rapports->id_rapport))
         $comment=RapportController::listerapportcommentaire($rapports->id_rapport);
         return view("rapports.validet",[
@@ -375,6 +387,8 @@ return $responsable;
             'engins' => $listeengin,
             'idinterventions' => $id,
             'rapport' => $rapports,
+            'commentaire' => $comment,
+            'responsable' => $responsable,
 
             ]);
 
@@ -382,8 +396,8 @@ return $responsable;
     public static function detailredactionrapport($id)
     {
         //get Intervention by numero d'intervention
-        //
         $intervention =self::getbyinterventionid($id);
+        
         //rapport correspandant a l'intervention
         $rapports = InterventionController::getrapportbyInterventionNum($id);
         if(isset($rapports[0]))
@@ -393,6 +407,8 @@ return $responsable;
         //
         $listepersonnel= InterventionController::getpersonnelbyenginID(1,$id);
         //
+        $responsable= InterventionController::getResponsableIntervention($id);
+
         if(isset($rapports->id_rapport))
         $comment=RapportController::listerapportcommentaire($rapports->id_rapport);
         return view("rapports.rediger",[
@@ -400,8 +416,123 @@ return $responsable;
             'engins' => $listeengin,
             'idinterventions' => $id,
             'rapport' => $rapports,
+            'responsable' => $responsable,
+            ]);
+
+    }
+    public static function detailintervention($id)
+    {
+        //get Intervention by numero d'intervention
+        $intervention =self::getbyinterventionid($id);
+        //rapport correspandant a l'intervention
+        $rapports = InterventionController::getrapportbyInterventionNum($id);
+        if(isset($rapports[0])){
+
+        $rapports = $rapports[0];
+        }
+        //L'engin utilisé dans l'intervention
+        $listeengin=InterventionController::getenginbyinterventionID($id);
+        //
+        $listepersonnel= InterventionController::getpersonnelbyenginID(1,$id);
+        //
+        $responsable= InterventionController::getResponsableIntervention($id);
+        //
+        if(isset($rapports->id_rapport))
+        $comment=RapportController::listerapportcommentaire($rapports->id_rapport);
+        return view("rapports.consulterrapport",[
+            'intervention' => $intervention,
+            'engins' => $listeengin,
+            'idinterventions' => $id,
+            'rapport' => $rapports,
+            'commentaire' => $comment,
+            'responsable' => $responsable,
+
 
             ]);
+
+    }
+
+
+    public static function ajoutRapport(Request $request, $id)
+    {
+
+        DB::table('rapports')->insert(['contenu' =>$request->input('rapport'), 'Numero_intervention' => $id]);
+
+        return redirect()->route('listeAllrapportresponsable');
+        
+    }
+
+    public function detailscorrectionrapport($id)
+    {
+
+//get Intervention by numero d'intervention
+$intervention =self::getbyinterventionid($id);
+//rapport correspandant a l'intervention
+$rapports = InterventionController::getrapportbyInterventionNum($id);
+if(isset($rapports[0])){
+
+$rapports = $rapports[0];
+}
+//L'engin utilisé dans l'intervention
+$listeengin=InterventionController::getenginbyinterventionID($id);
+//
+$listepersonnel= InterventionController::getpersonnelbyenginID(1,$id);
+//
+$responsable= InterventionController::getResponsableIntervention($id);
+//
+if(isset($rapports->id_rapport))
+$comment=RapportController::listerapportcommentaire($rapports->id_rapport);
+return view("rapports.correction_rapport",[
+    'intervention' => $intervention,
+    'engins' => $listeengin,
+    'idinterventions' => $id,
+    'rapport' => $rapports,
+    'commentaire' => $comment,
+
+
+    ]);
+
+
+    }
+    public static function validationrapport(Request $request,$id)
+    {
+        DB::table('rapports')->where('id_rapport',$id)->
+        update([
+            'statut'=> $request->input('m'),
+         ]);
+
+ }
+
+    public static function ajoutcommentaire(Request $request,$id)
+    {
+        DB::table('commentaires')->insert(['contenu' =>$request->input('commentaire'), 'id_rapport' => $id]);
+
+
+    }
+
+    public static function validerapport(Request $request,$id)
+    {
+            if($request->input('commentaire')!= null)
+            {
+            InterventionController::ajoutcommentaire( $request,$id);
+            }
+            InterventionController::validationrapport($request,$id);
+
+
+            return redirect()->route('listeallrapportchef');
+            
+    }
+
+    public static function valide($request,$id) 
+    {
+
+        InterventionController::validerapport($request,$id);
+
+    }
+    public static function rejete($request,$id)
+    {
+
+        InterventionController::validerapport($request,$id);
 
     }
 

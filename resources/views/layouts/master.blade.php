@@ -80,14 +80,17 @@
 </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav ml-auto">
-            @if($locale = session()->get('locale')  )
-            @php $locale = session()->get('locale'); @endphp
+
+
+
+            @if($locale = App::getLocale()  )
+        @php $locale = App::getLocale(); @endphp
 
             <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     @switch($locale)
-                        @case('us')
+                        @case('en')
                        English
                         @break
                         @case('fr')
@@ -180,7 +183,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="dist/img/pompier.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="http://www.myiconfinder.com/uploads/iconsets/48-48-4b17457ce3226ab34ff4f3e7b1c9e7bd-firefighter.png" class="img-circle elevation-2" alt="User Image">
         <span>  </span>
         </div>
         <div class="info">
@@ -197,34 +200,23 @@
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-list"></i>
                     <p>
-                        Intervention
+                      Intervention
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
                 <ul class="nav nav-treeview" style="display: none;">
                     <li  class="nav-item">
-<<<<<<< HEAD
-                        <a href="http://localhost:8001/AjoutIntervention" class="nav-link">
-=======
-                        <a href="" class="nav-link">
->>>>>>> 14170ee0f5e37a1773dd6bb932deb99ebd5cb747
+                        <a href="http://localhost:8001/AjoutIntervention"  class="nav-link">
                             <i class="nav-icon fas fa-pencil "></i>
                             <p>ajout intervention</p>
                         </a>
                     </li>
-
                     <li  class="nav-item">
-<<<<<<< HEAD
                         <a href="http://localhost:8001/AllIntervention" class="nav-link">
-=======
-                        <a href="" class="nav-link">
->>>>>>> 14170ee0f5e37a1773dd6bb932deb99ebd5cb747
                             <i class="nav-icon fas fa-pencil "></i>
                             <p>liste intervention</p>
                         </a>
                     </li>
-
-
                 </ul>
             </li>
 
@@ -336,7 +328,7 @@
         </div>
       </form>
     -->
-@yield('content');
+@yield('content')
 
               </div>
             </div>

@@ -1,9 +1,10 @@
-
+@extends('layouts.master')
+@section('content')
 <div class="card card-primary " style="width: 100%">
     <div class="card-header">
         <h3 class="card-title">
             <i class="fas fa-edit"></i>
-            INTERVENTION n° <?php //if (isset($intervention->Commune)) echo $intervention->Numero_Intervention?>
+            INTERVENTION n° <?php if (isset($intervention->Commune)) echo $intervention->Numero_Intervention?>
         </h3>
     </div>
     <div class="card-body">
@@ -29,29 +30,29 @@
                                 <thead>
                                 <tr>
                                     <th style="width:50%" > Responsable :</th>
-                                    <td>Oumar</td>
+                                    <td>{{session('P_NOM')}}</td>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
                                     <th>Commune</th>
-                                    <td><?php// if (isset($intervention->Commune)) echo $intervention->Commune ?></td>
+                                    <td><?php if (isset($intervention->Commune)) echo $intervention->Commune ?></td>
                                 </tr>
                                 <tr>
                                     <th>Adresse:</th>
-                                    <td><?php// if (isset($intervention->Adresse)) echo $intervention->Adresse ?></td>
+                                    <td><?php if (isset($intervention->Adresse)) echo $intervention->Adresse ?></td>
                                 </tr>
                                 <tr>
                                     <th>Type Intervention:</th>
-                                    <td><?php //if (isset($intervention->Type_interv)) echo $intervention->Type_interv ?></td>
+                                    <td><?php if (isset($intervention->Type_interv)) echo $intervention->Type_interv ?></td>
                                 </tr>
                                 <tr>
                                     <th>Debut Intervention:</th>
-                                    <td><?php //if (isset($intervention->Date_Heure_Debut)) echo $intervention->Date_Heure_Debut ?></td>
+                                    <td><?php if (isset($intervention->Date_Heure_Debut)) echo $intervention->Date_Heure_Debut ?></td>
                                 </tr>
                                 <tr>
                                     <th>Fin Intervention:</th>
-                                    <td><?php //if (isset($intervention->Date_Heure_Fin)) echo $intervention->Date_Heure_Fin ?></td>
+                                    <td><?php if (isset($intervention->Date_Heure_Fin)) echo $intervention->Date_Heure_Fin ?></td>
                                 </tr>
                                 </tbody></table>
                         </div>
@@ -74,12 +75,12 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <?php foreach(//$engins as $e){ ?>
+                                    <?php foreach($engins as $e){ ?>
                                         <tr>
-                                            <th><?php //if (isset($e->Nom_Engin))  echo $e->Nom_Engin?></th>
-                                            <td><?php //if (isset($e->Date_Heur_Depart))  echo $e->Date_Heur_Depart ?></td>
-                                            <td><?php //if (isset($e->Date_Heure_Arriver))  echo $e->Date_Heure_Arriver?></td>
-                                            <td><?php //if (isset($e->Date_Heure_Retour))  echo $e->Date_Heure_Retour?></td>
+                                            <th><?php if (isset($e->Nom_Engin))  echo $e->Nom_Engin?></th>
+                                            <td><?php if (isset($e->Date_Heur_Depart))  echo $e->Date_Heur_Depart ?></td>
+                                            <td><?php if (isset($e->Date_Heure_Arriver))  echo $e->Date_Heure_Arriver?></td>
+                                            <td><?php if (isset($e->Date_Heure_Retour))  echo $e->Date_Heure_Retour?></td>
                                         </tr>
                                     <?php }  ?>
                                     </tbody></table>
@@ -96,9 +97,9 @@
                                     <ul class="nav nav-pills">
                                         <?php
                                         $drp = 0;
-                                        foreach(//$engins as $e){?>
-                                            <li class="nav-item"><a class="nav-link <?php// if ($drp== 0)  echo 'active' ?> " href="#<?php //if (isset($e->Nom_Engin))  echo $e->Nom_Engin?>" data-toggle="tab"><?php //if (isset($e->Nom_Engin))  echo $e->Nom_Engin?></a></li>
-                                            <?php //$drp++;  } ?>
+                                        foreach($engins as $e){?>
+                                            <li class="nav-item"><a class="nav-link <?php if ($drp== 0)  echo 'active' ?> " href="#<?php if (isset($e->Nom_Engin))  echo $e->Nom_Engin?>" data-toggle="tab"><?php if (isset($e->Nom_Engin))  echo $e->Nom_Engin?></a></li>
+                                            <?php $drp++;  } ?>
                                     </ul>
                                 </div><!-- /.card-header -->
                                 <div class="card-body">
@@ -106,9 +107,9 @@
 
                                         <?php
                                         $drp = 0;
-                                        foreach(//$engins as $e){?>
-                                            <div class="<?php// if ($drp== 0)  echo 'active' ?> tab-pane" id="<?php// if (isset($e->Nom_Engin))  echo $e->Nom_Engin ; ?>">
-                                                <?php// $listePersonnel = $interventionM->getpersonnelbyenginID($e->idEngins,$intervention->Numero_Intervention) ; ?>
+                                        foreach($engins as $e){?>
+                                            <div class="<?php if ($drp== 0)  echo 'active' ?> tab-pane" id="<?php if (isset($e->Nom_Engin))  echo $e->Nom_Engin ; ?>">
+                                                <?php $listePersonnel = App\Http\Controllers\InterventionController::getpersonnelbyenginID($e->idEngins,$intervention->Numero_Intervention); ?>
 
                                                 <div class="table-responsive">
                                                     <table class="table">
@@ -119,40 +120,28 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <?php foreach(//$listePersonnel as $p){ ?>
+                                                        <?php foreach($listePersonnel as $p){ ?>
                                                             <tr>
-                                                                <th><?php// if (isset($p->Role))  echo $p->Role ;?></th>
-                                                                <td><?php //if (isset($p->Nom))  echo $p->Nom ; ?></td>
+                                                                <th><?php if (isset($p->Role))  echo $p->Role ;?></th>
+                                                                <td><?php if (isset($p->Nom))  echo $p->Nom ; ?></td>
                                                             </tr>
                                                         <?php } ?>
                                                         </tbody>
                                                     </table>
                                                 </div>
-
-
-
                                             </div>
-                                            <?php// $drp++;  } ?>
-
-
-
-
-
+                                            <?php $drp++;  } ?>
                                     </div>
                                     <!-- /.tab-content -->
                                 </div><!-- /.card-body -->
                             </div>
                             <!-- /.nav-tabs-custom -->
                         </div>
-
                         <!-- fin personnel -->
-
                     </div>
-
                 </div>
             </div>
         </div>
-
         <div class="row">
             <section class="content-header">
                 <div class="container-fluid">
@@ -169,18 +158,19 @@
                     </div>
                 </div><!-- /.container-fluid -->
             </section>
-
-            <form style="width: 100%"  class=" col-sm-12" action="index.php" role="form">
+   <form style="width: 100%" method="POST" class=" col-sm-12" action="{{  route('modificationrapport',['id' => $rapport->id_rapport])}}">
+                @csrf
+                @method('PUT')
                 <div class="col-sm-12">
-                    <!-- textarea -->
-                    <input name="id_rapport" type="hidden" class="form-control" type="text" placeholder="Default input" value="<?php// if (isset($rapport->id_rapport))  echo $rapport->id_rapport ; ?>">
-                    <input name="c" type="hidden" class="form-control" type="text" placeholder="Default input" value="RapportsController">
-                    <input name="m" type="hidden" class="form-control" type="text" placeholder="Default input" value="Modificationrapport">
-                    <input name="numero_intervention" type="hidden" class="form-control" type="text" placeholder="Default input" value="<?php// if (isset($intervention->Commune)) echo $intervention->Numero_Intervention?>">
                     <div class="form-group" style="width: 100%" >
-                        <textarea style="width: 100%"  name="rapport"  class="form-control" rows="7" placeholder="Rapport ..."><?php //if (isset($rapport->contenu))  echo $rapport->contenu ; ?></textarea>
+
+                        <textarea style="width: 100%"   id='teeext 'name="rapport"  class="form-control" rows="7" placeholder="Rapport ..."></textarea>
+                
                     </div>
-                </div>
+                 </div>
+
+         
+
                 <!-- /.card-body -->
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary align-items-center">Valider</button>
@@ -211,14 +201,14 @@
 
                                 <!-- END timeline item -->
                                 <!-- timeline time label -->
-                                <?php  foreach(//$commentaire as $c){?>
+                                <?php  foreach($commentaire as $c){?>
                                     <div>
                                         <i class="fas fa-comments bg-yellow"></i>
                                         <div class="timeline-item">
-                                            <span class="time"><i class="fas fa-clock"></i> <?php //if (isset($c->date))  echo date('d/m/Y',strtotime($c->date)); ?></span>
+                                            <span class="time"><i class="fas fa-clock"></i> <?php if (isset($c->date))  echo date('d/m/Y',strtotime($c->date)); ?></span>
                                             <h3 class="timeline-header"><a href="#"><!-- nom chef --></a> commentaire</h3>
                                             <div class="timeline-body">
-                                                <?php //if (isset($c->contenu))  echo $c->contenu ; ?>
+                                                <?php if (isset($c->contenu))  echo $c->contenu ; ?>
                                             </div>
 
                                         </div>
@@ -252,3 +242,4 @@
     </div>
     <!-- /.card -->
 </div>
+@endsection

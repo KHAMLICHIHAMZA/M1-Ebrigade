@@ -64,7 +64,7 @@ public $user;
             $user = User::where('P_EMAIL', $request->P_EMAIL)
                 ->where('P_MDP', md5($request->P_MDP))
                 ->first();
-             if($user){   
+             if($user){
 
                  Auth::login($user);
                  session([
@@ -75,18 +75,18 @@ public $user;
                           'P_STATUT'=> $user->P_STATUT,
                           'P_GRADE' => $user->P_GRADE,
                           'P_CODE'  => $user->P_CODE
-                          
-                                          
+
+
                           ]);
 
                  return redirect('/home');
          }
-         
+
 
          $this->incrementLoginAttempts($request);
 
          return $this->sendFailedLoginResponse($request);
-           
+
    }
 
    protected function authenticated(Request $request, $user)
@@ -105,7 +105,7 @@ protected function setUserSession($user)
     );
 
 }
-   
+
 
    public function id()
     {

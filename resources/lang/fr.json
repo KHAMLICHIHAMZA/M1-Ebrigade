@@ -9,13 +9,24 @@
     "Profession":"Profession",
     "Statut":"Statut",
     "Action":"Action",
-    //vue liste de rapport en attente de readaction
     "numero Intervention":"numero Intervention",
     "Commune":"Commune",
     "adresse":"adresse",
     "typeintervention":"typeintervention",
     "date heure debut":"date heure debut",
-    "date heure fin":"date heure fin"
-  
+    "date heure fin":"date heure fin",
+    "Evenements à Déplacement":"Evenements à Déplacement",
+    "Déjeuner":"Déjeuner",
+    "finir":"finir",
+    "remplir intervention":"remplir intervention",
+    "passer":"passer",
+    "voir":"voir", 
+    "date dengagement":"date dengagement",
+    "Tel":"Telephone",
+    "Pays":"Pays",
+    "Service":"Service",
+    "retour":"retour",
+    "update":"modifier"
+
 
 }

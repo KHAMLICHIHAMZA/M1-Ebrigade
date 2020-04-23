@@ -30,6 +30,7 @@ class RapportController extends Controller
 
     public static function listeAllrapportresponsable()
     {
+
         //liste Allrapport resposable bylogin
         $rapport = DB::table('rapports')
         ->join('interventions', 'rapports.Numero_intervention', '=', 'interventions.Numero_Intervention')
@@ -45,13 +46,16 @@ class RapportController extends Controller
 
     }
 
-    public static function Modificationrapport($id,$contenu)
+    public static function Modificationrapport(Request $request, $id)
     {
-
-        $stmt=DB::table('rapports')->where('P_ID',$id)->
+        DB::table('rapports')->where('id_rapport',$id)->
         update([
-            'contenu'=> $contenu,
+            'contenu'=> $request->input('rapport'),
             'statut'=> NULL ]);
+
+            
+            return redirect()->route('listeAllrapportresponsable');
+
 
     }
 
@@ -60,7 +64,7 @@ class RapportController extends Controller
     {
 
         $intervention =InterventionController::getbyinterventionid($id);
-        //$rapports = InterventionController::getinterventionrapport($id);
+        $rapports = InterventionController::getrapportbyInterventionNum($id);
         if(isset($rapports[0]))
         $rapports = $rapports[0];
         $listeengin=InterventionController::getenginbyinterventionID($id);
