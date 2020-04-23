@@ -35,14 +35,19 @@ class ArchiveController extends Controller
                 $Intervention = Intervention::SearchArchiveByEngin($request->input('Search'));
                 //dd($Intervention);
                 if(!empty($Intervention)){
-                    return view('archive.ListeArchive',['Interventions' => $Intervention]);
+                    foreach($Intervention as $Intresv){
+                        array_push($Intr,$Intresv);
+                    }
+                    //dd($Intr);
+                    return view('archive.FindSearchVehicule',['Interventions' => $Intervention]);
                 }else{
                     return view('archive.ListeArchive',['Interventions' => $Intr]);
                 }
                 break;
-            default:
-                    dd($request->input('Filre'));
-
+            case "Commune":
+                $Intervention = Intervention::SearchArchiveByCommune($request->input('Search'));
+                return view('archive.ListeArchive',['Interventions' => $Intervention]);
+                break;
         }
 
     }

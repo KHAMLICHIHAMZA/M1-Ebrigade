@@ -290,9 +290,12 @@ class Intervention extends Model
         return $liste;
         
    }
-
-
-    
+   
+    //Rechercher de tout les interventions dans les archives par leurs Commune
+      static public function SearchArchiveByCommune($Commune){
+        $stmt1=DB::table('interventions')->select()->where('Commune',$Commune)->get();
+        return $stmt1;
+    }  
 
     
 }
