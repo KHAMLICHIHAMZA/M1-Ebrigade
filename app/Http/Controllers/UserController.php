@@ -8,13 +8,13 @@ use Illuminate\Support\Facades\Http;
 use App\User;
 use Illuminate\Support\Facades\DB;
 
-class UserController extends Controller
-{
+    class UserController extends Controller
+    {
 
-    //public function __construct()
-    //{
-      //$this->middleware('auth');
-    //}
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -29,7 +29,7 @@ class UserController extends Controller
 
             return view('utilisateurs.liste',[
             'users' => $resp,
-            
+
             //'pompiers'=>$pompiers
 
         ]);
@@ -108,9 +108,9 @@ class UserController extends Controller
             'P_PROFESSION'=> $request->input('P_PROFESSION'),
             'P_STATUT'=> $request->input('P_STATUT_'),
             'P_EMAIL'=> $request->input('P_EMAIL')
-            
+
         ]);
-      
+
         return redirect()->route('users.index');
 
                 /*

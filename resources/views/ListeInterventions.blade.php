@@ -28,11 +28,11 @@
                             <td scope="col" align="center">{{$Intervention->Opm }}</td>
                             <td scope="col" align="center">{{$Intervention->Important }}</td>
                             <td  class="d-flex flex-row" align="center">
-                                <a href="http://127.0.0.1:8001/DetailsIntervention/<?php echo $Intervention->Numero_Intervention ?>"><button class="btn btn-sm btn-warning"><i class="fa fa-eye" ></i></button></a>
-                                <a href="http://127.0.0.1:8001/ModifierIntervention/<?php echo $Intervention->Numero_Intervention ?>"><button class="btn btn-sm btn-primary"><i class="fa fa-edit" ></i></button></a>
-                                <a href="http://127.0.0.1:8001/SupprimerIntervention/<?php echo $Intervention->Numero_Intervention ?>"><button class="btn btn-sm btn-danger"><i class="fa fa-remove-format" ></i></button></a>
+                                <a href="http://localhost:8001/DetailsIntervention/<?php echo $Intervention->Numero_Intervention ?>"><button class="btn btn-sm btn-warning"><i class="fa fa-eye" ></i></button></a>
+                                <a href="http://localhost:8001/ModifierIntervention/<?php echo $Intervention->Numero_Intervention ?>"><button class="btn btn-sm btn-primary"><i class="fa fa-edit" ></i></button></a>
+                                <a href="http://localhost:8001/SupprimerIntervention/<?php echo $Intervention->Numero_Intervention ?>"><button class="btn btn-sm btn-danger"><i class="fa fa-remove-format" ></i></button></a>
                             </td>
-                        </tr>
+                       </tr>
                     @endforeach
                 </tbody>
     </table>

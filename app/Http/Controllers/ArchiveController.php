@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class ArchiveController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
+    
     public static function listeArchives()
     {
         //$interventionM = new interventionsModel();

@@ -212,7 +212,7 @@ $Type_Inters = InterventionController::getAllType();
                         <div class="col-sm-6">
                             <!-- select -->
                             <div class="form-group"></br>
-                                <a href="http://127.0.0.1:8001/ModifierIntervention/<?php echo $Interventions[0][0]->Numero_Intervention ?>">
+                                <a href="http://localhost:8001/ModifierIntervention/<?php echo $Interventions[0][0]->Numero_Intervention ?>">
                                     <button type="submit" class="btn btn-block btn" name="submit" value="Valider Formulaire">@lang("Modifier l'intervention")</boutton>
                                 </a>
                             </div>

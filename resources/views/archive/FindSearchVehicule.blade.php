@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-        </form>    
+        </form>
         </br>
         <div class="card-body table-responsive p-0" style="height: 300px;">
             <table class="table table-hover">
@@ -59,7 +59,7 @@
                         <td scope="col" align="center">{{$Intervention[0]->Opm }}</td>
                         <td scope="col" align="center">{{$Intervention[0]->Important }}</td>
                         <td class="d-flex flex-row" align="center">
-                            <a href="http://127.0.0.1:8001/DetailsIntervention/<?php echo $Intervention[0]->Numero_Intervention ?>"><button class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></button></a>
+                            <a href="http://localhost:8001/DetailsIntervention/<?php echo $Intervention[0]->Numero_Intervention ?>"><button class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></button></a>
                         </td>
                     </tr>
                     @endforeach
