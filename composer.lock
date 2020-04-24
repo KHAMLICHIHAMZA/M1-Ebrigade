@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d019203e05c9a059bae139250b3bc10d",
+    "content-hash": "23e192028a92b0c354215e73af20c80c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -556,6 +556,78 @@
                 "laravel"
             ],
             "time": "2020-03-11T21:05:07+00:00"
+        },
+        {
+            "name": "gonoware/laravel-maps",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.com/gonoware/laravel-maps.git",
+                "reference": "98fb269ac31722abea7c63b3fad12e1299305269"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/gonoware%2Flaravel-maps/repository/archive.zip?sha=98fb269ac31722abea7c63b3fad12e1299305269",
+                "reference": "98fb269ac31722abea7c63b3fad12e1299305269",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^6.0|^7.0",
+                "php": "^7.2|^7.2.5"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0|^1.3.1",
+                "phpunit/phpunit": "^8.0|^8.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "GoNoWare\\Maps\\MapsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GoNoWare\\Maps\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Emanuel Mutschlechner",
+                    "email": "em@gonoware.com"
+                },
+                {
+                    "name": "Benedikt Tuschter",
+                    "email": "bt@gonoware.com"
+                }
+            ],
+            "description": "Maps for your Laravel application",
+            "homepage": "https://gitlab.com/gonoware/laravel-maps",
+            "keywords": [
+                "OpenStreetMap",
+                "bing",
+                "bingmaps",
+                "gonoware",
+                "google",
+                "googlemaps",
+                "laravel",
+                "mapkit",
+                "mapkitjs",
+                "mapquest",
+                "maps",
+                "osm",
+                "yandex",
+                "yandexmaps"
+            ],
+            "time": "2020-04-07T02:08:30+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -5621,6 +5693,5 @@
     "platform": {
         "php": "^7.2.5"
     },
-    "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "platform-dev": []
 }

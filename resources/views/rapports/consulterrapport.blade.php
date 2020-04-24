@@ -4,11 +4,11 @@
     <div class="card-header">
         <h3 class="card-title">
             <i class="fas fa-edit"></i>
-            INTERVENTION n° <?php if (isset($intervention->Commune)) echo $intervention->Numero_Intervention?>
+            @lang('INTERVENTION n°') <?php if (isset($intervention->Commune)) echo $intervention->Numero_Intervention?>
         </h3>
     </div>
     <div class="card-body">
-        <h4>DETAIL</h4>
+        <h4>@lang('DETAIL')</h4>
 
 
         <div class="row">
@@ -29,7 +29,7 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th style="width:50%" > Responsable :</th>
+                                    <th style="width:50%" > @lang('Responsable') :</th>
                                     <td>{{ session('P_NOM') }}</td>
                                 </tr>
                                 </thead>

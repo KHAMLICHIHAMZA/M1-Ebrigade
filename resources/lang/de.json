@@ -1,4 +1,4 @@
-{
+{   "title":"sie sind hertzlich wilkomen",
     "Hello!" : "Hallo",
     "Stay with us and keep learning" : "Bleib bei uns und lerne weiter",
     "Prenom":"Nachname",
@@ -44,7 +44,12 @@
     "Numero Intervention":"Interventionsnummer",
     "Commune":"Häufig",
     "Adresse":"Adresse",
-    "Modifier l'intervention":"Ändern Sie die Intervention"
+    "Modifier l'intervention":"Ändern Sie die Intervention",
+    "Carte":"Karte",
+    "Meteo":"Wettervorhersage",
+    "langage":"Wähle deine Sprache",
+    "INTERVENTION n°":"Interventionsnummer"
+
 
 
 }

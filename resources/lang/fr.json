@@ -1,4 +1,5 @@
 {
+    "title":"Vous êtes le bienvenue",
     "Hello!" : "Bonjour",
     "Stay with us and keep learning" : "Reste avec nous et apprend mieux",
     "Prenom":"Prenom",
@@ -44,9 +45,11 @@
     "Numero Intervention":"Numero Intervention",
     "Commune":"Commune",
     "Adresse":"Adresse",
-    "Modifier l'intervention":"Modifier l'intervention"
-
-
+    "Modifier l'intervention":"Modifier l'intervention",
+    "Carte":"Carte",
+    "Meteo":"Météo",
+    "langage":"Choisissez votre language",
+    "INTERVENTION n°":"INTERVENTION n°"
 
 
 }

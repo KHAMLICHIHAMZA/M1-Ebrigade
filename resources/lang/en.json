@@ -1,4 +1,5 @@
 {
+     "title":"You are welcom",
     "Hello!" : "Hallo",
     "Stay with us and keep learning" : "Stay with us and keep learning",
     "Prenom":"First Name",
@@ -44,5 +45,12 @@
     "Valider l'ajout du formulaire":"Validate the addition of the form",
     "Numero Intervention":"Intervention Number",
     "Adresse":"Adress",
-    "Modifier l'intervention":"Modify the intervention"
+    "Modifier l'intervention":"Modify the intervention",
+    "Carte":"Map",
+    "Meteo":"Weather forecast",
+    "langage":"choose your langage",
+    "INTERVENTION n°":"Interventionsnummer"
+
+
+
 }
