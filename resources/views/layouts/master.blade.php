@@ -291,7 +291,7 @@
 
                 <ul class="nav nav-treeview" style="display: none;">
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="http://localhost:8001/AllArchive" class="nav-link">
                             <i class="nav-icon fas fa-pencil "></i>
                             <p>Liste des interventions</p>
                         </a>
