@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -26,7 +27,6 @@ Auth::routes();
 Route::resource('/users','UserController');
 
 Route::resource('/rapport','RapportController');
-Route::get('lang/{locale}', 'LocalizationController@index');
 
 
 //URL /home fait appel a la methode Index du controller HomeController
@@ -71,6 +71,11 @@ Route::get('/parametres', function () {
 Route::get('user/{us}', 'UserController@delete')->name('user.delete');
 
 //rapport Routes
+
+Route::get('lang/{locale}', 'LocalizationController@index');
+
+
+
 
 
 

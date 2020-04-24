@@ -74,45 +74,6 @@
 
     </ul>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-    aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-<span class="navbar-toggler-icon"></span>
-</button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul class="navbar-nav ml-auto">
-
-
-
-            @if($locale = App::getLocale()  )
-        @php $locale = App::getLocale(); @endphp
-
-            <li class="nav-item dropdown">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    @switch($locale)
-                        @case('en')
-                       English
-                        @break
-                        @case('fr')
-                         Francais
-                        @break
-                        @case('de')
-                         Deutsh
-                        @break
-                        @default
-                         English
-                    @endswitch
-                    <span class="caret"></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="lang/en"><img src="{{asset('us.jpg')}}"> English</a>
-                    <a class="dropdown-item" href="lang/de"><img src="{{asset('de.jpg')}}"> Deutsh</a>
-                    <a class="dropdown-item" href="lang/fr"><img src="{{asset('fr.png')}}"> French</a>
-                </div>
-            </li>
-        </ul>
-    </div>
-@endif
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
