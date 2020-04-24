@@ -2,10 +2,10 @@
 -- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 23 avr. 2020 à 19:40
--- Version du serveur :  10.4.10-MariaDB
--- Version de PHP :  7.4.0
+-- Host: 127.0.0.1:3306
+-- Generation Time: Apr 24, 2020 at 02:22 PM
+-- Server version: 10.4.10-MariaDB
+-- PHP Version: 7.4.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `intervention_db`
+-- Database: `intervention_db`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `commentaires`
+-- Table structure for table `commentaires`
 --
 
 DROP TABLE IF EXISTS `commentaires`;
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `commentaires` (
 ) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `commentaires`
+-- Dumping data for table `commentaires`
 --
 
 INSERT INTO `commentaires` (`id_commentaire`, `contenu`, `date`, `id_rapport`) VALUES
@@ -62,7 +62,7 @@ INSERT INTO `commentaires` (`id_commentaire`, `contenu`, `date`, `id_rapport`) V
 -- --------------------------------------------------------
 
 --
--- Structure de la table `engins`
+-- Table structure for table `engins`
 --
 
 DROP TABLE IF EXISTS `engins`;
@@ -73,14 +73,14 @@ CREATE TABLE IF NOT EXISTS `engins` (
   `Date_Heure_Arriver` date DEFAULT NULL,
   `Date_Heure_Retour` date DEFAULT NULL,
   PRIMARY KEY (`idEngins`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `engins`
+-- Dumping data for table `engins`
 --
 
 INSERT INTO `engins` (`idEngins`, `Nom_Engin`, `Date_Heur_Depart`, `Date_Heure_Arriver`, `Date_Heure_Retour`) VALUES
-(1, 'bmw', '2020-02-11', '2020-02-27', '2020-02-27'),
+(1, 'CCFL', '2020-02-26', '2020-02-27', '2020-02-28'),
 (2, 'jaguar', '2020-02-10', '2020-02-11', '2020-02-12'),
 (3, 'mercedes', '2020-02-26', '2020-02-27', '2020-02-28'),
 (4, 'FPTL', '2020-02-01', '2020-02-01', '2020-03-01'),
@@ -88,12 +88,17 @@ INSERT INTO `engins` (`idEngins`, `Nom_Engin`, `Date_Heur_Depart`, `Date_Heure_A
 (6, 'CCFM', '2020-01-31', '2020-01-31', '2020-01-01'),
 (7, 'EPA', '2020-01-01', '2021-01-02', '2020-01-01'),
 (8, 'CCGC', '2020-01-01', '2020-02-01', '2020-02-01'),
-(9, 'CCGC', '2020-01-01', '2020-02-01', '2020-02-01');
+(10, 'CCFM', '2020-01-01', '2020-01-01', '2020-01-01'),
+(11, 'CCFM', '2020-01-01', '2020-01-01', '2020-01-01'),
+(12, 'CCFM', '2020-01-01', '2020-01-01', '2020-01-01'),
+(13, 'EPA', '2020-01-01', '2020-01-01', '2020-01-01'),
+(15, 'MOTO', '2020-01-01', '2020-01-01', '2020-01-01'),
+(16, 'QUAD', '2020-01-01', '2020-01-01', '2020-01-01');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `engins_personnels`
+-- Table structure for table `engins_personnels`
 --
 
 DROP TABLE IF EXISTS `engins_personnels`;
@@ -109,30 +114,22 @@ CREATE TABLE IF NOT EXISTS `engins_personnels` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `engins_personnels`
+-- Dumping data for table `engins_personnels`
 --
 
 INSERT INTO `engins_personnels` (`Engins_idEngins`, `Personnel_idPersonnel`, `Intervention_Numero_intervention`, `Responsable_idResponsable`) VALUES
-(1, 4, 1, NULL),
-(1, 5, 2, NULL),
-(2, 1, 1, NULL),
-(2, 6, 2, NULL),
 (2, 3, 3, NULL),
 (3, 5, 4, NULL),
-(6, 7, 7, NULL),
-(6, 8, 7, NULL),
-(6, 9, 7, NULL),
-(6, 10, 7, NULL),
+(1, 24, 1, NULL),
+(1, 23, 1, NULL),
 (7, 11, 8, NULL),
 (7, 12, 8, NULL),
-(7, 13, 8, NULL),
-(9, 14, 10, NULL),
-(9, 15, 10, NULL);
+(7, 13, 8, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `failed_jobs`
+-- Table structure for table `failed_jobs`
 --
 
 DROP TABLE IF EXISTS `failed_jobs`;
@@ -149,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `geographiques`
+-- Table structure for table `geographiques`
 --
 
 DROP TABLE IF EXISTS `geographiques`;
@@ -161,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `geographiques` (
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `geographiques`
+-- Dumping data for table `geographiques`
 --
 
 INSERT INTO `geographiques` (`idGeographique`, `Position_X`, `Position_Y`) VALUES
@@ -173,7 +170,7 @@ INSERT INTO `geographiques` (`idGeographique`, `Position_X`, `Position_Y`) VALUE
 -- --------------------------------------------------------
 
 --
--- Structure de la table `interventions`
+-- Table structure for table `interventions`
 --
 
 DROP TABLE IF EXISTS `interventions`;
@@ -191,28 +188,28 @@ CREATE TABLE IF NOT EXISTS `interventions` (
   PRIMARY KEY (`Numero_Intervention`),
   KEY `interventions_geographique_idgeographique_foreign` (`Geographique_idGeographique`),
   KEY `interventions_responsable_idresponsable_foreign` (`Responsable_idResponsable`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `interventions`
+-- Dumping data for table `interventions`
 --
 
 INSERT INTO `interventions` (`Numero_Intervention`, `Commune`, `Adresse`, `Type_interv`, `Opm`, `Important`, `Date_Heure_Debut`, `Date_Heure_Fin`, `Geographique_idGeographique`, `Responsable_idResponsable`) VALUES
-(1, 'casa', '47 barte', 'ssa', '1', '1', '2020-02-03 00:00:00', '2020-02-10', 1, 3),
-(2, 'bamako', '56 charle stoessel', 'sshc', '1', '1', '2020-02-11 00:00:00', '2020-02-29', 2, 3),
-(3, 'kalaban', '46 deste', 'sstr', '4', '5', '2020-02-26 00:00:00', '2020-02-27', 3, 3),
+(1, 'sabata', '47 barte', 'BLLP', 'on', 'on', '2020-02-03 00:00:00', '2020-02-10', 1, 2),
+(2, 'bamako', '56 charle stoessel', 'AP', 'off', 'off', '2020-02-11 00:00:00', '2020-02-29', 2, 2),
+(3, 'kalaban', '46 deste', 'sstr', '4', '5', '2020-02-26 00:00:00', '2020-02-27', 3, 2),
 (4, 'paris', '57 retw', 'sstre', '0', '0', '2020-02-11 00:00:00', '2020-02-19', 4, 2),
 (5, 'mulhouse', '18 rue de la lanterne', 'CHUTA', 'on', 'on', '2021-01-30 00:00:00', '2021-01-30', NULL, 1),
 (6, 'darbayda', 'Mulhouse', 'CONVU', 'on', 'on', '1999-02-07 00:00:00', '2020-01-31', NULL, 3),
 (7, 'hhhh', 'jjajaj', 'AP', 'on', 'on', '2020-12-01 12:00:00', '2020-01-31', NULL, 2),
 (8, 'darbayda2', 'Mulhouse', 'CHUT', '2', '2', '2021-01-01 01:00:00', '2020-01-01', NULL, 3),
-(9, 'Brunstatt', '11,rue des Fréres Lumiere', 'CHUT', '3', '3', '2020-01-01 01:00:00', '2020-02-01', 1, 3),
-(10, 'Brunstatt', '11,rue des Fréres Lumiere', 'CHUT', '3', '4', '2020-01-01 01:00:00', '2020-02-01', 1, 3);
+(12, 'Hamza', 'KHAMLICHI', 'CHUTO', 'on', 'on', '2020-01-01 01:00:00', '2020-01-01', NULL, 3),
+(13, 'ha', 'kdn', 'BLLP', 'on', 'on', '2020-01-01 02:00:00', '2020-01-02', NULL, 3);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `interventions_engins`
+-- Table structure for table `interventions_engins`
 --
 
 DROP TABLE IF EXISTS `interventions_engins`;
@@ -224,7 +221,7 @@ CREATE TABLE IF NOT EXISTS `interventions_engins` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `interventions_engins`
+-- Dumping data for table `interventions_engins`
 --
 
 INSERT INTO `interventions_engins` (`Intervention_Numero_Intervention`, `Engins_idEngins`) VALUES
@@ -241,12 +238,13 @@ INSERT INTO `interventions_engins` (`Intervention_Numero_Intervention`, `Engins_
 (6, 5),
 (7, 6),
 (8, 7),
-(10, 9);
+(12, 15),
+(13, 16);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `migrations`
+-- Table structure for table `migrations`
 --
 
 DROP TABLE IF EXISTS `migrations`;
@@ -258,7 +256,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
 ) ENGINE=MyISAM AUTO_INCREMENT=175 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -282,7 +280,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `parametres`
+-- Table structure for table `parametres`
 --
 
 DROP TABLE IF EXISTS `parametres`;
@@ -295,7 +293,7 @@ CREATE TABLE IF NOT EXISTS `parametres` (
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `parametres`
+-- Dumping data for table `parametres`
 --
 
 INSERT INTO `parametres` (`idParametre`, `Jours_Feries`, `Heure_Debut`, `Heure_Fin`) VALUES
@@ -305,7 +303,7 @@ INSERT INTO `parametres` (`idParametre`, `Jours_Feries`, `Heure_Debut`, `Heure_F
 -- --------------------------------------------------------
 
 --
--- Structure de la table `password_resets`
+-- Table structure for table `password_resets`
 --
 
 DROP TABLE IF EXISTS `password_resets`;
@@ -319,7 +317,7 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `personnels`
+-- Table structure for table `personnels`
 --
 
 DROP TABLE IF EXISTS `personnels`;
@@ -333,32 +331,23 @@ CREATE TABLE IF NOT EXISTS `personnels` (
   PRIMARY KEY (`idPersonnel`),
   KEY `fk_resopns` (`Responsable_idResponsable`),
   KEY `fk_paramidparam` (`Parametre_idParametre`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `personnels`
+-- Dumping data for table `personnels`
 --
 
 INSERT INTO `personnels` (`idPersonnel`, `Nom`, `Role`, `Responsable_idResponsable`, `Parametre_idParametre`, `P_CODE`) VALUES
-(5, 'joel', 'equipier', 1, 2, '8'),
-(4, 'badr', 'chef equipe', 3, 1, '7'),
-(3, 'david', 'apprenant', 3, 3, '6'),
-(2, 'tata', 'equipier', 1, 2, '5'),
-(7, 'hamza', NULL, 1236, NULL, NULL),
-(1, 'toto', 'conducteur', 2, 1, '4'),
-(8, 'jsjazs', NULL, 1236, NULL, NULL),
-(9, 'zjdknz', NULL, 1236, NULL, NULL),
-(10, 'szkdz', NULL, 1236, NULL, NULL),
-(11, 'hamza', NULL, 1237, NULL, NULL),
-(12, 'hamza', NULL, 1237, NULL, NULL),
-(13, 'hamza', NULL, 1237, NULL, NULL),
-(14, 'hamza', NULL, 3, NULL, NULL),
-(15, 'hamza', NULL, 3, NULL, NULL);
+(27, 'david', 'coducteur', 3, 1, '6'),
+(28, 'badr', 'equipier', 3, 1, '7'),
+(26, 'tata', 'equipier', 4, 1, '5'),
+(25, 'toto', 'equipier', 2, 1, '4'),
+(29, 'joel', 'equipier', 3, 3, '8');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `rapports`
+-- Table structure for table `rapports`
 --
 
 DROP TABLE IF EXISTS `rapports`;
@@ -373,7 +362,7 @@ CREATE TABLE IF NOT EXISTS `rapports` (
 ) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `rapports`
+-- Dumping data for table `rapports`
 --
 
 INSERT INTO `rapports` (`id_rapport`, `contenu`, `Numero_intervention`, `statut`, `date`) VALUES
@@ -388,7 +377,7 @@ INSERT INTO `rapports` (`id_rapport`, `contenu`, `Numero_intervention`, `statut`
 -- --------------------------------------------------------
 
 --
--- Structure de la table `responsables`
+-- Table structure for table `responsables`
 --
 
 DROP TABLE IF EXISTS `responsables`;
@@ -397,24 +386,23 @@ CREATE TABLE IF NOT EXISTS `responsables` (
   `Nom` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `P_CODE` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`idResponsable`)
-) ENGINE=MyISAM AUTO_INCREMENT=1240 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=1248 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `responsables`
+-- Dumping data for table `responsables`
 --
 
 INSERT INTO `responsables` (`idResponsable`, `Nom`, `P_CODE`) VALUES
+(2, 'Hebner', '2'),
+(1, 'kante', '1'),
 (3, 'khamlichi', '3'),
-(2, 'rout', '2'),
-(1, 'oumar', '1'),
-(1238, 'khamlichi', NULL),
-(1237, 'hamza', NULL),
-(1239, 'khamlichi', NULL);
+(4, 'khamlichi', '3'),
+(1247, 'khamlichi', '3');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `users`
+-- Table structure for table `users`
 --
 
 DROP TABLE IF EXISTS `users`;
@@ -483,22 +471,23 @@ CREATE TABLE IF NOT EXISTS `users` (
   `P_MAITRE` int(11) NOT NULL DEFAULT 0,
   `P_PAYS` smallint(6) DEFAULT NULL,
   PRIMARY KEY (`P_ID`),
-  UNIQUE KEY `users_p_email_unique` (`P_EMAIL`)
+  UNIQUE KEY `users_p_email_unique` (`P_EMAIL`),
+  UNIQUE KEY `P_CODE` (`P_CODE`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6003 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`P_ID`, `P_NOM`, `P_EMAIL`, `P_MDP`, `P_CODE`, `P_PRENOM`, `P_PRENOM2`, `P_NOM_NAISSANCE`, `P_SEXE`, `P_CIVILITE`, `P_OLD_MEMBER`, `P_GRADE`, `P_PROFESSION`, `P_STATUT`, `P_PASSWORD_FAILURE`, `P_DATE_ENGAGEMENT`, `P_FIN`, `P_SECTION`, `C_ID`, `GP_ID`, `GP_ID2`, `P_BIRTHDATE`, `P_BIRTHPLACE`, `P_BIRTH_DEP`, `P_HORAIRE`, `P_PHONE`, `P_PHONE2`, `P_ABBREGE`, `P_ADDRESS`, `P_ZIP_CODE`, `P_CITY`, `P_RELATION_PRENOM`, `P_RELATION_NOM`, `P_RELATION_PHONE`, `P_RELATION_MAIL`, `P_HIDE`, `P_PHOTO`, `P_LAST_CONNECT`, `P_NB_CONNECT`, `GP_FLAG1`, `GP_FLAG2`, `TS_CODE`, `TS_HEURES`, `TS_JOURS_CP_PAR_AN`, `TS_HEURES_PAR_AN`, `TS_HEURES_A_RECUPERER`, `P_NOSPAM`, `P_CREATE_DATE`, `SERVICE`, `TP_ID`, `MOTIF_RADIATION`, `NPAI`, `DATE_NPAI`, `OBSERVATION`, `SUSPENDU`, `DATE_SUSPENDU`, `DATE_FIN_SUSPENDU`, `MONTANT_REGUL`, `P_CALENDAR`, `P_ACCEPT_DATE`, `TS_HEURES_PAR_JOUR`, `P_MAITRE`, `P_PAYS`) VALUES
-(9, 'rout', 'michael@sdis68.com', '0acf4539a14b3aa27deeb4cbdf6e989f', '2', 'michael', '', '', 'M', 1, 0, 'JSP', 'SPP', 'SPV', NULL, '2020-03-14', NULL, 0, 0, 0, 0, '1995-05-27', 'MULHOUSE', '', NULL, '', '', '', '', '', '', '', '', '', '', 1, NULL, NULL, 0, 0, 0, '', 0.00, NULL, NULL, NULL, 0, '2020-03-14', NULL, 4, NULL, 0, NULL, NULL, 0, NULL, NULL, 0.00, NULL, NULL, NULL, 0, 65),
+(9, 'Hebner', 'michael@sdis68.com', '0acf4539a14b3aa27deeb4cbdf6e989f', '2', 'michael', '', '', 'M', 1, 0, 'JSP', 'SPP', 'SPV', NULL, '2020-03-14', NULL, 0, 0, 0, 0, '1995-05-27', 'MULHOUSE', '', NULL, '', '', '', '', '', '', '', '', '', '', 1, NULL, NULL, 0, 0, 0, '', 0.00, NULL, NULL, NULL, 0, '2020-03-14', NULL, 4, NULL, 0, NULL, NULL, 0, NULL, NULL, 0.00, NULL, NULL, NULL, 0, 65),
 (7, 'khojn', 'badr@sdis68.com', 'e1a378b86bc5c0203239b935e2964ba3', '7', 'badr', '', '', 'M', 1, 0, 'JSP', 'SPP', 'SPV', NULL, '2020-03-14', NULL, 0, 0, 0, 0, '1995-05-27', 'MULHOUSE', '', NULL, '', '', '', '', '', '', '', '', '', '', 1, NULL, NULL, 0, 0, 0, '', 0.00, NULL, NULL, NULL, 0, '2020-03-14', NULL, 4, NULL, 0, NULL, NULL, 0, NULL, NULL, 0.00, NULL, NULL, NULL, 0, 65),
-(8, 'pouer', 'joel@sdis68.com', 'c000ccf225950aac2a082a59ac5e57ff', '8', 'joel', '', '', 'M', 1, 0, 'JSP', 'SPP', 'SPV', NULL, '2020-03-14', NULL, 0, 0, 0, 0, '1995-05-27', 'MULHOUSE', '', NULL, '', '', '', '', '', '', '', '', '', '', 1, NULL, NULL, 0, 0, 0, '', 0.00, NULL, NULL, NULL, 0, '2020-03-14', NULL, 4, NULL, 0, NULL, NULL, 0, NULL, NULL, 0.00, NULL, NULL, NULL, 0, 65),
+(8, 'joel', 'joel@sdis68.com', 'c000ccf225950aac2a082a59ac5e57ff', '8', 'joel', '', '', 'M', 1, 0, 'JSP', 'SPP', 'SPV', NULL, '2020-03-14', NULL, 0, 0, 0, 0, '1995-05-27', 'MULHOUSE', '', NULL, '', '', '', '', '', '', '', '', '', '', 1, NULL, NULL, 0, 0, 0, '', 0.00, NULL, NULL, NULL, 0, '2020-03-14', NULL, 4, NULL, 0, NULL, NULL, 0, NULL, NULL, 0.00, NULL, NULL, NULL, 0, 65),
 (5, 'tata', 'tata@sdis68.com', '49d02d55ad10973b7b9d0dc9eba7fdf0', '5', 'tata', '', '', 'M', 1, 0, 'JSP', 'SPP', 'SPV', NULL, '2020-03-14', NULL, 0, 0, 0, 0, '1995-05-27', 'MULHOUSE', '', NULL, '', '', '', '', '', '', '', '', '', '', 1, NULL, NULL, 0, 0, 0, '', 0.00, NULL, NULL, NULL, 0, '2020-03-14', NULL, 4, NULL, 0, NULL, NULL, 0, NULL, NULL, 0.00, NULL, NULL, NULL, 0, 65),
-(6, 'da', 'david@sdis68.com', '172522ec1028ab781d9dfd17eaca4427', '6', 'david', '', '', 'M', 1, 0, 'JSP', 'SPP', 'SPV', NULL, '2020-03-14', NULL, 0, 0, 0, 0, '1995-05-27', 'MULHOUSE', '', NULL, '', '', '', '', '', '', '', '', '', '', 1, NULL, NULL, 0, 0, 0, '', 0.00, NULL, NULL, NULL, 0, '2020-03-14', NULL, 4, NULL, 0, NULL, NULL, 0, NULL, NULL, 0.00, NULL, NULL, NULL, 0, 65),
+(6, 'david', 'david@sdis68.com', '172522ec1028ab781d9dfd17eaca4427', '6', 'david', '', '', 'M', 1, 0, 'JSP', 'SPP', 'SPV', NULL, '2020-03-14', NULL, 0, 0, 0, 0, '1995-05-27', 'MULHOUSE', '', NULL, '', '', '', '', '', '', '', '', '', '', 1, NULL, NULL, 0, 0, 0, '', 0.00, NULL, NULL, NULL, 0, '2020-03-14', NULL, 4, NULL, 0, NULL, NULL, 0, NULL, NULL, 0.00, NULL, NULL, NULL, 0, 65),
 (4, 'toto', 'toto@sdis68.com', 'f71dbe52628a3f83a77ab494817525c6', '4', 'toto', '', '', 'M', 1, 0, 'JSP', 'SPP', 'SPV', NULL, '2020-03-14', NULL, 0, 0, 0, 0, '1995-05-27', 'MULHOUSE', '', NULL, '', '', '', '', '', '', '', '', '', '', 1, NULL, NULL, 0, 0, 0, '', 0.00, NULL, NULL, NULL, 0, '2020-03-14', NULL, 4, NULL, 0, NULL, NULL, 0, NULL, NULL, 0.00, NULL, NULL, NULL, 0, 65),
-(1, 'admin', 'admin@sdis68.com', '21232f297a57a5a743894a0e4a801fc3', '1234', 'admin', NULL, NULL, 'f', 1, 0, 'CHEF', 'SPA', 'ff', NULL, '2006-01-01', NULL, 0, 0, 4, 0, '1995-05-27', 'TANGER', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, '2020-03-14 00:29:36', 23, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 4, NULL, 0, NULL, NULL, 0, NULL, NULL, 0.00, NULL, NULL, NULL, 0, NULL),
-(2, 'oumar', 'kante@sdis68.com', 'eac0cfd495187ac65c68ed47bb43312d', '1', 'kante', '', '', 'M', 1, 0, 'RESP', 'SPP', 'SPV', NULL, '2020-03-14', NULL, 2, 0, 0, 0, '1995-05-27', 'MULHOUSE', '', NULL, '', '', '', '', '', '', '', '', '', '', 1, NULL, NULL, 0, 0, 0, '', 0.00, NULL, NULL, NULL, 0, '2020-03-14', NULL, 4, NULL, 0, NULL, NULL, 0, NULL, NULL, 0.00, NULL, NULL, NULL, 0, 65),
+(1, 'fares', 'fares@sdis68.com', '21232f297a57a5a743894a0e4a801fc3', '1234', 'admin', NULL, NULL, 'f', 1, 0, 'CHEF', 'SPA', 'ff', NULL, '2006-01-01', NULL, 0, 0, 4, 0, '1995-05-27', 'TANGER', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, '2020-03-14 00:29:36', 23, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 4, NULL, 0, NULL, NULL, 0, NULL, NULL, 0.00, NULL, NULL, NULL, 0, NULL),
+(2, 'Kante', 'kante@sdis68.com', 'eac0cfd495187ac65c68ed47bb43312d', '1', 'kante', '', '', 'M', 1, 0, 'RESP', 'SPP', 'SPV', NULL, '2020-03-14', NULL, 2, 0, 0, 0, '1995-05-27', 'MULHOUSE', '', NULL, '', '', '', '', '', '', '', '', '', '', 1, NULL, NULL, 0, 0, 0, '', 0.00, NULL, NULL, NULL, 0, '2020-03-14', NULL, 4, NULL, 0, NULL, NULL, 0, NULL, NULL, 0.00, NULL, NULL, NULL, 0, 65),
 (3, 'khamlichi', 'hamza@sdis68.com', '8950259507cd8ce2a99f8b94674f2b77', '3', 'hamza', 'hamza', '', 'M', 1, 0, 'RESP', 'SPP', 'SPV', NULL, '2020-03-14', NULL, 0, 0, 0, 0, '1995-05-27', 'MULHOUSE', '', NULL, '', '', '', '', '', '', '', '', '', '', 1, NULL, NULL, 0, 0, 0, '', 0.00, NULL, NULL, NULL, 0, '2020-03-14', NULL, 4, NULL, 0, NULL, NULL, 0, NULL, NULL, 0.00, NULL, NULL, NULL, 0, 65);
 COMMIT;
 
