@@ -220,7 +220,7 @@ return $personnels;
                 );
                 //dd($TableEngin);
                 //Modification d'un responsable dans la BDD
-                $UpdateResp = Intervention::UpdateResponsable($TableIntervention['Numero_Intervention'],$request->input('Nom'));
+                // $UpdateResp = Intervention::UpdateResponsable($TableIntervention['Numero_Intervention'],$request->input('Nom'));
                 //Modification des informations de l'engin utiliser lors de l'intervention
                 $UpdateEngins = Intervention::UpdateEnginIntervention($TableIntervention['Numero_Intervention'],$TableEngin['Nom_Engin'],$TableEngin['Date_Heur_Depart'],$TableEngin['Date_Heure_Arriver'],$TableEngin['Date_Heure_Retour']);
                 //Modification des information de l'intervention

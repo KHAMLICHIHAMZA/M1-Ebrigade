@@ -27,8 +27,8 @@ class Intervention extends Model
     //Modification du champs Nom du responsable dans la BDD
     static public function UpdateResponsable($idResp,$NomResp){
         $stm=DB::table('responsables')->where('idResponsable', $idResp)->update(['Nom' => $NomResp]);
-        $stm=null;         
-    } 
+        $stm=null;
+    }
 
     //Modification des informations de l'engin utiliser lors de l'intervention dans BDD
     static public function UpdateEnginIntervention($idIntervention,$Nom_Engin,$Date_Heur_Depart,$Date_Heure_Arriver,$Date_Heure_Retour){
@@ -60,7 +60,7 @@ class Intervention extends Model
             'Date_Heure_Fin'=>$Date_Heure_Fin,]
         );
         //Fermeture et initialisation du curseur
-        $stmt=null;        
+        $stmt=null;
     }
     //Update des personnels qui ont participer lors d'une intervention
     static public function UpdatePersonel($idInte,$nom){
@@ -93,10 +93,11 @@ class Intervention extends Model
 
     //Insertion du responsable dans la BDD
     static public function AddResponsable($Resp){
-        $stm=DB::table('responsables')->insert(['Nom' => $Resp]);
+        $stm=DB::table('responsables')->insert(['Nom' => session('P_NOM'),'P_CODE' =>session('P_CODE')]);
+
         //Fermeture et initialisation du curseur
         //$stm->closeCursor();
-        $stm=null;         
+        $stm=null;
     }
 
     //Insertion des informations de l'engin utiliser lors de l'intervention dans BDD
@@ -147,11 +148,12 @@ class Intervention extends Model
 
     //Insertion des informations de l'intervention dans la BDD
     static public function AddIntervention($Commune,$Adresse,$Type_interv,$Date_Heure_Debut,$Date_Heure_Fin,$Important,$Opm){
-        //Recuperer la dernier ligne de la table engins sauvegarder dans la BDD 
+        //Recuperer la dernier ligne de la table engins sauvegarder dans la BDD
+
         $LastLine=DB::table('engins')->latest('idEngins')->first();
 
         $Last=DB::table('responsables')->select("responsables.*")->where('P_CODE',session('P_CODE'))->first();
-         //Insertion des information de la table intervention dans la BDD
+        //Insertion des information de la table intervention dans la BDD
         $stmt=DB::table('interventions')->insert([
             'Commune' => $Commune,
             'Adresse'=>$Adresse,
@@ -166,8 +168,8 @@ class Intervention extends Model
         //Fermeture et initialisation du curseur
         //$stmt->closeCursor();
         $stmt=null;
-        
-        //Recuperation de la dernier ligne sauvegarder de la table interventions 
+
+        //Recuperation de la dernier ligne sauvegarder de la table interventions
         $LastLine1=DB::table('interventions')->latest('Numero_Intervention')->first();
 
         //Insertion des informations concernant les cles primaire des tables engins et intervention pour faire la liaison.
@@ -181,15 +183,15 @@ class Intervention extends Model
         //Fermeture et initialisation du curseur
         $LastLine=null;
         //Fermeture et initialisation du curseur
-        $LastLine1=null;        
+        $LastLine1=null;
     }
 
     //Recherche d'une intervention dans la BDD
     static public function FindIntervention($id){
         $stmt=DB::table('interventions')->where('Numero_Intervention',$id)->get();
         return $stmt;
-    } 
-    
+    }
+
     //Rechercher l'engin utiliser lors d'une intervention
     static public function FindInterventionEgins($id){
         $stmt=DB::table('interventions_engins')->select()->where('Intervention_Numero_Intervention',$id)->get();
@@ -204,8 +206,8 @@ class Intervention extends Model
         }
         //dd($stmt1);
         return $stmt1;
-    }    
-    
+    }
+
     //Rechercher les infos de l'engin utiliser lors d'une intervention
     static public function FindResponsableIntervention($idResponsable){
         $stmt1=DB::table('responsables')->select()->where('idResponsable',$idResponsable)->get();
@@ -231,8 +233,8 @@ class Intervention extends Model
     //supprimer du Responsable de l'intervention de la BDD
     static public function DeleteInterventionResponsable($idRespensable){
         DB::table('responsables')->where('idResponsable' , $idRespensable)->delete();
-    }    
-    
+    }
+
     //supprimer des informations de l'intervention de la BDD
     static public function DeleteInterventionTable($id){
         DB::table('interventions')->where('Numero_Intervention' , $id)->delete();
@@ -289,14 +291,14 @@ class Intervention extends Model
             $i++;
         }
         return $liste;
-        
+
    }
-   
+
     //Rechercher de tout les interventions dans les archives par leurs Commune
       static public function SearchArchiveByCommune($Commune){
         $stmt1=DB::table('interventions')->select()->where('Commune',$Commune)->get();
         return $stmt1;
-    }  
+    }
 
-    
+
 }

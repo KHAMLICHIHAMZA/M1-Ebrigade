@@ -32,6 +32,7 @@ class RapportController extends Controller
     {
 
         //liste Allrapport resposable bylogin
+        
         $rapport = DB::table('rapports')
         ->join('interventions', 'rapports.Numero_intervention', '=', 'interventions.Numero_Intervention')
         ->join('responsables', 'interventions.Responsable_idResponsable', '=', 'responsables.idResponsable')
@@ -53,7 +54,7 @@ class RapportController extends Controller
             'contenu'=> $request->input('rapport'),
             'statut'=> NULL ]);
 
-            
+
             return redirect()->route('listeAllrapportresponsable');
 
 

@@ -203,7 +203,7 @@ $Type_Inters = InterventionController::getAllType();
               <!-- text input -->
               <div class="form-group">
                 <label>Responsable</label>
-                <input type="text" class="form-control" name="Nom" placeholder="Nom & Prenom">
+                <input type="text" ReadOnly class="form-control" name="Nom" placeholder="Nom & Prenom" value="{{ session('P_NOM') }}">
               </div>
             </div>
             <div class="col-sm-6">
