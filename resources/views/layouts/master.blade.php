@@ -57,6 +57,9 @@
 
   @mapstyles
 </head>
+<?php
+use App\Http\Controllers\InterventionController;
+?>
 <body class="hold-transition sidebar-mini layout-fixed">
 
 <div class="wrapper">
@@ -157,6 +160,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+            <?php if((InterventionController::isresponsable(session('P_CODE')) == true) and ((session('P_CODE'))  != '1234')) : ?>
             <li  class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-list"></i>
@@ -180,9 +184,9 @@
                     </li>
                 </ul>
             </li>
-
-
-            <li @if ( App\Http\Controllers\InterventionController::ispersonnel(session('P_CODE')) == true ) hidden  @endif class="nav-item has-treeview">
+          <?php endif; ?>
+          <?php if( InterventionController::ispersonnel(session('P_CODE')) == false ): ?>
+            <li  class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-list"></i>
                     <p>
@@ -191,35 +195,33 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview" style="display: none;">
-                    <li @if (App\Http\Controllers\InterventionController::isresponsable(session('P_CODE')) == false)) hidden  @endif class="nav-item">
+                <?php if((InterventionController::isresponsable(session('P_CODE')) == true) and ((session('P_CODE'))  != '1234')) : ?>
+                    <li class="nav-item">
                         <a href="{{route('listeIRapportnonrediger')}}" class="nav-link">
                             <i class="nav-icon fas fa-pencil "></i>
                             <p>Rediger Rapport</p>
                         </a>
                     </li>
-                    <li @if (App\Http\Controllers\InterventionController::isresponsable(session('P_CODE')) == false) hidden  @endif class="nav-item">
+                <?php endif; ?>
+                <?php if ((InterventionController::isresponsable(session('P_CODE')) == true) and ((session('P_CODE'))  != '1234')): ?>
+                    <li class="nav-item">
                         <a href="{{route('listeAllrapportresponsable')}}" class="nav-link">
                             <i class="nav-icon fas fa-pencil "></i>
                             <p>liste all rapport</p>
                         </a>
                     </li>
-                    <div>
-                        <li @if ( App\Http\Controllers\InterventionController::isresponsable(session('P_CODE'))  == true)
-                         hidden
-                        @elseif (App\Http\Controllers\InterventionController::ischefducorp(session('P_CODE'))  == true)
-
-                        @else
-                        hidden
-                        @endif class="nav-item">
+                <?php endif; ?>
+                <?php if ((InterventionController::isresponsable(session('P_CODE')) == false) and ((session('P_CODE'))  == '1234')): ?>
+                        <li class="nav-item">
                             <a href="{{route('listeallrapportchef')}}" class="nav-link">
                                 <i class="nav-icon fas fa-layers-text "></i>
                                 <p>Valider Rapport</p>
                             </a>
                         </li>
-                    </div>
+                <?php endif; ?>
                 </ul>
             </li>
-
+          <?php endif; ?>
 
 
           <li class="nav-item">

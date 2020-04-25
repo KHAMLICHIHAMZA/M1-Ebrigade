@@ -279,10 +279,10 @@ return $personnels;
         }
     }
 
-    public static function ischefducorp()
+    public static function ischefducorp($P_CODE)
     {
         $chefducorp = DB::table('users')
-        ->where('users.P_CODE',1234)
+        ->where('users.P_CODE',$P_CODE)
         ->select('users.*')
         ->first();
 
