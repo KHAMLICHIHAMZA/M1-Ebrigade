@@ -1,5 +1,5 @@
 {
-     "title":"You are welcom",
+    "title":"You are welcom",
     "Hello!" : "Hallo",
     "Stay with us and keep learning" : "Stay with us and keep learning",
     "Prenom":"First Name",
@@ -49,7 +49,15 @@
     "Carte":"Map",
     "Meteo":"Weather forecast",
     "langage":"choose your langage",
-    "INTERVENTION n°":"Interventionsnummer"
+    "INTERVENTION n°":"Interventionsnummer",
+    "Evenements a Déplacement":"Events to move",
+    "enlever apres le déplacement":"remove after moving",
+    "Creer Evenement":"Create Event",
+    "Ajouter":"add"
+
+
+
+
 
 
 

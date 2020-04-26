@@ -10,20 +10,24 @@
               <div class="sticky-top mb-3">
                 <div class="card">
                   <div class="card-header">
-                    <h4 class="card-title">@lang('Evenements à Déplacement')</h4>
+                    <h4 class="card-title">@lang('Evenements a Déplacement')</h4>
                   </div>
                   <div class="card-body">
                     <!-- the events -->
+                    
                     <div id="external-events">
-                      <div class="external-event bg-success">@lang('Déjeuner')</div>
-                      <div class="external-event bg-warning">@lang('finir')</div>
-                      <div class="external-event bg-info">@lang('remplir intervention')</div>
-                      <div class="external-event bg-primary">@lang('passer')</div>
-                      <div class="external-event bg-danger">@lang('voir')</div>
+                      <div class="external-event bg-success">Tâche-1</div>
+                      <div class="external-event bg-warning">Tâche-2</div>
+                      <div class="external-event bg-info">Tâche-3</div>
+                      <div class="external-event bg-primary">Tâche-4</div>
+                      <div class="external-event bg-danger">Tâche-5</div>
                       <div class="checkbox">
                         <label for="drop-remove">
                           <input type="checkbox" id="drop-remove">
-  enlever apres le déplacement                      </label>
+                                                
+                            @lang('enlever apres le déplacement')  
+
+                        </label>
                       </div>
                     </div>
                   </div>
@@ -32,7 +36,7 @@
                 <!-- /.card -->
                 <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title">Creer Evenement</h3>
+                    <h3 class="card-title">@lang('Creer Evenement')</h3>
                   </div>
                   <div class="card-body">
                     <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
@@ -50,7 +54,7 @@
                       <input id="new-event" type="text" class="form-control" placeholder="Nom de votre Evenment">
 
                       <div class="input-group-append">
-                        <button id="add-new-event" type="button" class="btn btn-primary">Ajouter</button>
+                        <button id="add-new-event" type="button" class="btn btn-primary">@lang('Ajouter')</button>
                       </div>
                       <!-- /btn-group -->
                     </div>

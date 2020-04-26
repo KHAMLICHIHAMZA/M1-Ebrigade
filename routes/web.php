@@ -37,6 +37,8 @@ Route::get('/FindSearchVehicule', 'ArchiveController@listeArchives')->name('Find
 Route::get('/AllArchive', 'ArchiveController@listeArchives')->name('listeArchives');
 //Redirection vers le controlleur qui traitera la recherche demander
 Route::name('Search')->post('/AllArchive/{request?}','ArchiveController@findArchive');
+Route::name('SearchIntervention')->post('/analyse/{request?}','InterventionController@findIntervention');
+
 //URL /AllIntervention fait appel a la methode listeIntervention du controller InterventionController
 Route::get('/AllIntervention', 'InterventionController@listeAllInterventions')->name('listeAllInterventions');
 //Redirection vers la page d'ajout intervention
@@ -68,12 +70,15 @@ Route::get('/parametres', function () {
     return view('parametres.parametres');
 });
 
+
+Route::get('/analyse','InterventionController@nombre');
+
+
 Route::get('user/{us}', 'UserController@delete')->name('user.delete');
 
 //rapport Routes
 
 Route::get('lang/{locale}', 'LocalizationController@index');
-
 
 
 

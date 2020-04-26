@@ -417,6 +417,7 @@ return $responsable;
             'idinterventions' => $id,
             'rapport' => $rapports,
             'responsable' => $responsable,
+
             ]);
 
     }
@@ -536,6 +537,43 @@ return view("rapports.correction_rapport",[
 
     }
 
+    public static function nombre()
+    {
+        $interventions = DB::table('interventions')->count();
+
+return view("Analyse.analyse",[
+    'interventions' => $interventions,
+
+
+
+    ]);
+
+    }
+
+
+    public static function findIntervention(Request $request){
+
+
+        switch ($request->input('Filre')) {
+            case "Numero_Intervention":
+                $Intervention = Intervention::SearchArchiveByNumInter($request->input('Search'))->count();
+                return view('Analyse.analyse',['Interventions' => $Intervention]);
+                break;
+            case "Type_interv":
+                $Intervention = Intervention::SearchArchiveByTypeInter($request->input('Search'))->count();
+                return view('Analyse.analyse',['Interventions' => $Intervention]);
+                break;
+            case "Nom_Engin":
+                $Intervention = Intervention::SearchArchiveByEngin($request->input('Search'))->count();
+                    return view('Analyse.analyse',['Interventions' => $Intervention]);
+                break;
+            case "Commune":
+                $Intervention = Intervention::SearchArchiveByCommune($request->input('Search'))->count();
+                return view('Analyse.analyse',['Interventions' => $Intervention]);
+                break;
+        }
+
+    }
 
 
 }
