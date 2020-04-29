@@ -45,7 +45,7 @@ vous trouverez les scripts des bases de données remplies dans les projets à no
    <br>
    hamza@sdis68.com       :  hamza
    <br>
-   kante@sdis68.com       : knate
+   kante@sdis68.com       : kante
    <br>
   <span> -    Pompiers</span>
    <br>
