@@ -33,21 +33,27 @@ vous trouverez les scripts des bases de données remplies dans les projets à no
  
 3 type d'utilisateurs 
     -   Chef de Corp
-  
+  <br>
   fares@sdis68.com       :     admin
-  
+  <br>
    -    Respnsable
-   
+   <br>
    michael@sdis68.com     :  michael
+   <br>
    hamza@sdis68.com       :  hamza
+   <br>
    kante@sdis68.com       : knate
-   
+   <br>
    -    Pompiers
-   
+   <br>
    badr@sdis68.com        : badr
+   <br>
    joel@sdis68.com        : joel
+   <br>
    tata@sdis68.com        : tata
+   <br>
    david@sdis68.com       : david
+   <br>
    toto@sdis68.com        : toto
    
    
